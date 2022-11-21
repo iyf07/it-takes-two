@@ -1,6 +1,7 @@
 const express = require('express');
 const PiggyBank = require('../models/piggybank');
 const PiggyModel = require('../models/piggymodel');
+const CurrencyModel = require('../models/currency');
 const router = express.Router();
 const catchAsync = require('../utils/catchAsync')
 
@@ -34,6 +35,7 @@ router.post('/', catchAsync(async(req, res) => {
     if(data){
         newData.name = data.name;
         newData.points = data.points;
+        newData.currency = data.currency;
     }
     const piggy = new PiggyBank(newData);
     await piggy.save();

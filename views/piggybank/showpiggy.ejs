@@ -4,7 +4,7 @@
         <div class="card mb-3">
             <div class="card-body">
                 <h1 class="card-title"><%= piggybank.name %></h1>
-                <p class="list-group-item">Potatoes: <%= piggybank.points %></p>
+                <p class="list-group-item">Value: <%= piggybank.points %><%= piggybank.currency.slice(-2)%></p>
                 <p class="list-group-item">Birthday: <%= piggybank.date.toISOString().slice(0, 10)%></p>
                 <p class="list-group-item">Age: <%= piggybank.status.slice(0,-2) %></p>
                 <p class="card-text">Introduction: <%= piggybank.description %></p>

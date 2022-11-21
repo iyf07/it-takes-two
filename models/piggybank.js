@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const PiggyBankSchema = new Schema({
     name: String,
     points: Number,
+    currency: String,
     date: Date,
     description: String,
     image: String,

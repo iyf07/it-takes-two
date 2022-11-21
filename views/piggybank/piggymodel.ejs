@@ -15,7 +15,7 @@
                 <h2 class="accordion-header" id="model<%=i%>>">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#flush-collapse<%=i%>" aria-expanded="false" aria-controls="flush-collapse<%=i%>">
-                        <%= piggymodel.name %> - <%= piggymodel.points %>&#129364;
+                        <%= piggymodel.name %> - <%= piggymodel.points %><%= piggymodel.currency.slice(-2)%>
                     </button>
                 </h2>
                 <div id="flush-collapse<%=i%>" class="accordion-collapse collapse" aria-labelledby="model<%=i%>>"

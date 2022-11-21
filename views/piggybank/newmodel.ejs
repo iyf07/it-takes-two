@@ -1,4 +1,4 @@
-<% layout('layouts/boilerplate')%>
+<% layout('layouts/boilerplate') %>
 <div class="row">
     <h1 class="text-center">New Model</h1>
     <div class="col-8 offset-2">
@@ -9,9 +9,29 @@
                 <div class="valid-feedback"></div>
             </div>
             <div class="mb-3">
-                <label for="points" class="form-label">Potatoes</label>
+                <label for="points" class="form-label">Value</label>
                 <input type="number" class="form-control" id="points" name="piggymodel[points]" required>
                 <div class="valid-feedback"></div>
+            </div>
+            <div class="mb-3">
+                <label for="currency" class="form-label">Currency</label>
+                <div id="piggymodel">
+                    <div class="form-check">
+                        <input class="form-check-input" name="piggymodel[currency]" type="radio" id="potatoes"
+                               value="potatoes&#129364;">
+                        <label class="form-check-label" for="potatoes">Potato&#129364;</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" name="piggymodel[currency]" type="radio" id="watermelons"
+                               value="watermelons&#127817;">
+                        <label class="form-check-label" for="watermelons">Watermelon&#127817;</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" name="piggymodel[currency]" type="radio" id="eggs"
+                               value="eggs&#129370;">
+                        <label class="form-check-label" for="eggs">Egg&#129370;</label>
+                    </div>
+                </div>
             </div>
             <div class="mb-3">
                 <label for="text" class="form-label">Introduction</label>

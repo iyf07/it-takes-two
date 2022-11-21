@@ -12,7 +12,7 @@
                     <div class="form-check">
                         <input class="form-check-input" name="piggybankid" type="radio" id="piggymodel<%= i%>" value="<%= piggymodel._id%>">
                         <label class="form-check-label" for="piggymodel<%= i%>">
-                            <%= piggymodel.name %> - <%= piggymodel.points%>&#129364;
+                            <%= piggymodel.name %> - <%= piggymodel.points%><%= piggymodel.currency.slice(-2)%>
                         </label>
                         <% i++; %>
                     </div>
