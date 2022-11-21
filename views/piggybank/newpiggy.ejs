@@ -1,0 +1,45 @@
+<% layout('layouts/boilerplate') %>
+<div class="row">
+    <h1 class="text-center">New Piglet</h1>
+    <div class="col-8 offset-2">
+        <form action="/piggybank" method="POST" novalidate class="validated-form">
+            <input type="hidden" name="piggybank[status]" value="Piglet&#128061;">
+            <div class="mb-3">
+                <label for="piggymodel" class="form-label">Piggy Model</label>
+                <div id="piggymodel">
+                    <% let i=0; %>
+                    <% for (let piggymodel of piggymodels){ %>
+                    <div class="form-check">
+                        <input class="form-check-input" name="piggybankid" type="radio" id="piggymodel<%= i%>" value="<%= piggymodel._id%>">
+                        <label class="form-check-label" for="piggymodel<%= i%>">
+                            <%= piggymodel.name %> - <%= piggymodel.points%>&#129364;
+                        </label>
+                        <% i++; %>
+                    </div>
+                    <% } %>
+                    <a class="btn btn-dark" href="/piggybank/newbonuspiggy">Bonus Piglet</a>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="date" class="form-label">Birthday</label>
+                <input type="date" class="form-control" id="date" name="piggybank[date]" required>
+                <div class="valid-feedback"></div>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Introduction</label>
+                <input type="text" class="form-control" id="description" name="piggybank[description]">
+                <div class="valid-feedback"></div>
+            </div>
+            <div class="mb-3">
+                <label for="image" class="form-label">Image</label>
+                <input type="text" class="form-control" id="image" name="piggybank[image]">
+                <div class="valid-feedback"></div>
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-dark">Add Piglet</button>
+                <p></p>
+                <a class="btn btn-light btn-outline-dark" href="/piggybank">Piggy Bank</a>
+            </div>
+        </form>
+    </div>
+</div>

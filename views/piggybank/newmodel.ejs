@@ -1,0 +1,28 @@
+<% layout('layouts/boilerplate')%>
+<div class="row">
+    <h1 class="text-center">New Model</h1>
+    <div class="col-8 offset-2">
+        <form action="/piggybank/piggymodel" method="POST" novalidate class="validated-form">
+            <div class="mb-3">
+                <label for="name" class="form-label">Model Name</label>
+                <input type="text" class="form-control" id="name" name="piggymodel[name]" required>
+                <div class="valid-feedback"></div>
+            </div>
+            <div class="mb-3">
+                <label for="points" class="form-label">Potatoes</label>
+                <input type="number" class="form-control" id="points" name="piggymodel[points]" required>
+                <div class="valid-feedback"></div>
+            </div>
+            <div class="mb-3">
+                <label for="text" class="form-label">Introduction</label>
+                <input type="text" class="form-control" id="date" name="piggymodel[description]" required>
+                <div class="valid-feedback"></div>
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-dark">Add Model</button>
+                <p></p>
+                <a class="btn btn-light btn-outline-dark" href="/piggybank/piggymodel">Piggy Model</a>
+            </div>
+        </form>
+    </div>
+</div>

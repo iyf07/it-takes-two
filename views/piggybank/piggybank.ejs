@@ -1,0 +1,21 @@
+<% layout('layouts/boilerplate') %>
+<div class="container">
+    <h1 style="text-align:center">Piggy Bank</h1>
+    <div class="row">
+        <div class="column">
+            <a class="btn btn-dark" href="/piggybank/newpiggy">New Piglet</a>
+            <a class="btn btn-light btn-outline-dark" href="/piggybank/piggymodel">Piggy Model</a>
+        </div>
+    </div>
+    <p></p>
+    <% for (let piggybank of piggybanks){ %>
+        <div class="card mb-3">
+            <p class="card-header"><%= piggybank.name %> <%= piggybank.status.slice(-2) %></p>
+            <div class="card-body">
+                <p class="card-title"><%= piggybank.date.toISOString().slice(0, 10)%></p>
+                <a class="btn btn-dark"
+                   href="/piggybank/<%= piggybank._id %>">Barn</a>
+            </div>
+        </div>
+    <% } %>
+</div>

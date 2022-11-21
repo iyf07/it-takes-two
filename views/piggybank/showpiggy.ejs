@@ -1,0 +1,34 @@
+<% layout('layouts/boilerplate') %>
+<div class="row">
+    <div class="col-10 offset-1">
+        <div class="card mb-3">
+            <div class="card-body">
+                <h1 class="card-title"><%= piggybank.name %></h1>
+                <p class="list-group-item">Potatoes: <%= piggybank.points %></p>
+                <p class="list-group-item">Birthday: <%= piggybank.date.toISOString().slice(0, 10)%></p>
+                <p class="list-group-item">Age: <%= piggybank.status.slice(0,-2) %></p>
+                <p class="card-text">Introduction: <%= piggybank.description %></p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <a class="card-link btn btn-dark" href="/piggybank/<%= piggybank._id %>/edit">Edit</a>
+                    <form style="float: right;" class="d-inline" action="/piggybank/<%= piggybank._id %>?_method=DELETE" method="POST">
+                        <button class="btn btn-light btn-outline-dark">Abandon</button>
+                    </form>
+                </li>
+                <li class="list-group-item">
+                    <form class="d-inline" action="/piggybank/<%= piggybank._id %>/Piggy&#128022;/?_method=PUT" method="POST">
+                        <button class="btn btn-dark">Piggy</button>
+                    </form>
+                    <form style="float: right;" class="d-inline" action="/piggybank/<%= piggybank._id %>/Bacon&#129363;/?_method=PUT" method="POST">
+                        <button class="btn btn-light btn-outline-dark">Bacon</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+
+        <div class="mb-3">
+            <a class="btn btn-dark" href="/piggybank">Piggy Bank</a>
+        </div>
+    </div>
+</div>
