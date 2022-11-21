@@ -1,12 +1,9 @@
 const express = require('express');
 const PiggyBank = require('../models/piggybank');
 const PiggyModel = require('../models/piggymodel');
-const CurrencyModel = require('../models/currency');
+const Currency = require('../models/currency');
 const router = express.Router();
 const catchAsync = require('../utils/catchAsync')
-
-
-
 
 router.get('/', async(req, res) => {
     const piggybanks = await PiggyBank.find({});
@@ -27,7 +24,11 @@ router.get('/piggymodel', async(req, res) => {
     res.render('piggybank/piggymodel', {piggymodels})
 })
 
-
+router.get('/resetpoints', async(req, res) => {
+    await Currency.deleteMany({});
+    const currency = new Currency({potatoes: 0, watermelons: 0, eggs: 0})
+    await currency.save()
+})
 
 router.post('/', catchAsync(async(req, res) => {
     let newData = req.body.piggybank;
@@ -74,7 +75,21 @@ router.put('/piggymodel/:id', catchAsync(async(req, res) => {
 }));
 
 router.put('/:id/:status', catchAsync(async(req, res) => {
+    let operation = 1;
+    if(req.params.status.slice(0,-2)==="Bacon"){
+        operation = -1;
+    }
     const {id} =req.params;
+    const piggydata = await PiggyBank.findById(id);
+    const allcurrencydata = await Currency.find({});
+    const currencydataid = allcurrencydata[0]._id;
+    const updatecurrency = piggydata.currency.slice(0, -2);
+    const updatepoints = piggydata.points;
+    const currencydata = await Currency.findById(currencydataid);
+    const currentpoints = currencydata[updatecurrency];
+    const obj = {};
+    obj[updatecurrency] = currentpoints + operation * updatepoints;
+    await Currency.findByIdAndUpdate(currencydataid, obj);
     const piggybank = await PiggyBank.findByIdAndUpdate(id, {status: req.params.status})
     res.redirect(`/piggybank/${piggybank._id}`)
 }));
