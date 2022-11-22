@@ -1,18 +1,68 @@
 <% layout('layouts/boilerplate') %>
-<div class="container">
-    <h1 style="text-align:center">Piggy Bank</h1>
-    <div class="row">
-        <div class="column">
-            <a class="btn btn-dark" href="/piggybank/newpiggy">New Piglet</a>
-            <a class="btn btn-light btn-outline-dark" href="/piggybank/piggymodel">Piggy Model</a>
+<div class="board container">
+    <div class="card mb-3">
+        <h1 class="card-header" style="text-align:center">Piggy Bank</h1>
+        <div class="card-body">
+            <ul class="list-group list-group-flush row">
+                <li class="list-group-item">
+                    <a class="btn btn-dark" href="/piggybank/newpiggy">New Piglet</a>
+                    <a style="float: right;" class="btn btn-light btn-outline-dark" href="/piggybank/piggymodel">Piggy Model</a>
+                </li>
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="column col-1">
+                            <div>&#129364;</div>
+                        </div>
+                        <div class="column col-11">
+                            <div class="progress" style="height: 20px;">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-dark" role="progressbar"
+                                     style="width: <%= currency[0].potatoes %>%" aria-label="Basic example"
+                                     aria-valuenow=<%= currency[0].potatoes %> aria-valuemin="0" aria-valuemax="100">
+                                    <%= currency[0].potatoes %>/100
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="column col-1">
+                            <div>&#127817;</div>
+                        </div>
+                        <div class="column col-11">
+                            <div class="progress" style="height: 20px;">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-dark" role="progressbar"
+                                     style="width: <%= currency[0].watermelons*2 %>%" aria-label="Basic example"
+                                     aria-valuenow=<%= currency[0].watermelons %> aria-valuemin="0"
+                                     aria-valuemax="50">
+                                    <%= currency[0].watermelons %>/50
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="column col-1">
+                            <div>&#129370;</div>
+                        </div>
+                        <div class="column col-11">
+                            <div class="progress" style="height: 20px;">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-dark" role="progressbar"
+                                     style="width: <%= currency[0].eggs*10 %>%" aria-label="Basic example"
+                                     aria-valuenow=<%= currency[0].eggs %> aria-valuemin="0" aria-valuemax="10">
+                                    <%= currency[0].eggs %>/10
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
-    <p></p>
+</div>
+<div class="container">
     <% for (let piggybank of piggybanks){ %>
         <div class="card mb-3">
             <p class="card-header"><%= piggybank.name %> <%= piggybank.status.slice(-2) %></p>
             <div class="card-body">
-                <p class="card-title"><%= piggybank.date.toISOString().slice(0, 10)%></p>
+                <p class="card-title"><%= piggybank.date.toISOString().slice(0, 10) %></p>
                 <a class="btn btn-dark"
                    href="/piggybank/<%= piggybank._id %>">Barn</a>
             </div>

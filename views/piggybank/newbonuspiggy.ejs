@@ -1,9 +1,10 @@
 <% layout('layouts/boilerplate') %>
-<div class="row">
+<div class="container">
     <h1 class="text-center">New Bonus Piglet</h1>
     <div class="col-8 offset-2">
         <form action="/piggybank" method="POST" novalidate class="validated-form">
             <input type="hidden" name="piggybank[status]" value="Piglet&#128055;">
+            <input type="hidden" name="piggybank[currency]" value="potatoes&#129364;">
             <div class="mb-3">
                 <label for="name" class="form-label">Piglet Name</label>
                 <input type="text" class="form-control" id="name" name="piggybank[name]" required>
