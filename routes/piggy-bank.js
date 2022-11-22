@@ -1,6 +1,6 @@
 const express = require('express');
-const PiggyBank = require('../models/piggybank');
-const PiggyModel = require('../models/piggymodel');
+const PiggyBank = require('../models/piggy-bank');
+const PiggyModel = require('../models/piggy-model');
 const Currency = require('../models/currency');
 const router = express.Router();
 const catchAsync = require('../utils/catchAsync')
@@ -8,27 +8,27 @@ const catchAsync = require('../utils/catchAsync')
 router.get('/', async(req, res) => {
     const piggybanks = await PiggyBank.find({}).sort({date:-1});
     const currency = await Currency.find({});
-    res.render('piggybank/piggybank', {piggybanks, currency})
+    res.render('piggy-bank/piggy-bank', {piggybanks, currency})
 })
 
-router.get('/newpiggy', async(req, res) => {
+router.get('/new-piggy', async(req, res) => {
     const piggymodels = await PiggyModel.find({}).sort({priority: 1});
     const currency = await Currency.find({});
-    res.render('piggybank/newpiggy', {piggymodels, currency})
+    res.render('piggy-bank/new-piggy', {piggymodels, currency})
 })
 
-router.get('/newbonuspiggy',async(req, res) => {
+router.get('/new-bonus-piggy',async(req, res) => {
     const currency = await Currency.find({});
-    res.render('piggybank/newbonuspiggy', {currency})
+    res.render('piggy-bank/new-bonus-piggy', {currency})
 })
 
-router.get('/piggymodel', async(req, res) => {
+router.get('/piggy-model', async(req, res) => {
     const piggymodels = await PiggyModel.find({}).sort({priority:1});
     const currency = await Currency.find({});
-    res.render('piggybank/piggymodel', {piggymodels, currency})
+    res.render('piggy-bank/piggy-model', {piggymodels, currency})
 })
 
-router.get('/resetpoints', async(req, res) => {
+router.get('/reset-points', async(req, res) => {
     await Currency.deleteMany({});
     const currency = new Currency({potatoes: 0, watermelons: 0, eggs: 0})
     await currency.save()
@@ -44,10 +44,10 @@ router.post('/', catchAsync(async(req, res) => {
     }
     const piggy = new PiggyBank(newData);
     await piggy.save();
-    res.redirect(`/piggybank/${piggy._id}`)
+    res.redirect(`/piggy-bank/${piggy._id}`)
 }))
 
-router.post('/piggymodel', catchAsync(async(req, res) => {
+router.post('/piggy-model', catchAsync(async(req, res) => {
     let priority = 0;
     switch(req.body.piggymodel.currency.slice(0,-2)){
         case 'potatoes':
@@ -64,18 +64,18 @@ router.post('/piggymodel', catchAsync(async(req, res) => {
     newData.priority = priority
     const piggy = new PiggyModel(newData);
     await piggy.save();
-    res.redirect(`/piggybank/piggymodel`)
+    res.redirect(`/piggy-bank/piggy-model`)
 }))
 
-router.get('/piggymodel/newmodel', async(req, res) => {
+router.get('/piggy-model/new-model', async(req, res) => {
     const currency = await Currency.find({});
-    res.render('piggybank/newmodel', {currency})
+    res.render('piggy-bank/new-model', {currency})
 })
 
 router.get('/:id', catchAsync(async(req, res) => {
     const piggybank = await PiggyBank.findById(req.params.id)
     const currency = await Currency.find({});
-    res.render('piggybank/showpiggy', {piggybank, currency})
+    res.render('piggy-bank/show-piggy', {piggybank, currency})
 }));
 
 router.get('/:id/edit', catchAsync(async(req, res) => {
@@ -84,32 +84,29 @@ router.get('/:id/edit', catchAsync(async(req, res) => {
     const currency = await Currency.find({});
     switch(piggybank.type){
         case 'normal':
-            res.render('piggybank/editpiggy', {piggybank, currency, piggymodels});
+            res.render('piggy-bank/edit-piggy', {piggybank, currency, piggymodels});
             break;
         case 'bonus':
-            res.render('piggybank/editbonuspiggy', {piggybank, currency, piggymodels});
+            res.render('piggy-bank/edit-bonus-piggy', {piggybank, currency, piggymodels});
             break;
     }
 
 }));
 
-router.get('/piggymodel/:id/edit', catchAsync(async(req, res) => {
+router.get('/piggy-model/:id/edit', catchAsync(async(req, res) => {
     const piggymodel = await PiggyModel.findById(req.params.id)
     const currency = await Currency.find({});
-    res.render('piggybank/editmodel', {piggymodel, currency})
+    res.render('piggy-bank/edit-model', {piggymodel, currency})
 }));
 
-router.put('/piggymodel/:id', catchAsync(async(req, res) => {
+router.put('/piggy-model/:id', catchAsync(async(req, res) => {
     const {id} =req.params;
     await PiggyModel.findByIdAndUpdate(id, {...req.body.piggymodel})
-    res.redirect(`/piggybank/piggymodel`)
+    res.redirect(`/piggy-bank/piggy-model`)
 }));
 
 router.put('/:id/:status', catchAsync(async(req, res) => {
     let operation = 1;
-    if(req.params.status.slice(0,-2)==="Bacon"){
-        operation = -1;
-    }
     const {id} =req.params;
     const piggydata = await PiggyBank.findById(id);
     const allcurrencydata = await Currency.find({});
@@ -118,6 +115,16 @@ router.put('/:id/:status', catchAsync(async(req, res) => {
     const updatepoints = piggydata.points;
     const currencydata = await Currency.findById(currencydataid);
     const currentpoints = currencydata[updatecurrency];
+    const currentstatus = piggydata.status;
+    if(req.params.status.slice(0,-2).toLowerCase()==="bacon"){
+        operation = -1;
+        if(currentstatus.slice(0,-2).toLowerCase()==="piglet"){
+            operation = 0;
+        }
+    }
+    if(req.params.status.slice(0,-2).toLowerCase()==="piglet"){
+        operation = 0;
+    }
     const obj = {};
     obj[updatecurrency] = currentpoints + operation * updatepoints;
     switch(updatecurrency){
@@ -145,25 +152,25 @@ router.put('/:id/:status', catchAsync(async(req, res) => {
     }
     await Currency.findByIdAndUpdate(currencydataid, obj);
     const piggybank = await PiggyBank.findByIdAndUpdate(id, {status: req.params.status})
-    res.redirect(`/piggybank/${piggybank._id}`)
+    res.redirect(`/piggy-bank/${piggybank._id}`)
 }));
 
 router.put('/:id', catchAsync(async(req, res) => {
     const {id} =req.params;
     const piggybank = await PiggyBank.findByIdAndUpdate(id, {...req.body.piggybank})
-    res.redirect(`/piggybank/${piggybank._id}`)
+    res.redirect(`/piggy-bank/${piggybank._id}`)
 }));
 
 router.delete('/:id', catchAsync(async(req,res) => {
     const {id} = req.params;
     await PiggyBank.findByIdAndDelete(id);
-    res.redirect('/piggybank')
+    res.redirect('/piggy-bank')
 }));
 
-router.delete('/piggymodel/:id', catchAsync(async(req,res) => {
+router.delete('/piggy-model/:id', catchAsync(async(req,res) => {
     const {id} = req.params;
     await PiggyModel.findByIdAndDelete(id);
-    res.redirect('/piggybank/piggymodel')
+    res.redirect('/piggy-bank/piggy-model')
 }));
 
 module.exports = router;

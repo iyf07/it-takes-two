@@ -1,13 +1,12 @@
 <% layout('layouts/boilerplate') %>
 <div class="container">
     <div class="card mb-4">
-        <h1 class="card-header" style="text-align:center;background-color: #fce7d8" ;>Piggy&#128022;Bank</h1>
+        <h1 class="card-header textcenter piggy">Piggy&#128022;Bank</h1>
         <div class="card-body">
             <ul class="list-group list-group-flush row">
                 <li class="list-group-item">
-                    <a class="btn" style="background-color:#e9899b" href="/piggybank/newpiggy" >New Piglet</a>
-                    <a style="float: right; background-color: #4b3b30; color: white" class="btn" href="/piggybank/piggymodel">Piggy
-                        Model</a>
+                    <a class="btn piglet" href="/piggy-bank/new-piggy">New Piglet</a>
+                    <a class="btn right boar" href="/piggy-bank/piggy-model">Piggy Model</a>
                 </li>
                 <li class="list-group-item">
                     <div class="row">
@@ -15,11 +14,10 @@
                             <div>&#129364;</div>
                         </div>
                         <div class="column col-11">
-                            <div class="progress" style="height: 20px;">
-                                <div class="progress-bar progress-bar-striped progress-bar-animated"
+                            <div class="progress">
+                                <div class="potato progress-bar progress-bar-striped progress-bar-animated"
                                      role="progressbar"
-                                     style="background-color: #90522c;width: <%= currency[0].potatoes %>%" aria-label="Basic example"
-                                     aria-valuenow=<%= currency[0].potatoes %> aria-valuemin="0" aria-valuemax="100">
+                                     style="width: <%= currency[0].potatoes %>%">
                                     <%= currency[0].potatoes %>/100
                                 </div>
                             </div>
@@ -30,12 +28,10 @@
                             <div>&#127817;</div>
                         </div>
                         <div class="column col-11">
-                            <div class="progress" style="height: 20px;">
-                                <div class="progress-bar progress-bar-striped progress-bar-animated"
+                            <div class="progress">
+                                <div class="watermelon progress-bar progress-bar-striped progress-bar-animated"
                                      role="progressbar"
-                                     style="background-color: #d2393d;width: <%= currency[0].watermelons * 2 %>%" aria-label="Basic example"
-                                     aria-valuenow=<%= currency[0].watermelons %> aria-valuemin="0"
-                                     aria-valuemax="50">
+                                     style="width: <%= currency[0].watermelons * 2 %>%">
                                     <%= currency[0].watermelons %>/50
                                 </div>
                             </div>
@@ -46,11 +42,10 @@
                             <div>&#129370;</div>
                         </div>
                         <div class="column col-11">
-                            <div class="progress" style="height: 20px;">
-                                <div class="progress-bar progress-bar-striped progress-bar-animated"
+                            <div class="progress">
+                                <div class="egg progress-bar progress-bar-striped progress-bar-animated"
                                      role="progressbar"
-                                     style="background-color: #e1d3d7;width: <%= currency[0].eggs * 10 %>%" aria-label="Basic example"
-                                     aria-valuenow=<%= currency[0].eggs %> aria-valuemin="0" aria-valuemax="10">
+                                     style="width: <%= currency[0].eggs * 10 %>%">
                                     <%= currency[0].eggs %>/10
                                 </div>
                             </div>
@@ -64,7 +59,7 @@
 <div class="container">
     <% for (let piggybank of piggybanks){
         var color;
-        switch (piggybank.status.slice(0, -2)) {
+        switch (piggybank.status.slice(0, -2).toLowerCase()) {
             case "piglet":
                 color = "#e9899b";
                 break;
@@ -74,14 +69,13 @@
             case "piggy":
                 color = "#fce7d8";
                 break;
-        }%>
+        } %>
     <div class="card mb-3">
         <p class="card-header"
-           style="color:<%= piggybank.status.slice(0,-2)==="bacon" ? "white" : {}%>;background-color: <%= color %>"><%= piggybank.name %> <%= piggybank.status.slice(-2) %></p>
+           style="color:<%= piggybank.status.slice(0, -2).toLowerCase() === "bacon" ? "white" : {} %>;background-color: <%= color %>"><%= piggybank.name %> <%= piggybank.status.slice(-2) %></p>
         <div class=" card-body">
             <p class="card-title"><%= piggybank.date.toISOString().slice(0, 10) %></p>
-            <a class="btn" style="background-color: #ee9622; color: white;"
-               href="/piggybank/<%= piggybank._id %>">Barn</a>
+            <a class="btn barn" href="/piggy-bank/<%= piggybank._id %>">Visit Barn</a>
         </div>
     </div>
     <% } %>

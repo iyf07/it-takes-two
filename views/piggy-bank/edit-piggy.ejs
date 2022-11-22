@@ -1,12 +1,11 @@
 <% layout('layouts/boilerplate') %>
 <div class="container">
     <div class="card mb-3">
-        <h1 class="text-center card-header" style="background-color: #e9899b;">New&#128061;Piglet</h1>
+        <h1 class="text-center card-header piglet">Edit Piglet</h1>
         <div class="card-body">
             <div class="col-8 offset-2">
-                <form action="/piggybank" method="POST" novalidate class="validated-form">
+                <form action="/piggy-bank/<%= piggybank._id %>?_method=PUT" method="POST">
                     <input type="hidden" name="piggybank[status]" value="piglet&#128061;">
-                    <input type="hidden" name="piggybank[type]" value="normal">
                     <div class="mb-3">
                         <label for="piggymodel" class="form-label">Piglet Name</label>
                         <div id="piggymodel">
@@ -14,42 +13,40 @@
                             <% for (let piggymodel of piggymodels){ %>
                                 <div class="form-check">
                                     <input class="form-check-input" name="piggybankid" type="radio"
-                                           id="piggymodel<%= i %>" value="<%= piggymodel._id %>">
+                                           id="piggymodel<%= i %>"
+                                           value="<%= piggymodel._id %>" <%= piggymodel.name === piggybank.name ? "checked" : null %>>
                                     <label class="form-check-label" for="piggymodel<%= i %>">
                                         <%= piggymodel.points %><%= piggymodel.currency.slice(-2) %><%= piggymodel.name %>
                                     </label>
                                     <% i++; %>
                                 </div>
                             <% } %>
-                            <a class="btn" style="background-color: #e9899b" href="/piggybank/newbonuspiggy">Bonus
-                                Piglet</a>
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="date" class="form-label">Birthday</label>
-                        <input type="date" class="form-control" id="date" name="piggybank[date]" required>
-                        <div class="valid-feedback"></div>
+                        <input type="date" class="form-control" id="date" name="piggybank[date]"
+                               value="<%= piggybank.date.toISOString().slice(0, 10) %>">
                     </div>
                     <div class="mb-3">
-                        <label for="description" class="form-label">Description</label>
-                        <input type="text" class="form-control" id="description" name="piggybank[description]">
-                        <div class="valid-feedback"></div>
+                        <label for="description" class="form-label">Introduction</label>
+                        <input type="text" class="form-control" id="description" name="piggybank[description]"
+                               value="<%= piggybank.description %>">
                     </div>
                     <div class="mb-3">
                         <label for="image" class="form-label">Image</label>
-                        <input type="text" class="form-control" id="image" name="piggybank[image]">
-                        <div class="valid-feedback"></div>
+                        <input type="text" class="form-control" id="image" name="piggybank[image]"
+                               value="<%= piggybank.image %>">
                     </div>
                     <div class="mb-3">
-                        <button class="btn" style="background-color: #e9899b">Add Piglet</button>
-                        <p></p>
-
+                        <button class="btn piglet">Update Piglet</button>
                     </div>
                 </form>
+
             </div>
         </div>
     </div>
-    <div class="col-8 offset-2 mb-3" style="align-items: center;display: flex;justify-content: center;">
-        <a class="btn" style="background-color: #fce7d8" href="/piggybank">Back to Piggy Bank</a>
+    <div class="col-8 offset-2 mb-3 outcenter">
+        <a class="btn piggy" href="/piggy-bank/<%= piggybank._id %>">Back to Piggy</a>
     </div>
 </div>

@@ -1,0 +1,92 @@
+<% layout('layouts/boilerplate') %>
+<div class="container">
+    <div class="card mb-3">
+        <h1 class="card-header textcenter boar">
+            Piggy&#128023;Model</h1>
+        <div class="card-body">
+            <ul class="list-group list-group-flush row">
+                <li class="list-group-item">
+                    <a class="btn piggy" href="/piggy-bank">Piggy Bank</a>
+                    <a class="btn boar right" href="/piggy-bank/piggy-model/new-model">New Model</a>
+                </li>
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="column col-1">
+                            <div>&#129364;</div>
+                        </div>
+                        <div class="column col-11">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated potato"
+                                     role="progressbar"
+                                     style="width: <%= currency[0].potatoes %>%">
+                                    <%= currency[0].potatoes %>/100
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="column col-1">
+                            <div>&#127817;</div>
+                        </div>
+                        <div class="column col-11">
+                            <div class="progress">
+                                <div class="watermelon progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                                     style="width: <%= currency[0].watermelons * 2 %>%">
+                                    <%= currency[0].watermelons %>/50
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="column col-1">
+                            <div>&#129370;</div>
+                        </div>
+                        <div class="column col-11">
+                            <div class="progress">
+                                <div class="egg progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                                     style="width: <%= currency[0].eggs * 10 %>%">
+                                    <%= currency[0].eggs %>/10
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <% let i = 0; %>
+    <div class="accordion">
+        <% for (let piggymodel of piggymodels){ %>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="model<%= i %>>">
+                    <button class="accordion-button collapsed boar" type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapse<%= i %>" aria-expanded="false"
+                            aria-controls="flush-collapse<%= i %>">
+                        <%= piggymodel.name %> - <%= piggymodel.points %><%= piggymodel.currency.slice(-2) %>
+                    </button>
+                </h2>
+                <div id="flush-collapse<%= i %>" class="accordion-collapse collapse" aria-labelledby="model<%= i %>>"
+                     data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <div class="card-body">
+                            <p><%= piggymodel.description %></p>
+                        </div>
+                        <li class="list-group-item">
+                            <a class="card-link btn boar"
+                               href="/piggy-bank/piggy-model/<%= piggymodel._id %>/edit">Edit</a>
+                            <form class="d-inline" action="/piggy-bank/piggy-model/<%= piggymodel._id %>?_method=DELETE"
+                                  method="POST">
+                                <button class="btn watermelon">Abandon</button>
+                            </form>
+                        </li>
+                    </div>
+                </div>
+            </div>
+            <% i++; %>
+        <% } %>
+        <p></p>
+    </div>
+</div>

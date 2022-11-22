@@ -1,0 +1,95 @@
+nav, footer {
+    font-family: Silkscreen;
+    font-weight: bold;
+    background-color: #fce7d8;
+}
+
+.piglet {
+    background-color: #e9899b;
+}
+
+.piggy {
+    background-color: #fce7d8;
+}
+
+.boar {
+    background-color: #4b3b30;
+    color: white;
+}
+
+.bacon {
+    background-color:#9d2f1c;
+    color: white;
+}
+.outcenter {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.textcenter {
+    text-align: center;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.progress {
+    height: 20px;
+}
+
+.potato {
+    background-color: #90522c;
+}
+
+.watermelon {
+    background-color: #d2393d;
+    color: white;
+}
+
+.egg {
+    background-color: #e1d3d7;
+}
+
+.barn {
+    background-color: #ee9622;
+}
+
+h1, h3 {
+    font-family: Silkscreen;
+    font-weight: bold;
+}
+
+body {
+    margin-top: 100px;
+    position: relative;
+    min-height: 100vh;
+}
+
+body::after {
+    content: '';
+    display: block;
+    height: 50px;
+}
+
+nav {
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+}
+
+* {
+    font-family: Silkscreen;
+}

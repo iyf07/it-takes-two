@@ -1,0 +1,55 @@
+<% layout('layouts/boilerplate') %>
+<div class="container">
+    <div class="card mb-3">
+        <h1 class="piglet text-center card-header">New&#128061;Piglet</h1>
+        <div class="card-body">
+            <div class="col-8 offset-2">
+                <form action="/piggy-bank" method="POST" novalidate class="validated-form">
+                    <input type="hidden" name="piggybank[status]" value="piglet&#128061;">
+                    <input type="hidden" name="piggybank[type]" value="normal">
+                    <div class="mb-3">
+                        <label for="piggymodel" class="form-label">Piglet Model</label>
+                        <div class="card mb-3">
+                            <div class="card-body" id="piggymodel">
+                                <% let i = 0; %>
+                                <% for (let piggymodel of piggymodels){ %>
+                                    <div class="form-check">
+                                        <input class="form-check-input" name="piggybankid" type="radio"
+                                               id="piggymodel<%= i %>" value="<%= piggymodel._id %>">
+                                        <label class="form-check-label" for="piggymodel<%= i %>">
+                                            <%= piggymodel.points %><%= piggymodel.currency.slice(-2) %><%= piggymodel.name %>
+                                        </label>
+                                        <% i++; %>
+                                    </div>
+                                <% } %>
+                                <a class="btn piglet" href="/piggy-bank/new-bonus-piggy">Bonus
+                                    Piglet</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="date" class="form-label">Birthday</label>
+                        <input type="date" class="form-control" id="date" name="piggybank[date]" required>
+                        <div class="valid-feedback"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <input type="text" class="form-control" id="description" name="piggybank[description]">
+                        <div class="valid-feedback"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Photo</label>
+                        <input type="text" class="form-control" id="image" name="piggybank[image]">
+                        <div class="valid-feedback"></div>
+                    </div>
+                    <div class="mb-3">
+                        <button class="btn piglet">Add Piglet</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-8 offset-2 mb-3 outcenter">
+        <a class="btn piggy" href="/piggy-bank">Back to Piggy Bank</a>
+    </div>
+</div>
