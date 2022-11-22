@@ -6,6 +6,7 @@ const PiggyModelSchema = new Schema({
     points: Number,
     currency: String,
     description: String,
+    priority: Number,
 })
 
 module.exports = mongoose.model('PiggyModel', PiggyModelSchema);

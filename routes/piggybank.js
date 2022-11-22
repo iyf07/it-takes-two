@@ -6,8 +6,9 @@ const router = express.Router();
 const catchAsync = require('../utils/catchAsync')
 
 router.get('/', async(req, res) => {
-    const piggybanks = await PiggyBank.find({});
+    const piggybanks = await PiggyBank.find({}).sort({date:-1});
     const currency = await Currency.find({});
+    // piggybanks = piggybanks.sort({date: -1})
     res.render('piggybank/piggybank', {piggybanks, currency})
 })
 
@@ -21,7 +22,7 @@ router.get('/newbonuspiggy',async(req, res) => {
 })
 
 router.get('/piggymodel', async(req, res) => {
-    const piggymodels = await PiggyModel.find({});
+    const piggymodels = await PiggyModel.find({}).sort({priority:1});
     res.render('piggybank/piggymodel', {piggymodels})
 })
 
@@ -45,7 +46,21 @@ router.post('/', catchAsync(async(req, res) => {
 }))
 
 router.post('/piggymodel', catchAsync(async(req, res) => {
-    const piggy = new PiggyModel(req.body.piggymodel);
+    let priority = 0;
+    switch(req.body.piggymodel.currency.slice(0,-2)){
+        case 'potatoes':
+            break;
+        case 'watermelons':
+            priority += 1000;
+            break;
+        case 'eggs':
+            priority += 10000;
+            break;
+    }
+    priority += Number(req.body.piggymodel.points);
+    let newData = req.body.piggymodel;
+    newData.priority = priority
+    const piggy = new PiggyModel(newData);
     await piggy.save();
     res.redirect(`/piggybank/piggymodel`)
 }))
@@ -94,18 +109,18 @@ router.put('/:id/:status', catchAsync(async(req, res) => {
         case "potatoes":
             if(obj[updatecurrency]>100){
                 obj[updatecurrency]=100
-                break
             }
+            break
         case "watermelons":
             if(obj[updatecurrency]>50){
                 obj[updatecurrency]=50
-                break
             }
+            break
         case "eggs":
             if(obj[updatecurrency]>10){
                 obj[updatecurrency]=10
-                break
             }
+            break
     }
     await Currency.findByIdAndUpdate(currencydataid, obj);
     const piggybank = await PiggyBank.findByIdAndUpdate(id, {status: req.params.status})
