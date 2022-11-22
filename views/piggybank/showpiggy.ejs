@@ -19,6 +19,7 @@ switch (piggybank.status.slice(0, -2)) {
                 <p class="list-group-item">Value: <%= piggybank.points %><%= piggybank.currency.slice(-2) %></p>
                 <p class="list-group-item">Birthday: <%= piggybank.date.toISOString().slice(0, 10) %></p>
                 <p class="list-group-item">Age: <%= piggybank.status %></p>
+                <p class="list-group-item">Type: <%= piggybank.type %></p>
                 <p class="card-text">Introduction: <%= piggybank.description %></p>
             </div>
             <ul class="list-group list-group-flush">

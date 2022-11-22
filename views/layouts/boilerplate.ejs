@@ -11,8 +11,29 @@
         * {
             font-family: Silkscreen;
         }
-        nav, h1, h3{
+        nav, h1, h3 {
             font-family: Silkscreen; font-weight: bold;
+        }
+        body {
+            margin-top: 100px;
+            position: relative;
+            min-height:100vh;
+        }
+        body::after {
+            content: '';
+            display: block;
+            height: 50px;
+        }
+        nav {
+            position: absolute;
+            top:0;
+            width: 100%;
+        }
+        footer {
+            position: absolute;
+            bottom:0;
+            width: 100%;
+            height: 50px;
         }
     </style>
 </head>

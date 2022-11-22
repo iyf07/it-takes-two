@@ -80,8 +80,17 @@ router.get('/:id', catchAsync(async(req, res) => {
 
 router.get('/:id/edit', catchAsync(async(req, res) => {
     const piggybank = await PiggyBank.findById(req.params.id)
+    const piggymodels = await PiggyModel.find({}).sort({priority: 1});
     const currency = await Currency.find({});
-    res.render('piggybank/editpiggy', {piggybank, currency})
+    switch(piggybank.type){
+        case 'normal':
+            res.render('piggybank/editpiggy', {piggybank, currency, piggymodels});
+            break;
+        case 'bonus':
+            res.render('piggybank/editbonuspiggy', {piggybank, currency, piggymodels});
+            break;
+    }
+
 }));
 
 router.get('/piggymodel/:id/edit', catchAsync(async(req, res) => {

@@ -9,6 +9,7 @@ const PiggyBankSchema = new Schema({
     description: String,
     image: String,
     status: String,
+    type: String
 })
 
 module.exports = mongoose.model('PiggyBank', PiggyBankSchema);

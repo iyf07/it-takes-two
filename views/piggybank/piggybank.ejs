@@ -1,11 +1,11 @@
 <% layout('layouts/boilerplate') %>
 <div class="container">
-    <div class="card mb-3">
+    <div class="card mb-4">
         <h1 class="card-header" style="text-align:center;background-color: #fce7d8" ;>Piggy&#128022;Bank</h1>
         <div class="card-body">
             <ul class="list-group list-group-flush row">
                 <li class="list-group-item">
-                    <a class="btn" style="background-color:#fce7d8" href="/piggybank/newpiggy" >New Piglet</a>
+                    <a class="btn" style="background-color:#e9899b" href="/piggybank/newpiggy" >New Piglet</a>
                     <a style="float: right; background-color: #4b3b30; color: white" class="btn" href="/piggybank/piggymodel">Piggy
                         Model</a>
                 </li>
@@ -65,19 +65,19 @@
     <% for (let piggybank of piggybanks){
         var color;
         switch (piggybank.status.slice(0, -2)) {
-            case "Piglet":
+            case "piglet":
                 color = "#e9899b";
                 break;
-            case "Bacon":
+            case "bacon":
                 color = "#9d2f1c";
                 break;
-            case "Piggy":
+            case "piggy":
                 color = "#fce7d8";
                 break;
         }%>
     <div class="card mb-3">
         <p class="card-header"
-           style="color:<%= piggybank.status.slice(0,-2)==="Bacon" ? "white" : {}%>;background-color: <%= color %>"><%= piggybank.name %> <%= piggybank.status.slice(-2) %></p>
+           style="color:<%= piggybank.status.slice(0,-2)==="bacon" ? "white" : {}%>;background-color: <%= color %>"><%= piggybank.name %> <%= piggybank.status.slice(-2) %></p>
         <div class=" card-body">
             <p class="card-title"><%= piggybank.date.toISOString().slice(0, 10) %></p>
             <a class="btn" style="background-color: #ee9622; color: white;"

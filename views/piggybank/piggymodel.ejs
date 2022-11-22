@@ -6,8 +6,8 @@
         <div class="card-body">
             <ul class="list-group list-group-flush row">
                 <li class="list-group-item">
-                        <a style="float: right;background-color:#fce7d8" class="btn" href="/piggybank">Piggy Bank</a>
-                        <a class="btn" style="background-color: #4b3b30; color: white"
+                        <a style="background-color:#fce7d8" class="btn" href="/piggybank">Piggy Bank</a>
+                        <a class="btn" style="background-color: #4b3b30; color: white; float: right"
                            href="/piggybank/piggymodel/newmodel">New Model</a>
                 </li>
                 <li class="list-group-item">
@@ -82,11 +82,11 @@
                         <p><%= piggymodel.description %></p>
                     </div>
                     <li class="list-group-item">
-                        <a class="card-link btn btn-dark"
+                        <a class="card-link btn" style="background-color: #4b3b30; color: white"
                            href="/piggybank/piggymodel/<%= piggymodel._id %>/edit">Edit</a>
                         <form class="d-inline" action="/piggybank/piggymodel/<%= piggymodel._id %>?_method=DELETE"
                               method="POST">
-                            <button class="btn btn-light btn-outline-dark">Abandon</button>
+                            <button class="btn" style="background-color: #d2393d;color:white">Abandon</button>
                         </form>
                     </li>
                 </div>

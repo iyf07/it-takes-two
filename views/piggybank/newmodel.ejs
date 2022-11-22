@@ -1,48 +1,55 @@
 <% layout('layouts/boilerplate') %>
-<div class="container">
-    <h1 class="text-center">New Model</h1>
-    <div class="col-8 offset-2">
-        <form action="/piggybank/piggymodel" method="POST" novalidate class="validated-form">
-            <div class="mb-3">
-                <label for="name" class="form-label">Model Name</label>
-                <input type="text" class="form-control" id="name" name="piggymodel[name]" required>
-                <div class="valid-feedback"></div>
-            </div>
-            <div class="mb-3">
-                <label for="points" class="form-label">Value</label>
-                <input type="number" class="form-control" id="points" name="piggymodel[points]" required>
-                <div class="valid-feedback"></div>
-            </div>
-            <div class="mb-3">
-                <label for="currency" class="form-label">Currency</label>
-                <div id="piggymodel">
-                    <div class="form-check">
-                        <input class="form-check-input" name="piggymodel[currency]" type="radio" id="potatoes"
-                               value="potatoes&#129364;">
-                        <label class="form-check-label" for="potatoes">Potato&#129364;</label>
+<div class="container" >
+    <div class="card mb-3">
+        <h1 class="card-header text-center" style="background-color: #4b3b30; color:white">New&#128023;Model</h1>
+        <div class="card-body">
+            <div class="col-8 offset-2">
+                <form action="/piggybank/piggymodel" method="POST" novalidate class="validated-form">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Model Name</label>
+                        <input type="text" class="form-control" id="name" name="piggymodel[name]" required>
+                        <div class="valid-feedback"></div>
                     </div>
-                    <div class="form-check">
-                        <input class="form-check-input" name="piggymodel[currency]" type="radio" id="watermelons"
-                               value="watermelons&#127817;">
-                        <label class="form-check-label" for="watermelons">Watermelon&#127817;</label>
+                    <div class="mb-3">
+                        <label for="points" class="form-label">Value</label>
+                        <input type="number" class="form-control" id="points" name="piggymodel[points]" required>
+                        <div class="valid-feedback"></div>
                     </div>
-                    <div class="form-check">
-                        <input class="form-check-input" name="piggymodel[currency]" type="radio" id="eggs"
-                               value="eggs&#129370;">
-                        <label class="form-check-label" for="eggs">Egg&#129370;</label>
+                    <div class="mb-3">
+                        <label for="currency" class="form-label">Currency</label>
+                        <div id="piggymodel">
+                            <div class="form-check">
+                                <input class="form-check-input" name="piggymodel[currency]" type="radio" id="potatoes"
+                                       value="potatoes&#129364;">
+                                <label class="form-check-label" for="potatoes">Potato&#129364;</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" name="piggymodel[currency]" type="radio"
+                                       id="watermelons"
+                                       value="watermelons&#127817;">
+                                <label class="form-check-label" for="watermelons">Watermelon&#127817;</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" name="piggymodel[currency]" type="radio" id="eggs"
+                                       value="eggs&#129370;">
+                                <label class="form-check-label" for="eggs">Egg&#129370;</label>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                    <div class="mb-3">
+                        <label for="text" class="form-label">Introduction</label>
+                        <input type="text" class="form-control" id="date" name="piggymodel[description]" required>
+                        <div class="valid-feedback"></div>
+                    </div>
+                    <div class="mb-3" style="float: left;">
+                        <button class="btn" style="background-color: #4b3b30;color:white;">Add Model</button>
+                    </div>
+                </form>
             </div>
-            <div class="mb-3">
-                <label for="text" class="form-label">Introduction</label>
-                <input type="text" class="form-control" id="date" name="piggymodel[description]" required>
-                <div class="valid-feedback"></div>
-            </div>
-            <div class="mb-3">
-                <button class="btn btn-dark">Add Model</button>
-                <p></p>
-                <a class="btn btn-light btn-outline-dark" href="/piggybank/piggymodel">Piggy Model</a>
-            </div>
-        </form>
+        </div>
+    </div>
+    <div class="col-8 offset-2 mb-3" style="align-items: center;display: flex;justify-content: center;">
+        <a class="btn" style="background-color: #4b3b30; color:white;" href="/piggybank/piggymodel">Back to Piggy
+            Model</a>
     </div>
 </div>
