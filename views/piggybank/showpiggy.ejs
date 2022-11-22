@@ -1,34 +1,48 @@
 <% layout('layouts/boilerplate') %>
+<% var color;
+switch (piggybank.status.slice(0, -2)) {
+    case "Piglet":
+        color = "#e9899b";
+        break;
+    case "Bacon":
+        color = "#9d2f1c";
+        break;
+    case "Piggy":
+        color = "#fce7d8";
+        break;
+} %>
 <div class="container">
-    <div class="col-10 offset-1">
-        <div class="card mb-3">
+    <div class="col-10 offset-1" >
+        <div class="card mb-3" style="color:<%= piggybank.status.slice(0,-2)==="Bacon" ? "white" : {}%>;background-color: <%= color %>; ">
             <div class="card-body">
                 <h1 class="card-title"><%= piggybank.name %></h1>
-                <p class="list-group-item">Value: <%= piggybank.points %><%= piggybank.currency.slice(-2)%></p>
-                <p class="list-group-item">Birthday: <%= piggybank.date.toISOString().slice(0, 10)%></p>
-                <p class="list-group-item">Age: <%= piggybank.status.slice(0,-2) %></p>
+                <p class="list-group-item">Value: <%= piggybank.points %><%= piggybank.currency.slice(-2) %></p>
+                <p class="list-group-item">Birthday: <%= piggybank.date.toISOString().slice(0, 10) %></p>
+                <p class="list-group-item">Age: <%= piggybank.status %></p>
                 <p class="card-text">Introduction: <%= piggybank.description %></p>
             </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">
-                    <a class="card-link btn btn-dark" href="/piggybank/<%= piggybank._id %>/edit">Edit</a>
-                    <form style="float: right;" class="d-inline" action="/piggybank/<%= piggybank._id %>?_method=DELETE" method="POST">
-                        <button class="btn btn-light btn-outline-dark">Abandon</button>
+                    <a class="card-link btn" style="background-color:#e9899b" href="/piggybank/<%= piggybank._id %>/edit">Edit</a>
+                    <form style="float: right;" class="d-inline" action="/piggybank/<%= piggybank._id %>?_method=DELETE"
+                          method="POST">
+                        <button style="background-color: #d2393d; color:white" class="btn">Abandon</button>
                     </form>
                 </li>
                 <li class="list-group-item">
-                    <form class="d-inline" action="/piggybank/<%= piggybank._id %>/Piggy&#128022;/?_method=PUT" method="POST">
-                        <button class="btn btn-dark">Piggy</button>
+                    <form class="d-inline" action="/piggybank/<%= piggybank._id %>/Piggy&#128022;/?_method=PUT"
+                          method="POST">
+                        <button style="background-color:#fce7d8" class="btn">Piggy</button>
                     </form>
-                    <form style="float: right;" class="d-inline" action="/piggybank/<%= piggybank._id %>/Bacon&#129363;/?_method=PUT" method="POST">
-                        <button class="btn btn-light btn-outline-dark">Bacon</button>
+                    <form style="float: right;" class="d-inline"
+                          action="/piggybank/<%= piggybank._id %>/Bacon&#129363;/?_method=PUT" method="POST">
+                        <button class="btn" style="background-color:#9d2f1c; color: white">Bacon</button>
                     </form>
                 </li>
             </ul>
         </div>
-
         <div class="mb-3">
-            <a class="btn btn-dark" href="/piggybank">Piggy Bank</a>
+            <a class="btn" href="/piggybank" style="background-color: #fce7d8">Piggy Bank</a>
         </div>
     </div>
 </div>

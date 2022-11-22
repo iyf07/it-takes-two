@@ -1,40 +1,98 @@
 <% layout('layouts/boilerplate') %>
 <div class="container">
-    <h1 style="text-align:center">Piggy Model</h1>
-    <div class="row">
-        <div class="column">
-            <a class="btn btn-dark" href="/piggybank/piggymodel/newmodel">New Model</a>
-            <a class="btn btn-light btn-outline-dark" href="/piggybank/">Piggy Bank</a>
+    <div class="card mb-3">
+        <h1 class="card-header" style="text-align:center;background-color: #4b3b30; color: white">
+            Piggy&#128023;Model</h1>
+        <div class="card-body">
+            <ul class="list-group list-group-flush row">
+                <li class="list-group-item">
+                        <a style="float: right;background-color:#fce7d8" class="btn" href="/piggybank">Piggy Bank</a>
+                        <a class="btn" style="background-color: #4b3b30; color: white"
+                           href="/piggybank/piggymodel/newmodel">New Model</a>
+                </li>
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="column col-1">
+                            <div>&#129364;</div>
+                        </div>
+                        <div class="column col-11">
+                            <div class="progress" style="height: 20px;">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                                     style="background-color: #90522c;width: <%= currency[0].potatoes %>%"
+                                     aria-label="Basic example"
+                                     aria-valuenow=<%= currency[0].potatoes %> aria-valuemin="0" aria-valuemax="100">
+                                    <%= currency[0].potatoes %>/100
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="column col-1">
+                            <div>&#127817;</div>
+                        </div>
+                        <div class="column col-11">
+                            <div class="progress" style="height: 20px;">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                                     style="background-color: #d2393d;width: <%= currency[0].watermelons * 2 %>%"
+                                     aria-label="Basic example"
+                                     aria-valuenow=<%= currency[0].watermelons %> aria-valuemin="0"
+                                     aria-valuemax="50">
+                                    <%= currency[0].watermelons %>/50
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="column col-1">
+                            <div>&#129370;</div>
+                        </div>
+                        <div class="column col-11">
+                            <div class="progress" style="height: 20px;">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                                     style="background-color: #e1d3d7;width: <%= currency[0].eggs * 10 %>%"
+                                     aria-label="Basic example"
+                                     aria-valuenow=<%= currency[0].eggs %> aria-valuemin="0" aria-valuemax="10">
+                                    <%= currency[0].eggs %>/10
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
-    <p></p>
+</div>
+<div class="container">
     <% let i = 0; %>
     <div class="accordion">
         <% for (let piggymodel of piggymodels){ %>
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="model<%=i%>>">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#flush-collapse<%=i%>" aria-expanded="false" aria-controls="flush-collapse<%=i%>">
-                        <%= piggymodel.name %> - <%= piggymodel.points %><%= piggymodel.currency.slice(-2)%>
-                    </button>
-                </h2>
-                <div id="flush-collapse<%=i%>" class="accordion-collapse collapse" aria-labelledby="model<%=i%>>"
-                     data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body">
-                        <div class="card-body">
-                            <p><%= piggymodel.description %></p>
-                        </div>
-                        <li class="list-group-item">
-                            <a class="card-link btn btn-dark" href="/piggybank/piggymodel/<%= piggymodel._id %>/edit">Edit</a>
-                            <form class="d-inline" action="/piggybank/piggymodel/<%= piggymodel._id %>?_method=DELETE"
-                                  method="POST">
-                                <button class="btn btn-light btn-outline-dark">Abandon</button>
-                            </form>
-                        </li>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="model<%= i %>>">
+                <button class="accordion-button collapsed" type="button" style="background-color: #4b3b30; color: white"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapse<%= i %>" aria-expanded="false"
+                        aria-controls="flush-collapse<%= i %>">
+                    <%= piggymodel.name %> - <%= piggymodel.points %><%= piggymodel.currency.slice(-2) %>
+                </button>
+            </h2>
+            <div id="flush-collapse<%= i %>" class="accordion-collapse collapse" aria-labelledby="model<%= i %>>"
+                 data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                    <div class="card-body">
+                        <p><%= piggymodel.description %></p>
                     </div>
+                    <li class="list-group-item">
+                        <a class="card-link btn btn-dark"
+                           href="/piggybank/piggymodel/<%= piggymodel._id %>/edit">Edit</a>
+                        <form class="d-inline" action="/piggybank/piggymodel/<%= piggymodel._id %>?_method=DELETE"
+                              method="POST">
+                            <button class="btn btn-light btn-outline-dark">Abandon</button>
+                        </form>
+                    </li>
                 </div>
             </div>
-            <% i++; %>
+        </div>
+        <% i++; %>
         <% } %>
         <p></p>
     </div>
