@@ -1,3 +1,5 @@
+const dotenv = require("dotenv");
+dotenv.config();
 const express = require('express');
 const path = require('path');
 const session = require('express-session');
@@ -6,14 +8,12 @@ const mongoose = require('mongoose');
 const engine = require('ejs-mate');
 const methodOverride = require('method-override')
 const ExpressError = require('./utils/ExpressError')
-
 const userRoutes = require('./routes/user')
 const piggybankRoutes = require('./routes/piggy-bank')
-
 const Currency = require("./models/currency");
+const dbUrl = process.env.DB_URL
 
-
-mongoose.connect('mongodb://localhost:27017/mihu')
+mongoose.connect(dbUrl)
     .then(()=>{
         console.log('Mongo connection open')
     })

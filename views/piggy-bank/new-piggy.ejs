@@ -3,8 +3,8 @@
     <div class="card mb-3">
         <h1 class="piglet text-center card-header">New&#128061;Piglet</h1>
         <div class="card-body">
-            <div class="col-8 offset-2">
-                <form action="/piggy-bank" method="POST" novalidate class="validated-form">
+            <div class="col-10 offset-1">
+                <form action="/piggy-bank" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
                     <input type="hidden" name="piggybank[status]" value="piglet&#128061;">
                     <input type="hidden" name="piggybank[type]" value="normal">
                     <div class="mb-3">
@@ -35,11 +35,6 @@
                     <div class="mb-3">
                         <label for="description" class="form-label">Description</label>
                         <input type="text" class="form-control" id="description" name="piggybank[description]">
-                        <div class="valid-feedback"></div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="image" class="form-label">Photo</label>
-                        <input type="text" class="form-control" id="image" name="piggybank[image]">
                         <div class="valid-feedback"></div>
                     </div>
                     <div class="mb-3">

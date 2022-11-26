@@ -5,6 +5,8 @@ const Currency = require('../models/currency');
 const User = require('../models/user')
 const router = express.Router();
 const catchAsync = require('../utils/catchAsync')
+const multer = require('multer');
+const upload = multer({ dest: 'uploads'})
 
 router.get('/', async(req, res) => {
     const piggybanks = await PiggyBank.find({}).sort({date:-1});
