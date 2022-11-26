@@ -6,7 +6,7 @@ const User = require('../models/user')
 const router = express.Router();
 const catchAsync = require('../utils/catchAsync')
 
-router.get('admin/:type/:code', catchAsync(async (req, res) => {
+router.get('/admin/:type/:code', catchAsync(async (req, res) => {
     const userType = req.params.type;
     if (userType !== 'main') {
         res.send(404);
@@ -25,6 +25,7 @@ router.get('admin/:type/:code', catchAsync(async (req, res) => {
         const newUser = new User({type: userType, code: userCode});
         await User.create(newUser);
     }
+    res.redirect('/piggy-bank')
 }));
 
 module.exports = router;
