@@ -1,8 +1,10 @@
 <% layout('layouts/boilerplate') %>
-<% let admin = false;
-if(code && code === users[0].code){
-    admin = true;
-}%>
+<% for(let user of users){
+    let secretcode;
+    if(user.type === "main"){
+        secretcode = user.code;
+    }
+} %>
 <div class="container" >
     <div class="card mb-3">
         <h1 class="card-header text-center boar">New&#128023;Model</h1>
@@ -41,19 +43,23 @@ if(code && code === users[0].code){
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="text" class="form-label">Introduction</label>
+                        <label for="date" class="form-label">Introduction</label>
                         <input type="text" class="form-control" id="date" name="piggymodel[description]" required>
                         <div class="valid-feedback"></div>
                     </div>
                     <div class="mb-3">
-                        <button class="btn boar" <%= !admin ? "disabled" : {}%> >Add Model</button>
+                        <label for="code" class="form-label">Secret Code</label>
+                        <input type="text" class="form-control" id="code" name="code" required>
+                        <div class="valid-feedback"></div>
+                    </div>
+                    <div class="mb-3">
+                        <button class="btn boar" id="submit">Add Model</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
     <div class="col-8 offset-2 mb-3 outcenter">
-        <a class="btn boar" href="/piggy-bank/piggy-model">Back to Piggy
-            Model</a>
+        <a class="btn boar" href="/piggy-bank/piggy-model">Back to Piggy Model</a>
     </div>
 </div>

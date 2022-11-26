@@ -41,13 +41,13 @@ if(code && code === users[0].code){
                     <li class="list-group-item">
                         <form class="d-inline" action="/piggy-bank/<%= piggybank._id %>/Piggy&#128022;/<%= admin ? code : "null"%>?_method=PUT"
                               method="POST">
-                            <button class="btn piggy" <%= piggybank.status.slice(0, -2).toLowerCase() === "piggy" ? "disabled" : !admin ? "disabled" : {} %>>
+                            <button class="btn piggy" <%= piggybank.status.slice(0, -2).toLowerCase() === "piggy" ? "disabled" : {} %>>
                                 Piggy
                             </button>
                         </form>
                         <form class="d-inline right"
                               action="/piggy-bank/<%= piggybank._id %>/Bacon&#129363;/<%= admin ? code : "null"%>?_method=PUT" method="POST">
-                            <button class="btn bacon" <%= piggybank.status.slice(0, -2).toLowerCase() === "bacon" ? "disabled" : !admin ? "disabled" : {} %> >
+                            <button class="btn bacon" <%= piggybank.status.slice(0, -2).toLowerCase() === "bacon" ? "disabled" : {} %> >
                                 Bacon
                             </button>
                         </form>

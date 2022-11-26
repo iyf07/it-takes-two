@@ -10,7 +10,6 @@ const userRoutes = require('./routes/user')
 const piggybankRoutes = require('./routes/piggy-bank')
 const Currency = require("./models/currency");
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/it-takes-two';
-
 mongoose.connect(dbUrl)
     .then(()=>{
         console.log('Mongo connection open')
@@ -27,7 +26,6 @@ app.set('views', path.join(__dirname, '/views'))
 app.use(express.urlencoded({extended: true}))
 app.use(methodOverride('_method'))
 app.use(express.static(__dirname + '/public'));
-
 app.use('/piggy-bank', piggybankRoutes)
 app.use('/user', userRoutes)
 

@@ -7,7 +7,6 @@ const PiggyBankSchema = new Schema({
     currency: String,
     date: Date,
     description: String,
-    image: String,
     status: String,
     type: String
 })
