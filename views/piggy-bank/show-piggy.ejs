@@ -1,5 +1,5 @@
 <% layout('layouts/boilerplate') %>
-<% var color;
+<% let color;
 switch (piggybank.status.slice(0, -2).toLowerCase()) {
     case "piglet":
         color = "#e9899b";
@@ -10,7 +10,11 @@ switch (piggybank.status.slice(0, -2).toLowerCase()) {
     case "piggy":
         color = "#fce7d8";
         break;
-} %>
+}
+let admin = false;
+if(code && code === users[0].code){
+    admin = true;
+}%>
 <div class="container">
     <div class="card mb-3 col-10 offset-1">
         <h1 class="card-header piglet textcenter"
@@ -35,15 +39,15 @@ switch (piggybank.status.slice(0, -2).toLowerCase()) {
                         </form>
                     </li>
                     <li class="list-group-item">
-                        <form class="d-inline" action="/piggy-bank/<%= piggybank._id %>/Piggy&#128022;/?_method=PUT"
+                        <form class="d-inline" action="/piggy-bank/<%= piggybank._id %>/Piggy&#128022;/<%= admin ? code : "null"%>?_method=PUT"
                               method="POST">
-                            <button class="btn piggy" <%= piggybank.status.slice(0, -2).toLowerCase() === "piggy" ? "disabled" : {} %>>
+                            <button class="btn piggy" <%= piggybank.status.slice(0, -2).toLowerCase() === "piggy" ? "disabled" : !admin ? "disabled" : {} %>>
                                 Piggy
                             </button>
                         </form>
                         <form class="d-inline right"
-                              action="/piggy-bank/<%= piggybank._id %>/Bacon&#129363;/?_method=PUT" method="POST">
-                            <button class="btn bacon" <%= piggybank.status.slice(0, -2).toLowerCase() === "bacon" ? "disabled" : {} %> >
+                              action="/piggy-bank/<%= piggybank._id %>/Bacon&#129363;/<%= admin ? code : "null"%>?_method=PUT" method="POST">
+                            <button class="btn bacon" <%= piggybank.status.slice(0, -2).toLowerCase() === "bacon" ? "disabled" : !admin ? "disabled" : {} %> >
                                 Bacon
                             </button>
                         </form>

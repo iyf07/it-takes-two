@@ -1,4 +1,8 @@
 <% layout('layouts/boilerplate') %>
+<% let admin = false;
+if(code && code === users[0].code){
+    admin = true;
+}%>
 <div class="container" >
     <div class="card mb-3">
         <h1 class="card-header text-center boar">New&#128023;Model</h1>
@@ -42,7 +46,7 @@
                         <div class="valid-feedback"></div>
                     </div>
                     <div class="mb-3">
-                        <button class="btn boar">Add Model</button>
+                        <button class="btn boar" <%= !admin ? "disabled" : {}%> >Add Model</button>
                     </div>
                 </form>
             </div>
