@@ -26,13 +26,13 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views'))
 app.use(express.urlencoded({extended: true}))
 app.use(methodOverride('_method'))
-app.use(express.static(__dirname + '/public'));
+app.use(express.static('public'));
 
 app.use('/piggy-bank', piggybankRoutes)
 app.use('/user', userRoutes)
 
 app.get('/', (req, res) => {
-    res.redirect('/piggybank')
+    res.redirect('/piggy-bank')
 })
 
 app.get('/reset-points', async(req, res) => {
