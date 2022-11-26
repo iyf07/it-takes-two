@@ -1,3 +1,29 @@
+@font-face {
+    font-family: 'Silkscreen';
+    src: url('../fonts/Silkscreen-Bold.eot');
+    src: url('../fonts/Silkscreen-Bold.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/Silkscreen-Bold.woff2') format('woff2'),
+    url('../fonts/Silkscreen-Bold.woff') format('woff'),
+    url('../fonts/Silkscreen-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Silkscreen';
+    src: url('../fonts/Silkscreen.eot');
+    src: url('../fonts/Silkscreen.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/Silkscreen.woff2') format('woff2'),
+    url('../fonts/Silkscreen.woff') format('woff'),
+    url('../fonts/Silkscreen.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+
 nav, footer {
     font-family: Silkscreen;
     font-weight: bold;
