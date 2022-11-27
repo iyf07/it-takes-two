@@ -24,17 +24,17 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="date" class="form-label">Birthday</label>
-                        <input type="date" class="form-control" id="date" name="piggybank[date]"
+                        <label for="piggy-edit-date" class="form-label">Birthday</label>
+                        <input type="date" class="form-control" id="piggy-edit-date" name="piggybank[date]"
                                value="<%= piggybank.date.toISOString().slice(0, 10) %>">
                     </div>
                     <div class="mb-3">
-                        <label for="description" class="form-label">Introduction</label>
-                        <input type="text" class="form-control" id="description" name="piggybank[description]"
+                        <label for="piggy-edit-description" class="form-label">Introduction</label>
+                        <input type="text" class="form-control" id="piggy-edit-description" name="piggybank[description]"
                                value="<%= piggybank.description %>">
                     </div>
                     <div class="mb-3">
-                        <button class="btn piglet">Update Piglet</button>
+                        <button class="btn piglet" id="piggy-edit-submit">Update Piglet</button>
                     </div>
                 </form>
 

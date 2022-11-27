@@ -25,7 +25,6 @@
 nav, footer {
     font-family: Silkscreen;
     font-weight: bold;
-    background-color: #fce7d8;
 }
 
 .piglet {
@@ -82,6 +81,19 @@ nav, footer {
 
 .barn {
     background-color: #ee9622;
+}
+
+.completed {
+    background-color: #929292;
+}
+
+.inprogress {
+    background-color: #00c003;
+}
+
+.notstarted {
+    background-color: #ed0000;
+    color: white;
 }
 
 h1, h3 {

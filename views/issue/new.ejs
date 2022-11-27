@@ -1,0 +1,82 @@
+<% layout('layouts/boilerplate') %>
+<div class="container">
+    <div class="card mb-3">
+        <h1 class="text-center card-header notstarted">New Issue</h1>
+        <div class="card-body">
+            <div class="col-10 offset-1">
+                <form action="/issue" method="POST" novalidate class="validated-form">
+                    <input type="hidden" name="issue[status]" value="notstarted">
+                    <input type="hidden" name="issue[order]" value=2>
+                    <div class="mb-3">
+                        <label for="issue-name" class="form-label">Issue Name</label>
+                        <input type="text" class="form-control" id="issue-name" name="issue[name]" required>
+                        <div class="valid-feedback"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="piggymodel" class="form-label">Priority</label>
+                        <div class="card mb-3">
+                            <div class="card-body" id="piggymodel">
+                                <div class="form-check">
+                                    <input class="form-check-input" name="priority" type="radio"
+                                           id="priority1"
+                                           value="1">
+                                    <label class="form-check-label" for="priority1">
+                                        SEV 1: Server, application, modules down
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" name="issue[priority]" type="radio"
+                                           id="priority2"
+                                           value="2">
+                                    <label class="form-check-label" for="priority2">
+                                        SEV 2: Module down
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" name="issue[priority]" type="radio"
+                                           id="priority3"
+                                           value="3" checked>
+                                    <label class="form-check-label" for="priority3">
+                                        SEV 3: Feature(s) down
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" name="issue[priority]" type="radio"
+                                           id="priority4"
+                                           value="4">
+                                    <label class="form-check-label" for="priority4">
+                                        SEV 4: Operation(s) down
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" name="issue[priority]" type="radio"
+                                           id="priority5"
+                                           value="5">
+                                    <label class="form-check-label" for="priority5">
+                                        SEV 5: Design, Syntax
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="issue-date" class="form-label">Date</label>
+                        <input type="date" class="form-control" id="issue-date" name="issue[date]" required>
+                        <div class="valid-feedback"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="issue-description" class="form-label">Description</label>
+                        <input type="text" class="form-control" id="issue-description" name="issue[description]" required>
+                        <div class="valid-feedback"></div>
+                    </div>
+                    <div class="mb-3">
+                        <button class="btn notstarted">Add Issue</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-8 offset-2 mb-3 outcenter">
+        <a class="btn completed" href="/issue">Back to Issues</a>
+    </div>
+</div>

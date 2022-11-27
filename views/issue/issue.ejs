@@ -1,0 +1,75 @@
+<% layout('layouts/boilerplate') %>
+<% let notstarted = 0;
+let inprogress = 0;
+let completed = 0;
+for (let issue of issues) {
+    switch (issue.status.toLowerCase()) {
+        case "notstarted":
+            notstarted++;
+            break;
+        case "inprogress":
+            inprogress++;
+            break;
+        case "completed":
+            completed++;
+            break;
+    }
+}
+let total = notstarted + inprogress + completed;
+%>
+<div class="container">
+    <div class="card mb-4">
+        <h1 class="card-header textcenter completed">Issues</h1>
+        <div class="card-body">
+            <ul class="list-group list-group-flush row">
+                <li class="list-group-item">
+                    <a class="btn outcenter notstarted" href="/issue/new-issue">New Issue</a>
+                </li>
+                <li class="list-group-item">
+                    <div class="progress">
+                        <div class="inprogress progress-bar progress-bar-striped progress-bar-animated"
+                             role="progressbar"
+                             style="width: <%= inprogress / total * 100 %>%">
+                            <%= inprogress %>
+                        </div>
+                        <div class="notstarted progress-bar progress-bar-striped progress-bar-animated"
+                             role="progressbar"
+                             style="width: <%= notstarted / total * 100 %>%">
+                            <%= notstarted %>
+                        </div>
+
+                        <div class="completed progress-bar progress-bar-striped progress-bar-animated"
+                             role="progressbar"
+                             style="width: <%= completed / total * 100 %>%">
+                            <%= completed %>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <% for (let issue of issues){
+        let color;
+        switch (issue.status.toLowerCase()) {
+            case "completed":
+                color = "#929292";
+                break;
+            case "inprogress":
+                color = "#00c003";
+                break;
+            case "notstarted":
+                color = "#ed0000";
+                break;
+        } %>
+    <div class="card mb-3">
+        <p class="card-header"
+           style="background-color: <%= color %>; color: <%= issue.status.toLowerCase() === "notstarted" ? "white" : {}%>"><%= issue.name %> - SEV <%= issue.priority %></p>
+        <div class="card-body">
+            <p class="card-title"><%= issue.date.toISOString().slice(0, 10) %></p>
+            <a class="btn" style="background-color: <%= color %>; color: <%= issue.status.toLowerCase() === "notstarted" ? "white" : {}%>" href="/issue/<%= issue._id %>">Issue Detail</a>
+        </div>
+    </div>
+    <% } %>
+</div>

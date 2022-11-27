@@ -1,0 +1,69 @@
+<% layout('layouts/boilerplate') %>
+<% let color;
+switch (issue.status.toLowerCase()) {
+    case "completed":
+        color = "#929292";
+        break;
+    case "inprogress":
+        color = "#00c003";
+        break;
+    case "notstarted":
+        color = "#ed0000";
+        break;
+} %>
+<div class="container">
+    <div class="card mb-3 col-10 offset-1">
+        <h1 class="card-header textcenter" style="background-color: <%= color %>"><%= issue.name %></h1>
+        <div class="card-body">
+            <div class="mb-3">
+                <p class="list-group-item">
+                    Priority: SEV <%= issue.priority %>
+                <p class="list-group-item">Date: <%= issue.date.toISOString().slice(0, 10) %></p>
+                <p class="list-group-item">Status: <%= issue.status %></p>
+                <p class="card-text">Description: <%= issue.description %></p>
+            </div>
+            <div class="mb-3">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"></li>
+                    <li class="list-group-item">
+                        <a class="card-link btn notstarted" href="/issue/<%= issue._id %>/edit">Edit</a>
+                        <form class="d-inline right" action="/issue/<%= issue._id %>?_method=DELETE"
+                              method="POST">
+                            <button class="btn watermelon">Abandon</button>
+                        </form>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row mb-3">
+                            <form class="d-inline" action="/issue/<%= issue._id %>/notstarted?_method=PUT"
+                                  method="POST">
+                                <button class="btn notstarted" <%= issue.status.toLowerCase() === "notstarted" ? "disabled" : {} %>>
+                                    Not Started
+                                </button>
+                            </form>
+                        </div>
+                        <div class="row mb-3">
+                            <form class="d-inline" action="/issue/<%= issue._id %>/inprogress?_method=PUT"
+                                  method="POST">
+                                <button class="btn inprogress" <%= issue.status.toLowerCase() === "inprogress" ? "disabled" : {} %>>
+                                    In Progress
+                                </button>
+                            </form>
+                        </div>
+                        <div class="row">
+                            <form class="d-inline"
+                                  action="/issue/<%= issue._id %>/completed?_method=PUT" method="POST">
+                                <button class="btn completed" <%= issue.status.toLowerCase() === "completed" ? "disabled" : {} %> >
+                                    Completed
+                                </button>
+                            </form>
+                        </div>
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="mb-3 col-8 offset-2 mb-3 outcenter">
+        <a class="btn completed" href="/issue">Back to Issues</a>
+    </div>
+</div>
