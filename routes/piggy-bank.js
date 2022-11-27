@@ -130,7 +130,32 @@ router.post('/piggy-model', catchAsync(async(req, res) => {
 
 router.put('/piggy-model/:id', catchAsync(async(req, res) => {
     const {id} =req.params;
-    await PiggyModel.findByIdAndUpdate(id, {...req.body.piggymodel});
+    const currentmodel = await PiggyModel.findById(id);
+    const currenctcurrency = currentmodel.currency;
+    let newmodel = req.body.piggymodel;
+    let newpriority = currentmodel.priority;
+    switch(currenctcurrency.slice(0,-2)){
+        case 'potatoes':
+            break;
+        case 'watermelons':
+            newpriority -= 1000;
+            break;
+        case 'eggs':
+            newpriority -= 10000;
+            break;
+    }
+    switch(req.body.piggymodel.currency.slice(0,-2)){
+        case 'potatoes':
+            break;
+        case 'watermelons':
+            newpriority += 1000;
+            break;
+        case 'eggs':
+            newpriority += 10000;
+            break;
+    }
+    newmodel.priority = newpriority;
+    await PiggyModel.findByIdAndUpdate(id, {...newmodel});
     res.redirect(`/piggy-bank/piggy-model`);
 }));
 
