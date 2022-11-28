@@ -11,6 +11,8 @@
         <div class="card-body">
             <div class="col-10 offset-1">
                 <form action="/piggy-bank/piggy-model" method="POST" novalidate class="validated-form">
+                    <input type="hidden" name="piggymodel[level]" value=0>
+                    <input type="hidden" name="piggymodel[exp]" value=0>
                     <div class="mb-3">
                         <label for="model-name" class="form-label">Model Name</label>
                         <input type="text" class="form-control" id="model-name" name="piggymodel[name]" required>

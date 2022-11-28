@@ -65,12 +65,15 @@
                             data-bs-toggle="collapse"
                             data-bs-target="#flush-collapse<%= i %>" aria-expanded="false"
                             aria-controls="flush-collapse<%= i %>">
-                        <%= piggymodel.name %> - <%= piggymodel.points %><%= piggymodel.currency.slice(-2) %>
+                        <%= piggymodel.name %> - <%= piggymodel.points %><%= piggymodel.currency.slice(-2) %> - LV<%= piggymodel.level%>
                     </button>
                 </h2>
                 <div id="flush-collapse<%= i %>" class="accordion-collapse collapse" aria-labelledby="model<%= i %>>"
                      data-bs-parent="#accordionFlushExample">
                     <div class="accordion-body">
+                        <div class="card-body">
+                            <p>EXP <%= piggymodel.exp %></p>
+                        </div>
                         <div class="card-body">
                             <p><%= piggymodel.description %></p>
                         </div>

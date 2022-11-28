@@ -125,6 +125,7 @@ router.post('/piggy-model', catchAsync(async(req, res) => {
     newData.priority = priority;
     const piggy = new PiggyModel(newData);
     await piggy.save();
+    console.log(piggy)
     res.redirect(`/piggy-bank/piggy-model`);
 }))
 
@@ -163,6 +164,7 @@ router.put('/:id/:status', catchAsync(async(req, res) => {
     let operation = 1;
     const {id} =req.params;
     const piggydata = await PiggyBank.findById(id);
+    const piggymodels = await PiggyModel.find({});
     const allcurrencydata = await Currency.find({});
     const currencydataid = allcurrencydata[0]._id;
     const updatecurrency = piggydata.currency.slice(0, -2);
@@ -203,6 +205,28 @@ router.put('/:id/:status', catchAsync(async(req, res) => {
                 obj[updatecurrency]=0;
             }
             break;
+    }
+    let newexp;
+    switch(req.params.status.slice(0, -2).toLowerCase()){
+        case "bacon":
+            for(let piggymodel of piggymodels){
+                if(piggymodel.name.toLowerCase() === piggydata.name.toLowerCase() && currentstatus === "piggy"){
+                    newexp = piggymodel.exp - 1;
+                    let newlev = Math.floor(newexp/10)
+                    await PiggyModel.findByIdAndUpdate(piggymodel._id, {exp: newexp, level: newlev});
+                }
+            }
+            break;
+        case "piggy":
+            for(let piggymodel of piggymodels){
+                if(piggymodel.name.toLowerCase() === piggydata.name.toLowerCase()){
+                    newexp = piggymodel.exp + 1;
+                    let newlev = Math.floor(newexp/10)
+                    await PiggyModel.findByIdAndUpdate(piggymodel._id, {exp: newexp, level: newlev});
+                }
+            }
+            break;
+
     }
     await Currency.findByIdAndUpdate(currencydataid, obj);
     const piggybank = await PiggyBank.findByIdAndUpdate(id, {status: req.params.status});
