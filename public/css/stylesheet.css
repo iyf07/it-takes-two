@@ -22,6 +22,32 @@
     font-display: swap;
 }
 
+@font-face {
+    font-family: 'IPix';
+    src: url('../fonts/IPix.eot');
+    src: url('../fonts/IPix.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/IPix.woff2') format('woff2'),
+    url('../fonts/IPix.woff') format('woff'),
+    url('../fonts/IPix.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'mplus_hzk_12';
+    src: url('../fonts/mplus_hzk_12.eot');
+    src: url('../fonts/mplus_hzk_12.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/mplus_hzk_12.woff2') format('woff2'),
+    url('../fonts/mplus_hzk_12.woff') format('woff'),
+    url('../fonts/mplus_hzk_12.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+
 nav, footer {
     font-family: Silkscreen;
     font-weight: bold;
@@ -96,6 +122,10 @@ nav, footer {
     color: white;
 }
 
+.login {
+    background-color: #4B9CD3;
+}
+
 h1, h3 {
     font-family: Silkscreen;
     font-weight: bold;
@@ -127,5 +157,5 @@ footer {
 }
 
 * {
-    font-family: Silkscreen;
+    font-family: Silkscreen, mplus_hzk_12;
 }
