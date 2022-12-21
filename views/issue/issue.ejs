@@ -1,5 +1,5 @@
-<% layout('layouts/boilerplate') %>
-<% let notstarted = 0;
+<% layout('layouts/boilerplate')
+let notstarted = 0;
 let inprogress = 0;
 let completed = 0;
 for (let issue of issues) {
@@ -15,8 +15,7 @@ for (let issue of issues) {
             break;
     }
 }
-let total = notstarted + inprogress + completed;
-%>
+let total = notstarted + inprogress + completed;%>
 <div class="container">
     <div class="card mb-4">
         <h1 class="card-header textcenter completed">Issues</h1>
@@ -37,7 +36,6 @@ let total = notstarted + inprogress + completed;
                              style="width: <%= notstarted / total * 100 %>%">
                             <%= notstarted %>
                         </div>
-
                         <div class="completed progress-bar progress-bar-striped progress-bar-animated"
                              role="progressbar"
                              style="width: <%= completed / total * 100 %>%">
@@ -65,10 +63,13 @@ let total = notstarted + inprogress + completed;
         } %>
     <div class="card mb-3">
         <p class="card-header"
-           style="background-color: <%= color %>; color: <%= issue.status.toLowerCase() === "notstarted" ? "white" : {}%>"><%= issue.name %> - SEV <%= issue.priority %></p>
+           style="background-color: <%= color %>; color: <%= issue.status.toLowerCase() === "notstarted" ? "white" : {} %>"><%= issue.name %>
+            - SEV <%= issue.priority %></p>
         <div class="card-body">
             <p class="card-title"><%= issue.date.toISOString().slice(0, 10) %></p>
-            <a class="btn" style="background-color: <%= color %>; color: <%= issue.status.toLowerCase() === "notstarted" ? "white" : {}%>" href="/issue/<%= issue._id %>">Issue Detail</a>
+            <a class="btn"
+               style="background-color: <%= color %>; color: <%= issue.status.toLowerCase() === "notstarted" ? "white" : {} %>"
+               href="/issue/<%= issue._id %>">Issue Detail</a>
         </div>
     </div>
     <% } %>

@@ -6,21 +6,27 @@
             <div class="col-10 offset-1 textcenter">
                 <form action="/user/admin/reset-points" method="POST" novalidate class="validated-form">
                     <div class="mb-3 d-grid gap-2">
-                        <button class="btn btn-outline-dark" id="reset-points-submit" <%= user.type === 'Main' ? {} : 'disabled'%>>Reset Points</button>
+                        <button class="btn btn-outline-dark"
+                                id="reset-points-submit" <%= user.type === 'Main' ? {} : 'disabled' %>>Reset Points
+                        </button>
                     </div>
                 </form>
             </div>
             <div class="col-10 offset-1 textcenter">
                 <form action="/user/admin/reset-piggy-bank" method="POST" novalidate class="validated-form">
                     <div class="mb-3 d-grid gap-2">
-                        <button class="btn btn-outline-dark" id="reset-piggy-bank" <%= user.type === 'Main' ? {} : 'disabled'%>>Reset Piggy Bank</button>
+                        <button class="btn btn-outline-dark"
+                                id="reset-piggy-bank" <%= user.type === 'Main' ? {} : 'disabled' %>>Reset Piggy Bank
+                        </button>
                     </div>
                 </form>
             </div>
             <div class="col-10 offset-1 textcenter">
                 <form action="/user/admin/reset-piggy-model" method="POST" novalidate class="validated-form">
                     <div class="mb-3 d-grid gap-2">
-                        <button class="btn btn-outline-dark" id="reset-piggy-model" <%= user.type === 'Main' ? {} : 'disabled'%>>Reset Piggy Model</button>
+                        <button class="btn btn-outline-dark"
+                                id="reset-piggy-model" <%= user.type === 'Main' ? {} : 'disabled' %>>Reset Piggy Model
+                        </button>
                     </div>
                 </form>
             </div>

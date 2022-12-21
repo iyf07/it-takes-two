@@ -30,7 +30,8 @@
                         </div>
                         <div class="column col-11">
                             <div class="progress">
-                                <div class="watermelon progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                                <div class="watermelon progress-bar progress-bar-striped progress-bar-animated"
+                                     role="progressbar"
                                      style="width: <%= currency[0].watermelons * 2 %>%">
                                     <%= currency[0].watermelons %>/50
                                 </div>
@@ -43,7 +44,8 @@
                         </div>
                         <div class="column col-11">
                             <div class="progress">
-                                <div class="egg progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                                <div class="egg progress-bar progress-bar-striped progress-bar-animated"
+                                     role="progressbar"
                                      style="width: <%= currency[0].eggs * 10 %>%">
                                     <%= currency[0].eggs %>/10
                                 </div>
@@ -55,7 +57,7 @@
         </div>
     </div>
 </div>
-<div class="container" <%= user.type === '' ? 'Hidden' : {}%>>
+<div class="container" <%= user.type === '' ? 'Hidden' : {} %>>
     <% let i = 0; %>
     <div class="accordion">
         <% for (let piggymodel of piggymodels){ %>
@@ -65,7 +67,8 @@
                             data-bs-toggle="collapse"
                             data-bs-target="#flush-collapse<%= i %>" aria-expanded="false"
                             aria-controls="flush-collapse<%= i %>">
-                        <%= piggymodel.name %> - <%= piggymodel.points %><%= piggymodel.currency.slice(-2) %> - LV<%= piggymodel.level%>
+                        <%= piggymodel.name %> - <%= piggymodel.points %><%= piggymodel.currency.slice(-2) %> -
+                        LV<%= piggymodel.level %>
                     </button>
                 </h2>
                 <div id="flush-collapse<%= i %>" class="accordion-collapse collapse" aria-labelledby="model<%= i %>>"
@@ -80,7 +83,8 @@
                         <li class="list-group-item">
                             <a class="card-link btn boar"
                                href="/piggy-bank/piggy-model/<%= piggymodel._id %>/edit">Edit</a>
-                            <form class="d-inline right" action="/piggy-bank/piggy-model/<%= piggymodel._id %>?_method=DELETE"
+                            <form class="d-inline right"
+                                  action="/piggy-bank/piggy-model/<%= piggymodel._id %>?_method=DELETE"
                                   method="POST">
                                 <button class="btn watermelon">Abandon</button>
                             </form>

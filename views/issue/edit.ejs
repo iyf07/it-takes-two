@@ -1,4 +1,3 @@
-
 <% layout('layouts/boilerplate') %>
 <div class="container">
     <div class="card mb-3">
@@ -10,7 +9,7 @@
                     <input type="hidden" name="issue[order]" value=2>
                     <div class="mb-3">
                         <label for="issue-name" class="form-label">Issue Name</label>
-                        <input type="text" class="form-control" name="issue[name]" value="<%= issue.name%>" required>
+                        <input type="text" class="form-control" name="issue[name]" value="<%= issue.name %>" required>
                         <div class="valid-feedback"></div>
                     </div>
                     <div class="mb-3">
@@ -62,12 +61,14 @@
                     </div>
                     <div class="mb-3">
                         <label for="issue-date" class="form-label">Date</label>
-                        <input type="date" class="form-control" id="issue-date" name="issue[date]" value="<%= issue.date.toISOString().slice(0, 10)%>" required>
+                        <input type="date" class="form-control" id="issue-date" name="issue[date]"
+                               value="<%= issue.date.toISOString().slice(0, 10) %>" required>
                         <div class="valid-feedback"></div>
                     </div>
                     <div class="mb-3">
                         <label for="issue-description" class="form-label">Description</label>
-                        <input type="text" class="form-control" id="issue-description" name="issue[description]" value="<%= issue.description%>" required>
+                        <input type="text" class="form-control" id="issue-description" name="issue[description]"
+                               value="<%= issue.description %>" required>
                         <div class="valid-feedback"></div>
                     </div>
                     <div class="mb-3">

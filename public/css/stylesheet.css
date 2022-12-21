@@ -65,9 +65,10 @@ nav, footer, .navbar {
 }
 
 .bacon {
-    background-color:#9d2f1c;
+    background-color: #9d2f1c;
     color: white;
 }
+
 .outcenter {
     align-items: center;
     display: flex;
@@ -132,6 +133,7 @@ nav, footer, .navbar {
 .notreceived {
     background-color: #e1e1e1;
 }
+
 h1, h3 {
     font-family: Silkscreen;
     font-weight: bold;

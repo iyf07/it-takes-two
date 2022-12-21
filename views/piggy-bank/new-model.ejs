@@ -1,5 +1,5 @@
 <% layout('layouts/boilerplate') %>
-<div class="container" >
+<div class="container">
     <div class="card mb-3">
         <h1 class="card-header text-center boar">New&#128023;Model</h1>
         <div class="card-body">
@@ -40,11 +40,14 @@
                     </div>
                     <div class="mb-3">
                         <label for="model-description" class="form-label">Introduction</label>
-                        <input type="text" class="form-control" id="model-description" name="piggymodel[description]" required>
+                        <input type="text" class="form-control" id="model-description" name="piggymodel[description]"
+                               required>
                         <div class="valid-feedback"></div>
                     </div>
                     <div class="mb-3 d-grid gap-2">
-                        <button class="btn boar" id="model-submit" <%= user.type === 'Main' ? {} : 'Disabled'%>>Add Model</button>
+                        <button class="btn boar" id="model-submit" <%= user.type === 'Main' ? {} : 'Disabled' %>>Add
+                            Model
+                        </button>
                     </div>
                 </form>
             </div>

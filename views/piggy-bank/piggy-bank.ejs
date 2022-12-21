@@ -1,6 +1,6 @@
 <% layout('layouts/boilerplate') %>
 <div class="container">
-    <div class="card mb-4">
+    <div class="card mb-3">
         <h1 class="card-header textcenter piggy">Piggy&#128022;Bank</h1>
         <div class="card-body">
             <ul class="list-group list-group-flush row">
@@ -18,7 +18,6 @@
                                 <div class="potato progress-bar progress-bar-striped progress-bar-animated"
                                      role="progressbar"
                                      style="width: <%= currency[0].potatoes %>%">
-
                                     <%= currency[0].potatoes %>/100
                                 </div>
                             </div>
@@ -57,7 +56,7 @@
         </div>
     </div>
 </div>
-<div class="container" <%= user.type === '' ? 'Hidden' : {}%>>
+<div class="container" <%= user.type === '' ? 'Hidden' : {} %>>
     <% for (let piggybank of piggybanks){
         var color;
         switch (piggybank.status.slice(0, -2).toLowerCase()) {

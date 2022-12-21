@@ -35,10 +35,11 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <%= user.name%>
+                        <%= user.name %>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/user/login"><%= user.type === '' ? 'Log In' : 'Log Out'%></a></li>
+                        <li><a class="dropdown-item"
+                               href="/user/login"><%= user.type === '' ? 'Log In' : 'Log Out' %></a></li>
                         <li><a class="dropdown-item" href="/user/admin">Admin</a></li>
                     </ul>
                 </li>

@@ -42,11 +42,11 @@ app.get('/', (req, res) => {
     res.redirect('/piggy-bank')
 })
 
-app.get('/wheel-of-fortune', async(req, res) => {
+app.get('/wheel-of-fortune', async (req, res) => {
     const currency = await Currency.find({})
     themecolor = '#ff0000;'
     res.render('wheel-of-fortune/main', {currency, themecolor})
-} )
+})
 
 app.all('*', (req, res, next) => {
     next(new ExpressError('Page Not Found!!', 404))
