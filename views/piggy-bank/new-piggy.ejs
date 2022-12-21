@@ -11,9 +11,10 @@
                         <label for="piggymodel" class="form-label">Piglet Model</label>
                         <div class="card mb-3">
                             <div class="card-body" id="piggymodel">
+
                                 <% let i = 0; %>
                                 <% for (let piggymodel of piggymodels){ %>
-                                    <div class="form-check">
+                                    <div class="form-check" <%= user.type === '' ? 'Hidden' : {}%>>
                                         <input class="form-check-input" name="piggybankid" type="radio"
                                                id="piggymodel<%= i %>" value="<%= piggymodel._id %>" <%= i===0 ? "checked" : {}%>>
                                         <label class="form-check-label" for="piggymodel<%= i %>">
@@ -22,7 +23,7 @@
                                         <% i++; %>
                                     </div>
                                 <% } %>
-                                <a class="btn piglet" href="/piggy-bank/new-bonus-piggy">Bonus
+                                <a class="btn piglet  d-grid gap-2" href="/piggy-bank/new-bonus-piggy">Bonus
                                     Piglet</a>
                             </div>
                         </div>
@@ -37,8 +38,8 @@
                         <input type="text" class="form-control" id="piggy-description" name="piggybank[description]">
                         <div class="valid-feedback"></div>
                     </div>
-                    <div class="mb-3">
-                        <button class="btn piglet" id="piggy-submit">Add Piglet</button>
+                    <div class="mb-3 d-grid gap-2">
+                        <button class="btn piglet" id="piggy-submit" <%= user.type === '' ? 'Disabled' : {}%>>Add Piglet</button>
                     </div>
                 </form>
             </div>

@@ -1,6 +1,7 @@
 <nav class="navbar fixed-top navbar-expand-lg">
     <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -16,19 +17,28 @@
                         Games
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/lottery">Lottery</a></li>
+                        <li><a class="dropdown-item" href="/wheel-of-fortune">Wheel of Fortune</a></li>
                         <li><a class="dropdown-item" href="/Wishing Well">Wishing Well</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="/issue">Issues</a>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <%= user.name%>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/user/login"><%= user.type === '' ? 'Log In' : 'Log Out'%></a></li>
+                        <li><a class="dropdown-item" href="/user/admin">Admin</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
         <div>
-            <%= currency[0].potatoes %>&#129364;
-            <%= currency[0].watermelons %>&#127817;
-            <%= currency[0].eggs %>&#129370;
+            &#129364;<%= currency[0].potatoes %>
+            &#127817;<%= currency[0].watermelons %>
+            &#129370;<%= currency[0].eggs %>
         </div>
     </div>
 </nav>

@@ -1,10 +1,4 @@
 <% layout('layouts/boilerplate') %>
-<% for(let user of users){
-    let secretcode;
-    if(user.type === "main"){
-        secretcode = user.code;
-    }
-} %>
 <div class="container" >
     <div class="card mb-3">
         <h1 class="card-header text-center boar">New&#128023;Model</h1>
@@ -49,13 +43,8 @@
                         <input type="text" class="form-control" id="model-description" name="piggymodel[description]" required>
                         <div class="valid-feedback"></div>
                     </div>
-                    <div class="mb-3">
-                        <label for="model-code" class="form-label">Secret Code</label>
-                        <input type="text" class="form-control" id="model-code" name="code" placeholder="put any here for now" required>
-                        <div class="valid-feedback"></div>
-                    </div>
-                    <div class="mb-3">
-                        <button class="btn boar" id="model-submit">Add Model</button>
+                    <div class="mb-3 d-grid gap-2">
+                        <button class="btn boar" id="model-submit" <%= user.type === 'Main' ? {} : 'Disabled'%>>Add Model</button>
                     </div>
                 </form>
             </div>

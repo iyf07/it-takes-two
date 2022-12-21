@@ -2,7 +2,6 @@ const express = require('express');
 const Issue = require('../models/issue');
 const Currency = require('../models/currency');
 const catchAsync = require("../utils/catchAsync");
-const PiggyBank = require("../models/piggy-bank");
 const router = express.Router();
 const themecolor = "#929292";
 
@@ -13,7 +12,8 @@ router.get('/', async (req, res) => {
         currency = new Currency({potatoes: 0, watermelons: 0, eggs: 0})
         await currency.save()
     }
-    res.render('issue/issue', {issues, currency, themecolor})
+    const user = req.cookies;
+    res.render('issue/issue', {issues, currency, themecolor, user})
 });
 
 router.get('/new-issue', async(req, res) => {

@@ -14,7 +14,8 @@ router.get('/', async(req, res) => {
         currency = new Currency({potatoes: 0, watermelons: 0, eggs: 0});
         await currency.save();
     }
-    res.render('piggy-bank/piggy-bank', {piggybanks, currency, themecolor});
+    const user = req.cookies;
+    res.render('piggy-bank/piggy-bank', {piggybanks, currency, themecolor, user, user});
 })
 
 router.get('/new-piggy', async(req, res) => {
@@ -24,7 +25,8 @@ router.get('/new-piggy', async(req, res) => {
         currency = new Currency({potatoes: 0, watermelons: 0, eggs: 0});
         await currency.save();
     }
-    res.render('piggy-bank/new-piggy', {piggymodels, currency, themecolor});
+    const user = req.cookies;
+    res.render('piggy-bank/new-piggy', {piggymodels, currency, themecolor, user});
 })
 
 router.get('/new-bonus-piggy',async(req, res) => {
@@ -33,7 +35,8 @@ router.get('/new-bonus-piggy',async(req, res) => {
         currency = new Currency({potatoes: 0, watermelons: 0, eggs: 0});
         await currency.save();
     }
-    res.render('piggy-bank/new-bonus-piggy', {currency, themecolor});
+    const user = req.cookies;
+    res.render('piggy-bank/new-bonus-piggy', {currency, themecolor, user});
 })
 
 router.get('/piggy-model', async(req, res) => {
@@ -44,17 +47,18 @@ router.get('/piggy-model', async(req, res) => {
         await currency.save()
     }
     const themecolor="#fce7d8";
-    res.render('piggy-bank/piggy-model', {piggymodels, currency, themecolor});
+    const user = req.cookies;
+    res.render('piggy-bank/piggy-model', {piggymodels, currency, themecolor, user});
 })
 
 router.get('/piggy-model/new-model', async(req, res) => {
     let currency = await Currency.find({});
-    const users = await User.find({});
     if(currency.length === 0){
         currency = new Currency({potatoes: 0, watermelons: 0, eggs: 0});
         await currency.save();
     }
-    res.render('piggy-bank/new-model', {currency, users, themecolor});
+    const user = req.cookies;
+    res.render('piggy-bank/new-model', {currency, themecolor, user});
 })
 
 router.get('/piggy-model/:id/edit', catchAsync(async(req, res) => {
@@ -64,7 +68,8 @@ router.get('/piggy-model/:id/edit', catchAsync(async(req, res) => {
         currency = new Currency({potatoes: 0, watermelons: 0, eggs: 0});
         await currency.save();
     }
-    res.render('piggy-bank/edit-model', {piggymodel, currency, themecolor});
+    const user = req.cookies;
+    res.render('piggy-bank/edit-model', {piggymodel, currency, themecolor, user});
 }));
 
 router.get('/:id', catchAsync(async(req, res) => {
@@ -74,7 +79,8 @@ router.get('/:id', catchAsync(async(req, res) => {
         currency = new Currency({potatoes: 0, watermelons: 0, eggs: 0});
         await currency.save();
     }
-    res.render('piggy-bank/show-piggy', {piggybank, currency, themecolor})
+    const user = req.cookies;
+    res.render('piggy-bank/show-piggy', {piggybank, currency, themecolor, user})
 }));
 
 router.get('/:id/edit', catchAsync(async(req, res) => {
@@ -85,14 +91,16 @@ router.get('/:id/edit', catchAsync(async(req, res) => {
         currency = new Currency({potatoes: 0, watermelons: 0, eggs: 0});
         await currency.save();
     }
+    const user = req.cookies;
     switch(piggybank.type){
         case 'normal':
-            res.render('piggy-bank/edit-piggy', {piggybank, currency, piggymodels, themecolor});
+            res.render('piggy-bank/edit-piggy', {piggybank, currency, piggymodels, themecolor, user});
             break;
         case 'bonus':
-            res.render('piggy-bank/edit-bonus-piggy', {piggybank, currency, piggymodels, themecolor});
+            res.render('piggy-bank/edit-bonus-piggy', {piggybank, currency, piggymodels, themecolor, user});
             break;
     }
+
 }));
 
 router.post('/', catchAsync(async(req, res) => {
@@ -125,7 +133,6 @@ router.post('/piggy-model', catchAsync(async(req, res) => {
     newData.priority = priority;
     const piggy = new PiggyModel(newData);
     await piggy.save();
-    console.log(piggy)
     res.redirect(`/piggy-bank/piggy-model`);
 }))
 

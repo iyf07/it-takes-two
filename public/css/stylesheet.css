@@ -46,9 +46,7 @@
     font-display: swap;
 }
 
-
-
-nav, footer {
+nav, footer, .navbar {
     font-family: Silkscreen;
     font-weight: bold;
 }
