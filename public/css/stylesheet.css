@@ -124,6 +124,14 @@ nav, footer, .navbar {
     background-color: #4B9CD3;
 }
 
+.inventory {
+    background-color: #7B542C;
+    color: white;
+}
+
+.notreceived {
+    background-color: #e1e1e1;
+}
 h1, h3 {
     font-family: Silkscreen;
     font-weight: bold;

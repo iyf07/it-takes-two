@@ -8,40 +8,24 @@ const themecolor = "#929292";
 router.get('/', async (req, res) => {
     const issues = await Issue.find({}).sort({order: -1}).sort({priority: -1});
     let currency = await Currency.find({});
-    if(currency.length === 0){
-        currency = new Currency({potatoes: 0, watermelons: 0, eggs: 0})
-        await currency.save()
-    }
     const user = req.cookies;
     res.render('issue/issue', {issues, currency, themecolor, user})
 });
 
 router.get('/new-issue', async(req, res) => {
     let currency = await Currency.find({});
-    if(currency.length === 0){
-        currency = new Currency({potatoes: 0, watermelons: 0, eggs: 0})
-        await currency.save()
-    }
     res.render('issue/new', {currency, themecolor})
 })
 
 router.get('/:id', catchAsync(async(req, res) => {
     const issue = await Issue.findById(req.params.id)
     let currency = await Currency.find({});
-    if(currency.length === 0){
-        currency = new Currency({potatoes: 0, watermelons: 0, eggs: 0})
-        await currency.save()
-    }
     res.render('issue/show', {issue, currency, themecolor})
 }));
 
 router.get('/:id/edit', catchAsync(async(req, res) => {
     const issue = await Issue.findById(req.params.id)
     let currency = await Currency.find({});
-    if(currency.length === 0){
-        currency = new Currency({potatoes: 0, watermelons: 0, eggs: 0})
-        await currency.save()
-    }
     res.render('issue/edit', {issue, currency, themecolor});
 }));
 

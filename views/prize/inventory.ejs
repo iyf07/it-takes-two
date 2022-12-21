@@ -1,0 +1,55 @@
+<% layout('layouts/boilerplate') %>
+<div class="container">
+    <div class="card mb-4">
+        <h1 class="card-header textcenter inventory"> &#128230;Inventory</h1>
+    </div>
+</div>
+
+<div class="container" <%= user.type === '' ? 'Hidden' : {} %>>
+    <% let i = 0; %>
+    <div class="accordion">
+        <% for (let inventory of inventories){ %>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="model<%= i %>>">
+                    <button class="accordion-button collapsed <%= inventory.main === true && inventory.secondary === true ? "inventory" : "notreceived" %>"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapse<%= i %>" aria-expanded="false"
+                            aria-controls="flush-collapse<%= i %>">
+                        <%= inventory.name %>
+                    </button>
+                </h2>
+                <div id="flush-collapse<%= i %>"
+                     class="accordion-collapse collapse <%= inventory.main === true && inventory.secondary === true ? {} : "show" %>"
+                     aria-labelledby="model<%= i %>>"
+                     data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <div class="card-body">
+                            <p>Date: <%= inventory.date.toISOString().slice(0, 10) %></p>
+                        </div>
+                        <div class="card-body">
+                            <p>Sent: <%= inventory.main %></p>
+                        </div>
+                        <div class="card-body">
+                            <p>Received: <%= inventory.secondary %></p>
+                        </div>
+                        <li class="list-group-item">
+                            <form class="d-inline" action="/prize/inventory/sent/<%= inventory._id %>?_method=PUT"
+                                  method="POST">
+                                <button class="btn <%= inventory.main === true ? "notreceived" : "inventory" %>" <%= user.type === "Main" ? {} : "disabled"%>>
+                                    &#128228;<%= inventory.main === true ? "Not Sent" : "Sent" %></button>
+                            </form>
+                            <form class="d-inline right"
+                                  action="/prize/inventory/received/<%= inventory._id %>?_method=PUT" method="POST">
+                                <button class="btn <%= inventory.secondary === true ? "notreceived" : "inventory" %>" <%= user.type === "Secondary" ? {} : "disabled"%>>
+                                    &#128229;<%= inventory.secondary === true ? "Not Received" : "Received" %></button>
+                            </form>
+                        </li>
+                    </div>
+                </div>
+            </div>
+            <% i++; %>
+        <% } %>
+        <p></p>
+    </div>
+</div>

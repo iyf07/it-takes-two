@@ -11,8 +11,10 @@ const ExpressError = require('./utils/ExpressError')
 const userRoutes = require('./routes/user')
 const piggybankRoutes = require('./routes/piggy-bank')
 const issueRoutes = require("./routes/issue");
+const prizeRoutes = require('./routes/prize')
 const Currency = require("./models/currency");
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/it-takes-two';
+
 mongoose.connect(dbUrl)
     .then(() => {
         console.log('Mongo connection open')
@@ -34,6 +36,7 @@ app.use(flash());
 app.use('/issue', issueRoutes)
 app.use('/piggy-bank', piggybankRoutes)
 app.use('/user', userRoutes)
+app.use('/prize', prizeRoutes)
 
 app.get('/', (req, res) => {
     res.redirect('/piggy-bank')

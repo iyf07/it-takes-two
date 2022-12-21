@@ -10,10 +10,6 @@ const themecolor="#fce7d8";
 router.get('/', async(req, res) => {
     const piggybanks = await PiggyBank.find({}).sort({date:-1});
     let currency = await Currency.find({});
-    if(currency.length === 0){
-        currency = new Currency({potatoes: 0, watermelons: 0, eggs: 0});
-        await currency.save();
-    }
     const user = req.cookies;
     res.render('piggy-bank/piggy-bank', {piggybanks, currency, themecolor, user, user});
 })
@@ -21,20 +17,12 @@ router.get('/', async(req, res) => {
 router.get('/new-piggy', async(req, res) => {
     const piggymodels = await PiggyModel.find({}).sort({priority: 1});
     let currency = await Currency.find({});
-    if(currency.length === 0){
-        currency = new Currency({potatoes: 0, watermelons: 0, eggs: 0});
-        await currency.save();
-    }
     const user = req.cookies;
     res.render('piggy-bank/new-piggy', {piggymodels, currency, themecolor, user});
 })
 
 router.get('/new-bonus-piggy',async(req, res) => {
     let currency = await Currency.find({});
-    if(currency.length === 0){
-        currency = new Currency({potatoes: 0, watermelons: 0, eggs: 0});
-        await currency.save();
-    }
     const user = req.cookies;
     res.render('piggy-bank/new-bonus-piggy', {currency, themecolor, user});
 })
@@ -42,10 +30,6 @@ router.get('/new-bonus-piggy',async(req, res) => {
 router.get('/piggy-model', async(req, res) => {
     const piggymodels = await PiggyModel.find({}).sort({priority:1});
     let currency = await Currency.find({});
-    if(currency.length === 0){
-        currency = new Currency({potatoes: 0, watermelons: 0, eggs: 0});
-        await currency.save()
-    }
     const themecolor="#fce7d8";
     const user = req.cookies;
     res.render('piggy-bank/piggy-model', {piggymodels, currency, themecolor, user});
@@ -53,10 +37,6 @@ router.get('/piggy-model', async(req, res) => {
 
 router.get('/piggy-model/new-model', async(req, res) => {
     let currency = await Currency.find({});
-    if(currency.length === 0){
-        currency = new Currency({potatoes: 0, watermelons: 0, eggs: 0});
-        await currency.save();
-    }
     const user = req.cookies;
     res.render('piggy-bank/new-model', {currency, themecolor, user});
 })
@@ -64,10 +44,6 @@ router.get('/piggy-model/new-model', async(req, res) => {
 router.get('/piggy-model/:id/edit', catchAsync(async(req, res) => {
     const piggymodel = await PiggyModel.findById(req.params.id);
     let currency = await Currency.find({});
-    if(currency.length === 0){
-        currency = new Currency({potatoes: 0, watermelons: 0, eggs: 0});
-        await currency.save();
-    }
     const user = req.cookies;
     res.render('piggy-bank/edit-model', {piggymodel, currency, themecolor, user});
 }));
@@ -75,10 +51,6 @@ router.get('/piggy-model/:id/edit', catchAsync(async(req, res) => {
 router.get('/:id', catchAsync(async(req, res) => {
     const piggybank = await PiggyBank.findById(req.params.id);
     let currency = await Currency.find({});
-    if(currency.length === 0){
-        currency = new Currency({potatoes: 0, watermelons: 0, eggs: 0});
-        await currency.save();
-    }
     const user = req.cookies;
     res.render('piggy-bank/show-piggy', {piggybank, currency, themecolor, user})
 }));
@@ -87,10 +59,6 @@ router.get('/:id/edit', catchAsync(async(req, res) => {
     const piggybank = await PiggyBank.findById(req.params.id);
     const piggymodels = await PiggyModel.find({}).sort({priority: 1});
     let currency = await Currency.find({});
-    if(currency.length === 0){
-        currency = new Currency({potatoes: 0, watermelons: 0, eggs: 0});
-        await currency.save();
-    }
     const user = req.cookies;
     switch(piggybank.type){
         case 'normal':
