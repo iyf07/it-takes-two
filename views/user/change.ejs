@@ -6,19 +6,19 @@
             <div class="col-10 offset-1">
                 <form action="/user/change?_method=PUT" method="POST" novalidate class="validated-form">
                     <div class="mb-3">
-                        <label for="curuser" class="form-label">Current User</label>
-                        <input type="text" class="form-control" id="curuser" name="curuser" value="<%= user.name %>"
+                        <label for="cur-user" class="form-label">Current User</label>
+                        <input type="text" class="form-control" id="cur-user" name="curUser" value="<%= user.name %>"
                                disabled>
                         <div class="valid-feedback"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="newuser" class="form-label">New Username</label>
-                        <input type="text" class="form-control" id="newuser" name="newuser" value="<%= user.name %>">
+                        <label for="new-user" class="form-label">New Username</label>
+                        <input type="text" class="form-control" id="new-user" name="newUser" value="<%= user.name %>">
                         <div class="valid-feedback"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="new-secretcode" class="form-label">New Secret Code</label>
-                        <input type="text" class="form-control" id="new-secretcode" name="newcode">
+                        <label for="new-secret-code" class="form-label">New Secret Code</label>
+                        <input type="text" class="form-control" id="new-secret-code" name="newCode">
                         <div class="valid-feedback"></div>
                     </div>
                     <div class="mb-3">

@@ -6,14 +6,14 @@
             <div class="col-10 offset-1">
                 <form action="/user/login" method="POST" novalidate class="validated-form">
                     <div class="mb-3">
-                        <label for="curuser" class="form-label">Current User</label>
-                        <input type="text" class="form-control" id="curuser" name="curuser" value="<%= user.name ? user.name : "Visitor" %>"
+                        <label for="cur-user" class="form-label">Current User</label>
+                        <input type="text" class="form-control" id="cur-user" name="curUser" value="<%= user.name ? user.name : "Visitor" %>"
                                disabled>
                         <div class="valid-feedback"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="secretcode" class="form-label">Secret Code</label>
-                        <input type="text" class="form-control" id="secretcode" name="code">
+                        <label for="secret-code" class="form-label">Secret Code</label>
+                        <input type="text" class="form-control" id="secret-code" name="code">
                         <div class="valid-feedback"></div>
                     </div>
                     <div class="mb-3">

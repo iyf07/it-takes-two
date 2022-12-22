@@ -4,73 +4,73 @@ const Currency = require('../models/currency');
 const express = require('express');
 const router = express.Router();
 const catchAsync = require('../utils/catchAsync');
-const themecolor = '#fce7d8';
+const themeColor = '#fce7d8';
 
 router.get('/', async (req, res) => {
-    const piggybanks = await PiggyBank.find({}).sort({date: -1});
+    const piggyBanks = await PiggyBank.find({}).sort({date: -1});
     const currency = await Currency.find({});
     const user = req.cookies;
-    res.render('piggy-bank/piggy-bank', {piggybanks, currency, themecolor, user});
+    res.render('piggy-bank/piggy-bank', {piggyBanks, currency, themeColor, user});
 })
 
 router.get('/new-piggy', async (req, res) => {
-    const piggymodels = await PiggyModel.find({}).sort({priority: 1});
+    const piggyModels = await PiggyModel.find({}).sort({priority: 1});
     const currency = await Currency.find({});
     const user = req.cookies;
-    res.render('piggy-bank/new-piggy', {piggymodels, currency, themecolor, user});
+    res.render('piggy-bank/new-piggy', {piggyModels, currency, themeColor, user});
 })
 
 router.get('/new-bonus-piggy', async (req, res) => {
     const currency = await Currency.find({});
     const user = req.cookies;
-    res.render('piggy-bank/new-bonus-piggy', {currency, themecolor, user});
+    res.render('piggy-bank/new-bonus-piggy', {currency, themeColor, user});
 })
 
 router.get('/piggy-model', async (req, res) => {
-    const piggymodels = await PiggyModel.find({}).sort({priority: 1});
+    const piggyModels = await PiggyModel.find({}).sort({priority: 1});
     const currency = await Currency.find({});
     const user = req.cookies;
-    res.render('piggy-bank/piggy-model', {piggymodels, currency, themecolor, user});
+    res.render('piggy-bank/piggy-model', {piggyModels, currency, themeColor, user});
 })
 
 router.get('/piggy-model/new-model', async (req, res) => {
     const currency = await Currency.find({});
     const user = req.cookies;
-    res.render('piggy-bank/new-model', {currency, themecolor, user});
+    res.render('piggy-bank/new-model', {currency, themeColor, user});
 })
 
 router.get('/piggy-model/:id/edit', catchAsync(async (req, res) => {
-    const piggymodel = await PiggyModel.findById(req.params.id);
+    const piggyModel = await PiggyModel.findById(req.params.id);
     const currency = await Currency.find({});
     const user = req.cookies;
-    res.render('piggy-bank/edit-model', {piggymodel, currency, themecolor, user});
+    res.render('piggy-bank/edit-model', {piggyModel, currency, themeColor, user});
 }));
 
 router.get('/:id', catchAsync(async (req, res) => {
-    const piggybank = await PiggyBank.findById(req.params.id);
+    const piggyBank = await PiggyBank.findById(req.params.id);
     const currency = await Currency.find({});
     const user = req.cookies;
-    res.render('piggy-bank/show-piggy', {piggybank, currency, themecolor, user})
+    res.render('piggy-bank/show-piggy', {piggyBank, currency, themeColor, user})
 }));
 
 router.get('/:id/edit', catchAsync(async (req, res) => {
-    const piggybank = await PiggyBank.findById(req.params.id);
-    const piggymodels = await PiggyModel.find({}).sort({priority: 1});
+    const piggyBank = await PiggyBank.findById(req.params.id);
+    const piggyModels = await PiggyModel.find({}).sort({priority: 1});
     const currency = await Currency.find({});
     const user = req.cookies;
-    switch (piggybank.type) {
+    switch (piggyBank.type) {
         case 'normal':
-            res.render('piggy-bank/edit-piggy', {piggybank, currency, piggymodels, themecolor, user});
+            res.render('piggy-bank/edit-piggy', {piggyBank, currency, piggyModels, themeColor, user});
             break;
         case 'bonus':
-            res.render('piggy-bank/edit-bonus-piggy', {piggybank, currency, piggymodels, themecolor, user});
+            res.render('piggy-bank/edit-bonus-piggy', {piggyBank, currency, piggyModels, themeColor, user});
             break;
     }
 }));
 
 router.post('/', catchAsync(async (req, res) => {
-    const data = await PiggyModel.findById(req.body.piggybankid);
-    let newData = req.body.piggybank;
+    const data = await PiggyModel.findById(req.body.piggyBankId);
+    let newData = req.body.piggyBank;
     if (data) {
         newData.name = data.name;
         newData.points = data.points;
@@ -83,7 +83,7 @@ router.post('/', catchAsync(async (req, res) => {
 
 router.post('/piggy-model', catchAsync(async (req, res) => {
     let priority = 0;
-    switch (req.body.piggymodel.currency.slice(0, -2)) {
+    switch (req.body.piggyModel.currency.slice(0, -2)) {
         case 'potatoes':
             break;
         case 'watermelons':
@@ -93,8 +93,8 @@ router.post('/piggy-model', catchAsync(async (req, res) => {
             priority += 10000;
             break;
     }
-    priority += Number(req.body.piggymodel.points);
-    let newData = req.body.piggymodel;
+    priority += Number(req.body.piggyModel.points);
+    let newData = req.body.piggyModel;
     newData.priority = priority;
     const piggy = new PiggyModel(newData);
     await piggy.save();
@@ -103,111 +103,111 @@ router.post('/piggy-model', catchAsync(async (req, res) => {
 
 router.put('/piggy-model/:id', catchAsync(async (req, res) => {
     const {id} = req.params;
-    const currentmodel = await PiggyModel.findById(id);
-    const currentcurrency = currentmodel.currency;
-    let newmodel = req.body.piggymodel;
-    let newpriority = currentmodel.priority;
-    switch (currentcurrency.slice(0, -2)) {
+    const currentModel = await PiggyModel.findById(id);
+    const currentCurrency = currentModel.currency;
+    let newModel = req.body.piggyModel;
+    let newPriority = currentModel.priority;
+    switch (currentCurrency.slice(0, -2)) {
         case 'potatoes':
             break;
         case 'watermelons':
-            newpriority -= 1000;
+            newPriority -= 1000;
             break;
         case 'eggs':
-            newpriority -= 10000;
+            newPriority -= 10000;
             break;
     }
-    switch (req.body.piggymodel.currency.slice(0, -2)) {
+    switch (req.body.piggyModel.currency.slice(0, -2)) {
         case 'potatoes':
             break;
         case 'watermelons':
-            newpriority += 1000;
+            newPriority += 1000;
             break;
         case 'eggs':
-            newpriority += 10000;
+            newPriority += 10000;
             break;
     }
-    newmodel.priority = newpriority;
-    await PiggyModel.findByIdAndUpdate(id, {...newmodel});
+    newModel.priority = newPriority;
+    await PiggyModel.findByIdAndUpdate(id, {...newModel});
     res.redirect(`/piggy-bank/piggy-model`);
 }));
 
 router.put('/:id/:status', catchAsync(async (req, res) => {
     const {id} = req.params;
-    const piggydata = await PiggyBank.findById(id);
-    const piggymodels = await PiggyModel.find({});
-    const allcurrencydata = await Currency.find({});
-    const currencydataid = allcurrencydata[0]._id;
-    const updatecurrency = piggydata.currency.slice(0, -2);
-    const updatepoints = piggydata.points;
-    const currencydata = await Currency.findById(currencydataid);
-    const currentpoints = currencydata[updatecurrency];
-    const currentstatus = piggydata.status;
+    const piggyData = await PiggyBank.findById(id);
+    const piggyModels = await PiggyModel.find({});
+    const allCurrencyData = await Currency.find({});
+    const currencyDataId = allCurrencyData[0]._id;
+    const updateCurrency = piggyData.currency.slice(0, -2);
+    const updatePoints = piggyData.points;
+    const currencyData = await Currency.findById(currencyDataId);
+    const currentPoints = currencyData[updateCurrency];
+    const currentStatus = piggyData.status;
+    let obj = {};
     let operation = 1;
+    let newExp;
     if (req.params.status.slice(0, -2).toLowerCase() === 'bacon') {
         operation = -1;
-        if (currentstatus.slice(0, -2).toLowerCase() === 'piglet') {
+        if (currentStatus.slice(0, -2).toLowerCase() === 'piglet') {
             operation = 0;
         }
     }
     if (req.params.status.slice(0, -2).toLowerCase() === 'piglet') {
         operation = 0;
     }
-    const obj = {};
-    obj[updatecurrency] = currentpoints + operation * updatepoints;
-    switch (updatecurrency) {
+    obj[updateCurrency] = currentPoints + operation * updatePoints;
+    switch (updateCurrency) {
         case 'potatoes':
-            if (obj[updatecurrency] > 100) {
-                obj[updatecurrency] = 100;
-            } else if (obj[updatecurrency] < 0) {
-                obj[updatecurrency] = 0;
+            if (obj[updateCurrency] > 100) {
+                obj[updateCurrency] = 100;
+            } else if (obj[updateCurrency] < 0) {
+                obj[updateCurrency] = 0;
             }
             break;
         case 'watermelons':
-            if (obj[updatecurrency] > 50) {
-                obj[updatecurrency] = 50;
-            } else if (obj[updatecurrency] < 0) {
-                obj[updatecurrency] = 0;
+            if (obj[updateCurrency] > 50) {
+                obj[updateCurrency] = 50;
+            } else if (obj[updateCurrency] < 0) {
+                obj[updateCurrency] = 0;
             }
             break;
         case 'eggs':
-            if (obj[updatecurrency] > 10) {
-                obj[updatecurrency] = 10;
-            } else if (obj[updatecurrency] < 0) {
-                obj[updatecurrency] = 0;
+            if (obj[updateCurrency] > 10) {
+                obj[updateCurrency] = 10;
+            } else if (obj[updateCurrency] < 0) {
+                obj[updateCurrency] = 0;
             }
             break;
     }
-    let newexp;
     switch (req.params.status.slice(0, -2).toLowerCase()) {
         case 'bacon':
-            for (let piggymodel of piggymodels) {
-                if (piggymodel.name.toLowerCase() === piggydata.name.toLowerCase() && currentstatus === 'piggy') {
-                    newexp = piggymodel.exp - 1;
-                    let newlev = Math.floor(newexp / 10);
-                    await PiggyModel.findByIdAndUpdate(piggymodel._id, {exp: newexp, level: newlev});
+            for (let piggyModel of piggyModels) {
+                if (piggyModel.name.toLowerCase() === piggyData.name.toLowerCase() && currentStatus === 'piggy') {
+                    newExp = piggyModel.exp - 1;
+                    let neeLev = Math.floor(newExp / 10);
+                    await PiggyModel.findByIdAndUpdate(piggyModel._id, {exp: newExp, level: neeLev});
                 }
             }
             break;
         case 'piggy':
-            for (let piggymodel of piggymodels) {
-                if (piggymodel.name.toLowerCase() === piggydata.name.toLowerCase()) {
-                    newexp = piggymodel.exp + 1;
-                    let newlev = Math.floor(newexp / 10);
-                    await PiggyModel.findByIdAndUpdate(piggymodel._id, {exp: newexp, level: newlev});
+            for (let piggyModel of piggyModels) {
+                if (piggyModel.name.toLowerCase() === piggyData.name.toLowerCase()) {
+                    newExp = piggyModel.exp + 1;
+                    let newLev = Math.floor(newExp / 10);
+                    await PiggyModel.findByIdAndUpdate(piggyModel._id, {exp: newExp, level: newLev});
                 }
             }
             break;
     }
-    await Currency.findByIdAndUpdate(currencydataid, obj);
-    const piggybank = await PiggyBank.findByIdAndUpdate(id, {status: req.params.status});
-    res.redirect(`/piggy-bank/${piggybank._id}`);
+    await Currency.findByIdAndUpdate(currencyDataId, obj);
+    await PiggyBank.findByIdAndUpdate(id, {status: req.params.status});
+    res.redirect(`/piggy-bank/${id}`);
 }));
 
 router.put('/:id', catchAsync(async (req, res) => {
     const {id} = req.params;
-    const piggybank = await PiggyBank.findByIdAndUpdate(id, {...req.body.piggybank});
-    res.redirect(`/piggy-bank/${piggybank._id}`);
+    await PiggyBank.findByIdAndUpdate(id, {...req.body.piggyBank});
+    res.redirect(`/piggy-bank/${id}`);
 }));
 
 router.delete('/:id', catchAsync(async (req, res) => {

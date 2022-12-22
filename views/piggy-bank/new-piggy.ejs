@@ -5,20 +5,20 @@
         <div class="card-body">
             <div class="col-10 offset-1">
                 <form action="/piggy-bank" method="POST" novalidate class="validated-form">
-                    <input type="hidden" name="piggybank[status]" value="piglet&#128061;">
-                    <input type="hidden" name="piggybank[type]" value="normal">
+                    <input type="hidden" name="piggyBank[status]" value="piglet&#128061;">
+                    <input type="hidden" name="piggyBank[type]" value="normal">
                     <div class="mb-3">
-                        <label for="piggymodel" class="form-label">Piglet Model</label>
+                        <label for="piggyModel" class="form-label">Piglet Model</label>
                         <div class="card mb-3">
-                            <div class="card-body" id="piggymodel">
+                            <div class="card-body" id="piggyModel">
                                 <% let i = 0; %>
-                                <% for (let piggymodel of piggymodels){ %>
+                                <% for (let piggyModel of piggyModels){ %>
                                     <div class="form-check" <%= !user.type || user.type === "" ? "hidden" : {} %>>
-                                        <input class="form-check-input" name="piggybankid" type="radio"
-                                               id="piggymodel<%= i %>"
-                                               value="<%= piggymodel._id %>" <%= i === 0 ? "checked" : {} %>>
-                                        <label class="form-check-label" for="piggymodel<%= i %>">
-                                            <%= piggymodel.points %><%= piggymodel.currency.slice(-2) %><%= piggymodel.name %>
+                                        <input class="form-check-input" name="piggyBankId" type="radio"
+                                               id="piggy-model-<%= i %>"
+                                               value="<%= piggyModel._id %>" <%= i === 0 ? "checked" : {} %>>
+                                        <label class="form-check-label" for="piggy-model-<%= i %>">
+                                            <%= piggyModel.points %><%= piggyModel.currency.slice(-2) %><%= piggyModel.name %>
                                         </label>
                                         <% i++; %>
                                     </div>
@@ -30,12 +30,12 @@
                     </div>
                     <div class="mb-3">
                         <label for="piggy-date" class="form-label">Birthday</label>
-                        <input type="date" class="form-control" id="piggy-date" name="piggybank[date]" required>
+                        <input type="date" class="form-control" id="piggy-date" name="piggyBank[date]" required>
                         <div class="valid-feedback"></div>
                     </div>
                     <div class="mb-3">
                         <label for="piggy-description" class="form-label">Description</label>
-                        <input type="text" class="form-control" id="piggy-description" name="piggybank[description]">
+                        <input type="text" class="form-control" id="piggy-description" name="piggyBank[description]">
                         <div class="valid-feedback"></div>
                     </div>
                     <div class="mb-3 d-grid gap-2">

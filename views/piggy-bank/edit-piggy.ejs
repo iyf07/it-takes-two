@@ -4,19 +4,19 @@
         <h1 class="text-center card-header piglet">Edit Piglet</h1>
         <div class="card-body">
             <div class="col-8 offset-2">
-                <form action="/piggy-bank/<%= piggybank._id %>?_method=PUT" method="POST">
-                    <input type="hidden" name="piggybank[status]" value="piglet&#128061;">
+                <form action="/piggy-bank/<%= piggyBank._id %>?_method=PUT" method="POST">
+                    <input type="hidden" name="piggyBank[status]" value="piglet&#128061;">
                     <div class="mb-3">
-                        <label for="piggymodel" class="form-label">Piglet Name</label>
-                        <div id="piggymodel">
+                        <label for="piggyModel" class="form-label">Piglet Name</label>
+                        <div id="piggyModel">
                             <% let i = 0; %>
-                            <% for (let piggymodel of piggymodels){ %>
+                            <% for (let piggyModel of piggyModels){ %>
                                 <div class="form-check">
-                                    <input class="form-check-input" name="piggybankid" type="radio"
-                                           id="piggymodel<%= i %>"
-                                           value="<%= piggymodel._id %>" <%= piggymodel.name === piggybank.name ? "checked" : {} %>>
-                                    <label class="form-check-label" for="piggymodel<%= i %>">
-                                        <%= piggymodel.points %><%= piggymodel.currency.slice(-2) %><%= piggymodel.name %>
+                                    <input class="form-check-input" name="piggyBankId" type="radio"
+                                           id="piggyModel<%= i %>"
+                                           value="<%= piggyModel._id %>" <%= piggyModel.name === piggyBank.name ? "checked" : {} %>>
+                                    <label class="form-check-label" for="piggyModel<%= i %>">
+                                        <%= piggyModel.points %><%= piggyModel.currency.slice(-2) %><%= piggyModel.name %>
                                     </label>
                                     <% i++; %>
                                 </div>
@@ -25,14 +25,14 @@
                     </div>
                     <div class="mb-3">
                         <label for="piggy-edit-date" class="form-label">Birthday</label>
-                        <input type="date" class="form-control" id="piggy-edit-date" name="piggybank[date]"
-                               value="<%= piggybank.date.toISOString().slice(0, 10) %>">
+                        <input type="date" class="form-control" id="piggy-edit-date" name="piggyBank[date]"
+                               value="<%= piggyBank.date.toISOString().slice(0, 10) %>">
                     </div>
                     <div class="mb-3">
                         <label for="piggy-edit-description" class="form-label">Introduction</label>
                         <input type="text" class="form-control" id="piggy-edit-description"
-                               name="piggybank[description]"
-                               value="<%= piggybank.description %>">
+                               name="piggyBank[description]"
+                               value="<%= piggyBank.description %>">
                     </div>
                     <div class="mb-3 d-grid gap-2">
                         <button class="btn piglet" id="piggy-edit-submit">Update Piglet</button>
@@ -43,6 +43,6 @@
         </div>
     </div>
     <div class="col-8 offset-2 mb-3 outcenter">
-        <a class="btn piggy" href="/piggy-bank/<%= piggybank._id %>">Back to Piggy</a>
+        <a class="btn piggy" href="/piggy-bank/<%= piggyBank._id %>">Back to Piggy</a>
     </div>
 </div>

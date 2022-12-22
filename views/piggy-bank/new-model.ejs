@@ -5,34 +5,34 @@
         <div class="card-body">
             <div class="col-10 offset-1">
                 <form action="/piggy-bank/piggy-model" method="POST" novalidate class="validated-form">
-                    <input type="hidden" name="piggymodel[level]" value=0>
-                    <input type="hidden" name="piggymodel[exp]" value=0>
+                    <input type="hidden" name="piggyModel[level]" value=0>
+                    <input type="hidden" name="piggyModel[exp]" value=0>
                     <div class="mb-3">
                         <label for="model-name" class="form-label">Model Name</label>
-                        <input type="text" class="form-control" id="model-name" name="piggymodel[name]" required>
+                        <input type="text" class="form-control" id="model-name" name="piggyModel[name]" required>
                         <div class="valid-feedback"></div>
                     </div>
                     <div class="mb-3">
                         <label for="model-points" class="form-label">Value</label>
-                        <input type="number" class="form-control" id="model-points" name="piggymodel[points]" required>
+                        <input type="number" class="form-control" id="model-points" name="piggyModel[points]" required>
                         <div class="valid-feedback"></div>
                     </div>
                     <div class="mb-3">
                         <label for="currency" class="form-label">Currency</label>
-                        <div id="piggymodel">
+                        <div id="piggyModel">
                             <div class="form-check">
-                                <input class="form-check-input" name="piggymodel[currency]" type="radio" id="potatoes"
+                                <input class="form-check-input" name="piggyModel[currency]" type="radio" id="potatoes"
                                        value="potatoes&#129364;">
                                 <label class="form-check-label" for="potatoes">Potato&#129364;</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" name="piggymodel[currency]" type="radio"
+                                <input class="form-check-input" name="piggyModel[currency]" type="radio"
                                        id="watermelons"
                                        value="watermelons&#127817;">
                                 <label class="form-check-label" for="watermelons">Watermelon&#127817;</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" name="piggymodel[currency]" type="radio" id="eggs"
+                                <input class="form-check-input" name="piggyModel[currency]" type="radio" id="eggs"
                                        value="eggs&#129370;">
                                 <label class="form-check-label" for="eggs">Egg&#129370;</label>
                             </div>
@@ -40,7 +40,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="model-description" class="form-label">Introduction</label>
-                        <input type="text" class="form-control" id="model-description" name="piggymodel[description]"
+                        <input type="text" class="form-control" id="model-description" name="piggyModel[description]"
                                required>
                         <div class="valid-feedback"></div>
                     </div>

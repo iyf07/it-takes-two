@@ -57,9 +57,9 @@
     </div>
 </div>
 <div class="container" <%= !user.type || user.type === "" ? "hidden" : {} %>>
-    <% for (let piggybank of piggybanks){
+    <% for (let piggyBank of piggyBanks){
         var color;
-        switch (piggybank.status.slice(0, -2).toLowerCase()) {
+        switch (piggyBank.status.slice(0, -2).toLowerCase()) {
             case "piglet":
                 color = "#e9899b";
                 break;
@@ -72,10 +72,10 @@
         } %>
     <div class="card mb-3">
         <p class="card-header"
-           style="color:<%= piggybank.status.slice(0, -2).toLowerCase() === "bacon" ? "white" : {} %>;background-color: <%= color %>"><%= piggybank.name %> <%= piggybank.status.slice(-2) %></p>
+           style="color:<%= piggyBank.status.slice(0, -2).toLowerCase() === "bacon" ? "white" : {} %>;background-color: <%= color %>"><%= piggyBank.name %> <%= piggyBank.status.slice(-2) %></p>
         <div class=" card-body">
-            <p class="card-title"><%= piggybank.date.toISOString().slice(0, 10) %></p>
-            <a class="btn barn" href="/piggy-bank/<%= piggybank._id %>">Visit Barn</a>
+            <p class="card-title"><%= piggyBank.date.toISOString().slice(0, 10) %></p>
+            <a class="btn barn" href="/piggy-bank/<%= piggyBank._id %>">Visit Barn</a>
         </div>
     </div>
     <% } %>

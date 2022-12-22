@@ -4,34 +4,34 @@
         <h1 class="text-center card-header boar">Edit&#128023;Model</h1>
         <div class="card-body">
             <div class="col-8 offset-2">
-                <form action="/piggy-bank/piggy-model/<%= piggymodel._id %>?_method=PUT" method="POST">
+                <form action="/piggy-bank/piggy-model/<%= piggyModel._id %>?_method=PUT" method="POST">
                     <div class="mb-3">
                         <label for="model-edit-name" class="form-label">Model Name</label>
-                        <input type="text" class="form-control" id="model-edit-name" name="piggymodel[name]"
-                               value="<%= piggymodel.name %>">
+                        <input type="text" class="form-control" id="model-edit-name" name="piggyModel[name]"
+                               value="<%= piggyModel.name %>">
                     </div>
                     <div class="mb-3">
                         <label for="model-edit-points" class="form-label">Value</label>
-                        <input type="number" class="form-control" id="model-edit-points" name="piggymodel[points]"
-                               value="<%= piggymodel.points %>">
+                        <input type="number" class="form-control" id="model-edit-points" name="piggyModel[points]"
+                               value="<%= piggyModel.points %>">
                     </div>
                     <div class="mb-3">
                         <label for="currency" class="form-label">Currency</label>
-                        <div id="piggymodel">
+                        <div id="piggyModel">
                             <div class="form-check">
-                                <input class="form-check-input" name="piggymodel[currency]" type="radio" id="potatoes"
-                                       value="potatoes&#129364;" <%= piggymodel.currency.slice(0, -2) === "potatoes" ? "checked" : null %>>
+                                <input class="form-check-input" name="piggyModel[currency]" type="radio" id="potatoes"
+                                       value="potatoes&#129364;" <%= piggyModel.currency.slice(0, -2) === "potatoes" ? "checked" : {} %>>
                                 <label class="form-check-label" for="potatoes">Potato&#129364;</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" name="piggymodel[currency]" type="radio"
+                                <input class="form-check-input" name="piggyModel[currency]" type="radio"
                                        id="watermelons"
-                                       value="watermelons&#127817;" <%= piggymodel.currency.slice(0, -2) === "watermelons" ? "checked" : null %>>
+                                       value="watermelons&#127817;" <%= piggyModel.currency.slice(0, -2) === "watermelons" ? "checked" : {} %>>
                                 <label class="form-check-label" for="watermelons">Watermelon&#127817;</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" name="piggymodel[currency]" type="radio" id="eggs"
-                                       value="eggs&#129370;" <%= piggymodel.currency.slice(0, -2) === "eggs" ? "checked" : null %>>
+                                <input class="form-check-input" name="piggyModel[currency]" type="radio" id="eggs"
+                                       value="eggs&#129370;" <%= piggyModel.currency.slice(0, -2) === "eggs" ? "checked" : {} %>>
                                 <label class="form-check-label" for="eggs">Egg&#129370;</label>
                             </div>
                         </div>
@@ -39,8 +39,8 @@
                     <div class="mb-3">
                         <label for="model-edit-description" class="form-label">Introduction</label>
                         <input type="text" class="form-control" id="model-edit-description"
-                               name="piggymodel[description]"
-                               value="<%= piggymodel.description %>">
+                               name="piggyModel[description]"
+                               value="<%= piggyModel.description %>">
                     </div>
                     <div class="mb-3 d-grid gap-2">
                         <button class="btn boar" id="model-edit-submit">Update Model</button>

@@ -4,28 +4,28 @@
         <h1 class="text-center card-header piglet">Edit Piglet</h1>
         <div class="card-body">
             <div class="col-8 offset-2">
-                <form action="/piggy-bank/<%= piggybank._id %>?_method=PUT" method="POST">
-                    <input type="hidden" name="piggybank[status]" value="piglet&#128061;">
+                <form action="/piggy-bank/<%= piggyBank._id %>?_method=PUT" method="POST">
+                    <input type="hidden" name="piggyBank[status]" value="piglet&#128061;">
                     <div class="mb-3">
                         <label for="bonus-edit-name" class="form-label">Piggy Name</label>
-                        <input type="text" class="form-control" id="bonus-edit-name" name="piggybank[name]"
-                               value="<%= piggybank.name %>">
+                        <input type="text" class="form-control" id="bonus-edit-name" name="piggyBank[name]"
+                               value="<%= piggyBank.name %>">
                     </div>
                     <div class="mb-3">
                         <label for="bonus-edit-points" class="form-label">Potatoes</label>
-                        <input type="number" class="form-control" id="bonus-edit-points" name="piggybank[points]"
-                               value="<%= piggybank.points %>">
+                        <input type="number" class="form-control" id="bonus-edit-points" name="piggyBank[points]"
+                               value="<%= piggyBank.points %>">
                     </div>
                     <div class="mb-3">
                         <label for="bonus-edit-date" class="form-label">Birthday</label>
-                        <input type="date" class="form-control" id="bonus-edit-date" name="piggybank[date]"
-                               value="<%= piggybank.date.toISOString().slice(0, 10) %>">
+                        <input type="date" class="form-control" id="bonus-edit-date" name="piggyBank[date]"
+                               value="<%= piggyBank.date.toISOString().slice(0, 10) %>">
                     </div>
                     <div class="mb-3">
                         <label for="bonus-edit-description" class="form-label">Introduction</label>
                         <input type="text" class="form-control" id="bonus-edit-description"
-                               name="piggybank[description]"
-                               value="<%= piggybank.description %>">
+                               name="piggyBank[description]"
+                               value="<%= piggyBank.description %>">
                     </div>
                     <div class="mb-3 d-grid gap-2">
                         <button class="btn piglet" id="bonus-edit-submit">Update Piglet</button>
@@ -35,6 +35,6 @@
         </div>
     </div>
     <div class="col-8 offset-2 mb-3 outcenter">
-        <a class="btn piggy d-grid gap-2" href="/piggy-bank/<%= piggybank._id %>">Back to Piggy</a>
+        <a class="btn piggy d-grid gap-2" href="/piggy-bank/<%= piggyBank._id %>">Back to Piggy</a>
     </div>
 </div>

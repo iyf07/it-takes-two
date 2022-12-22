@@ -5,24 +5,24 @@ const User = require('../models/user');
 const express = require('express');
 const router = express.Router();
 const catchAsync = require('../utils/catchAsync');
-const themecolor = '#4B9CD3';
+const themeColor = '#4B9CD3';
 
 router.get('/login', catchAsync(async (req, res) => {
     const currency = await Currency.find({});
     const user = req.cookies;
-    res.render('user/login', {themecolor, currency, user});
+    res.render('user/login', {themeColor, currency, user});
 }))
 
 router.get('/change', catchAsync(async (req, res) => {
     const currency = await Currency.find({});
     const user = req.cookies;
-    res.render('user/change', {themecolor, currency, user});
+    res.render('user/change', {themeColor, currency, user});
 }))
 
 router.get('/admin', catchAsync(async (req, res) => {
     const currency = await Currency.find({});
     const user = req.cookies;
-    res.render('user/admin', {themecolor, currency, user});
+    res.render('user/admin', {themeColor, currency, user});
 }))
 
 router.post('/login', catchAsync(async (req, res) => {
@@ -91,9 +91,9 @@ router.post('/admin/reset-secondary-secret-code', catchAsync(async (req, res) =>
 router.put('/change', catchAsync(async (req, res) => {
     const users = await User.find({});
     for (let user of users) {
-        if (req.body.newuser && user.type === req.cookies.type){
-            res.cookie('name', req.body.newuser);
-            await User.findByIdAndUpdate(user._id, {name: req.body.newuser, code: req.body.newcode});
+        if (req.body.newUser && user.type === req.cookies.type){
+            res.cookie('name', req.body.newUser);
+            await User.findByIdAndUpdate(user._id, {name: req.body.newUser, code: req.body.newCode});
         }
     }
     res.redirect(`/user/change`);

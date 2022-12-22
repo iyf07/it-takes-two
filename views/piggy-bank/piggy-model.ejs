@@ -60,31 +60,31 @@
 <div class="container" <%= !user.type || user.type === "" ? "hidden" : {} %>>
     <% let i = 0; %>
     <div class="accordion">
-        <% for (let piggymodel of piggymodels){ %>
+        <% for (let piggyModel of piggyModels){ %>
             <div class="accordion-item">
                 <h2 class="accordion-header" id="model<%= i %>>">
                     <button class="accordion-button collapsed boar" type="button"
                             data-bs-toggle="collapse"
                             data-bs-target="#flush-collapse<%= i %>" aria-expanded="false"
                             aria-controls="flush-collapse<%= i %>">
-                        <%= piggymodel.name %> - <%= piggymodel.points %><%= piggymodel.currency.slice(-2) %> -
-                        LV<%= piggymodel.level %>
+                        <%= piggyModel.name %> - <%= piggyModel.points %><%= piggyModel.currency.slice(-2) %> -
+                        LV<%= piggyModel.level %>
                     </button>
                 </h2>
                 <div id="flush-collapse<%= i %>" class="accordion-collapse collapse" aria-labelledby="model<%= i %>>"
                      data-bs-parent="#accordionFlushExample">
                     <div class="accordion-body">
                         <div class="card-body">
-                            <p>EXP <%= piggymodel.exp %></p>
+                            <p>EXP <%= piggyModel.exp %></p>
                         </div>
                         <div class="card-body">
-                            <p><%= piggymodel.description %></p>
+                            <p><%= piggyModel.description %></p>
                         </div>
                         <li class="list-group-item">
                             <a class="card-link btn boar"
-                               href="/piggy-bank/piggy-model/<%= piggymodel._id %>/edit">Edit</a>
+                               href="/piggy-bank/piggy-model/<%= piggyModel._id %>/edit">Edit</a>
                             <form class="d-inline right"
-                                  action="/piggy-bank/piggy-model/<%= piggymodel._id %>?_method=DELETE"
+                                  action="/piggy-bank/piggy-model/<%= piggyModel._id %>?_method=DELETE"
                                   method="POST">
                                 <button class="btn watermelon">Abandon</button>
                             </form>
