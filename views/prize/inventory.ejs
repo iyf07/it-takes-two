@@ -36,8 +36,8 @@
                         <div class="card-body">
                             <p>Received: <%= inventory.secondary %></p>
                         </div>
-                        <div class="card-body">
-                            <p>Received Date: <%= inventory.receivedate %></p>
+                        <div class="card-body" <%= inventory.secondary ? {} : "hidden"%>>
+                            <p>Received Date: <%= inventory.receivedate.toISOString().slice(0, 10)  %></p>
                         </div>
                         <li class="list-group-item">
                             <form class="d-inline" action="/prize/inventory/sent/<%= inventory._id %>?_method=PUT"

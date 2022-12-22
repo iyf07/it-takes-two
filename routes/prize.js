@@ -29,7 +29,7 @@ router.put('/inventory/received/:id', catchAsync(async (req, res) => {
     if (curinventory.secondary) {
         await Inventory.findByIdAndUpdate(id, {main: false, secondary: false, priority: 2});
     } else {
-        await Inventory.findByIdAndUpdate(id, {main: true, secondary: true, priority: 0});
+        await Inventory.findByIdAndUpdate(id, {main: true, secondary: true, priority: 0, receivedate: new Date()});
     }
     res.redirect(`/prize/inventory`);
 }))
