@@ -5,7 +5,7 @@
     </div>
 </div>
 
-<div class="container" <%= !user.type || user.type === "" ? "Hidden" : {} %>>
+<div class="container" <%= !user.type || user.type === "" ? "hidden" : {} %>>
     <% let i = 0; %>
     <div class="accordion">
         <% for (let inventory of inventories){ %>
@@ -36,16 +36,19 @@
                         <div class="card-body">
                             <p>Received: <%= inventory.secondary %></p>
                         </div>
+                        <div class="card-body">
+                            <p>Received Date: <%= inventory.receivedate %></p>
+                        </div>
                         <li class="list-group-item">
                             <form class="d-inline" action="/prize/inventory/sent/<%= inventory._id %>?_method=PUT"
                                   method="POST">
                                 <button class="btn <%= inventory.main === true ? "notreceived" : "inventory" %>" <%= user.type === "Main" ? {} : "disabled"%>>
-                                    &#128228;<%= inventory.main === true ? "Not Sent" : "Sent" %></button>
+                                    <%= inventory.main === true ? "Not Sent" : "Sent" %></button>
                             </form>
                             <form class="d-inline right"
                                   action="/prize/inventory/received/<%= inventory._id %>?_method=PUT" method="POST">
                                 <button class="btn <%= inventory.secondary === true ? "notreceived" : "inventory" %>" <%= user.type === "Secondary" ? {} : "disabled"%>>
-                                    &#128229;<%= inventory.secondary === true ? "Not Received" : "Received" %></button>
+                                    <%= inventory.secondary === true ? "Not Received" : "Received" %></button>
                             </form>
                         </li>
                     </div>

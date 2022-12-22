@@ -4,7 +4,7 @@
         <h1 class="text-center card-header notstarted">Edit Issue</h1>
         <div class="card-body">
             <div class="col-10 offset-1">
-                <form action="/issue" method="POST" novalidate class="validated-form">
+                <form action="/issue/<%= issue._id %>?_method=PUT" method="POST" novalidate class="validated-form">
                     <input type="hidden" name="issue[status]" value="notstarted">
                     <input type="hidden" name="issue[order]" value=2>
                     <div class="mb-3">
@@ -17,9 +17,9 @@
                         <div class="card mb-3">
                             <div class="card-body" id="piggymodel">
                                 <div class="form-check">
-                                    <input class="form-check-input" name="priority" type="radio"
+                                    <input class="form-check-input" name="issue[priority]" type="radio"
                                            id="priority1"
-                                           value="1" <%= issue.priority === 1 ? "checked" : null %>>
+                                           value="1" <%= issue.priority === 1 ? "checked" : {} %>>
                                     <label class="form-check-label" for="priority1">
                                         SEV 1: Server, application, modules down
                                     </label>
@@ -27,7 +27,7 @@
                                 <div class="form-check">
                                     <input class="form-check-input" name="issue[priority]" type="radio"
                                            id="priority2"
-                                           value="2" <%= issue.priority === 2 ? "checked" : null %>>
+                                           value="2" <%= issue.priority === 2 ? "checked" : {} %>>
                                     <label class="form-check-label" for="priority2">
                                         SEV 2: Module down
                                     </label>
@@ -35,7 +35,7 @@
                                 <div class="form-check">
                                     <input class="form-check-input" name="issue[priority]" type="radio"
                                            id="priority3"
-                                           value="3" <%= issue.priority === 3 ? "checked" : null %>>
+                                           value="3" <%= issue.priority === 3 ? "checked" : {} %>>
                                     <label class="form-check-label" for="priority3">
                                         SEV 3: Feature(s) down
                                     </label>
@@ -43,7 +43,7 @@
                                 <div class="form-check">
                                     <input class="form-check-input" name="issue[priority]" type="radio"
                                            id="priority4"
-                                           value="4" <%= issue.priority === 4 ? "checked" : null %>>
+                                           value="4" <%= issue.priority === 4 ? "checked" : {} %>>
                                     <label class="form-check-label" for="priority4">
                                         SEV 4: Operation(s) down
                                     </label>
@@ -51,7 +51,7 @@
                                 <div class="form-check">
                                     <input class="form-check-input" name="issue[priority]" type="radio"
                                            id="priority5"
-                                           value="5" <%= issue.priority === 5 ? "checked" : null %>>
+                                           value="5" <%= issue.priority === 5 ? "checked" : {} %>>
                                     <label class="form-check-label" for="priority5">
                                         SEV 5: Design, Syntax
                                     </label>

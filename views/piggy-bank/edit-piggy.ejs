@@ -14,7 +14,7 @@
                                 <div class="form-check">
                                     <input class="form-check-input" name="piggybankid" type="radio"
                                            id="piggymodel<%= i %>"
-                                           value="<%= piggymodel._id %>" <%= piggymodel.name === piggybank.name ? "checked" : null %>>
+                                           value="<%= piggymodel._id %>" <%= piggymodel.name === piggybank.name ? "checked" : {} %>>
                                     <label class="form-check-label" for="piggymodel<%= i %>">
                                         <%= piggymodel.points %><%= piggymodel.currency.slice(-2) %><%= piggymodel.name %>
                                     </label>

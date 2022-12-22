@@ -15,25 +15,22 @@ router.get('/inventory', catchAsync(async (req, res) => {
 router.put('/inventory/sent/:id', catchAsync(async (req, res) => {
     const id = req.params.id;
     const curinventory = await Inventory.findById(id);
-    const curpriority = curinventory.priority;
-    let newpriority = -1;
-    let newmain = true;
     if (curinventory.main) {
-        newmain = false;
-        newpriority = 1;
+        await Inventory.findByIdAndUpdate(id, {main: false, secondary: false, priority: 2});
+    } else {
+        await Inventory.findByIdAndUpdate(id, {main: true, secondary: false, priority: 1});
     }
-    await Inventory.findByIdAndUpdate(id, {main: newmain, priority: curpriority + newpriority});
     res.redirect(`/prize/inventory`);
 }))
 
 router.put('/inventory/received/:id', catchAsync(async (req, res) => {
     const id = req.params.id;
     const curinventory = await Inventory.findById(id);
-    let newsecondary = true;
     if (curinventory.secondary) {
-        newsecondary = false;
+        await Inventory.findByIdAndUpdate(id, {main: false, secondary: false, priority: 2});
+    } else {
+        await Inventory.findByIdAndUpdate(id, {main: true, secondary: true, priority: 0});
     }
-    await Inventory.findByIdAndUpdate(id, {secondary: newsecondary});
     res.redirect(`/prize/inventory`);
 }))
 
