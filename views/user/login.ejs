@@ -7,7 +7,7 @@
                 <form action="/user/login" method="POST" novalidate class="validated-form">
                     <div class="mb-3">
                         <label for="curuser" class="form-label">Current User</label>
-                        <input type="text" class="form-control" id="curuser" name="curuser" value="<%= user.name %>"
+                        <input type="text" class="form-control" id="curuser" name="curuser" value="<%= user.name ? user.name : "Visitor" %>"
                                disabled>
                         <div class="valid-feedback"></div>
                     </div>
@@ -17,7 +17,7 @@
                         <div class="valid-feedback"></div>
                     </div>
                     <div class="mb-3">
-                        <button class="btn login" id="login-submit" <%= user.type === '' ? {} : 'disabled' %>>Log In
+                        <button class="btn login" id="login-submit" <%= !user.type || user.type === "" ? {} : "Disabled" %>>Log In
                         </button>
                     </div>
                 </form>
@@ -26,7 +26,7 @@
     </div>
     <div class="col-8 offset-2 mb-3 outcenter">
         <form action="/user/logout" method="POST">
-            <button class="btn watermelon" <%= user.type === '' ? 'disabled' : {} %>>Log Out</button>
+            <button class="btn watermelon" <%= !user.type || user.type === "" ? "Disabled" : {} %>>Log Out</button>
         </form>
     </div>
 </div>

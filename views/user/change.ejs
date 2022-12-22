@@ -1,7 +1,7 @@
 <% layout('layouts/boilerplate') %>
 <div class="container">
     <div class="card mb-3">
-        <h1 class="card-header login textcenter">Change Info</h1>
+        <h1 class="card-header login textcenter">Update Info</h1>
         <div class="card-body">
             <div class="col-10 offset-1">
                 <form action="/user/change?_method=PUT" method="POST" novalidate class="validated-form">
@@ -22,16 +22,11 @@
                         <div class="valid-feedback"></div>
                     </div>
                     <div class="mb-3">
-                        <button class="btn login" id="change-submit" <%= user.type === '' ? 'disabled' : {}%>>Update Info
+                        <button class="btn login" id="change-submit" <%= !user.type || user.type === "" ? "Disabled" : {}%>>Update Info
                         </button>
                     </div>
                 </form>
             </div>
         </div>
-    </div>
-    <div class="col-8 offset-2 mb-3 outcenter">
-        <form action="/user/logout" method="POST">
-            <button class="btn watermelon" <%= user.type === '' ? 'disabled' : {} %>>Log Out</button>
-        </form>
     </div>
 </div>

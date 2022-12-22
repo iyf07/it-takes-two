@@ -56,7 +56,7 @@
         </div>
     </div>
 </div>
-<div class="container" <%= user.type === '' ? 'Hidden' : {} %>>
+<div class="container" <%= !user.type || user.type === "" ? "Hidden" : {} %>>
     <% for (let piggybank of piggybanks){
         var color;
         switch (piggybank.status.slice(0, -2).toLowerCase()) {

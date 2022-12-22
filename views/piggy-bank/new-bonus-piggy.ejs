@@ -29,7 +29,7 @@
                         <div class="valid-feedback"></div>
                     </div>
                     <div class="mb-3 d-grid gap-2">
-                        <button class="btn piglet" id="bonus-submit" <%= user.type === '' ? 'Disabled' : {} %>>Add Bonus
+                        <button class="btn piglet" id="bonus-submit" <%= !user.type || user.type ==="" ? "Disabled" : {} %>>Add Bonus
                             Piglet
                         </button>
                     </div>

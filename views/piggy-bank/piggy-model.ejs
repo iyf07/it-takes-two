@@ -57,7 +57,7 @@
         </div>
     </div>
 </div>
-<div class="container" <%= user.type === '' ? 'Hidden' : {} %>>
+<div class="container" <%= !user.type || user.type === "" ? "Hidden" : {} %>>
     <% let i = 0; %>
     <div class="accordion">
         <% for (let piggymodel of piggymodels){ %>
