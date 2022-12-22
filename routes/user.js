@@ -13,6 +13,12 @@ router.get('/login', catchAsync(async (req, res) => {
     res.render('user/login', {themecolor, currency, user});
 }))
 
+router.get('/change', catchAsync(async (req, res) => {
+    const currency = await Currency.find({});
+    const user = req.cookies;
+    res.render('user/change', {themecolor, currency, user});
+}))
+
 router.get('/admin', catchAsync(async (req, res) => {
     const currency = await Currency.find({});
     const user = req.cookies;
@@ -60,6 +66,37 @@ router.post('/admin/reset-piggy-bank', catchAsync(async (req, res) => {
 router.post('/admin/reset-piggy-model', catchAsync(async (req, res) => {
     await PiggyModel.deleteMany({});
     res.redirect(`/user/admin`);
+}))
+
+router.post('/admin/reset-main-secret-code', catchAsync(async (req, res) => {
+    const users = await User.find({});
+    for (let user of users) {
+        if (user.type === 'Main'){
+            await User.findByIdAndUpdate(user._id, {code: 'Main'});
+        }
+    }
+    res.redirect(`/user/admin`);
+}))
+
+router.post('/admin/reset-secondary-secret-code', catchAsync(async (req, res) => {
+    const users = await User.find({});
+    for (let user of users) {
+        if (user.type === 'Secondary'){
+            await User.findByIdAndUpdate(user._id, {code: 'Secondary'});
+        }
+    }
+    res.redirect(`/user/admin`);
+}))
+
+router.put('/change', catchAsync(async (req, res) => {
+    const users = await User.find({});
+    for (let user of users) {
+        if (req.body.newuser && user.type === req.cookies.type){
+            res.cookie('name', req.body.newuser);
+            await User.findByIdAndUpdate(user._id, {name: req.body.newuser, code: req.body.newcode});
+        }
+    }
+    res.redirect(`/user/change`);
 }))
 
 module.exports = router;
