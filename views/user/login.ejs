@@ -13,7 +13,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="secret-code" class="form-label">Secret Code</label>
-                        <input type="text" class="form-control" id="secret-code" name="code">
+                        <input type="text" class="form-control" id="secret-code" name="code" <%= user.type && user.type !== "" ? "disabled" : {}%>>
                         <div class="valid-feedback"></div>
                     </div>
                     <div class="mb-3">

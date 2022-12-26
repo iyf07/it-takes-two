@@ -17,12 +17,12 @@ for (let issue of issues) {
 }
 let total = notstarted + inprogress + completed;%>
 <div class="container">
-    <div class="card mb-4">
+    <div class="card mb-3">
         <h1 class="card-header textcenter completed">Issues</h1>
         <div class="card-body">
             <ul class="list-group list-group-flush row">
-                <li class="list-group-item">
-                    <a class="btn outcenter notstarted" href="/issue/new-issue">New Issue</a>
+                <li class="list-group-item mb-3">
+                    <a class="btn outcenter notstarted col-8 offset-2 mb-3" href="/issue/new-issue">New Issue</a>
                 </li>
                 <li class="list-group-item">
                     <div class="progress">

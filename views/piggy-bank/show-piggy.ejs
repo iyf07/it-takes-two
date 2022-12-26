@@ -15,44 +15,41 @@ switch (piggyBank.status.slice(0, -2).toLowerCase()) {
     <div class="card mb-3 col-10 offset-1">
         <h1 class="card-header piglet textcenter"
             style="color:<%= piggyBank.status.slice(0, -2).toLowerCase() === "bacon" ? "white" : {} %>;background-color: <%= color %>; "><%= piggyBank.name %></h1>
-        <div class="card-body">
-            <div class="mb-3">
-                <p class="list-group-item">
-                    Value: <%= piggyBank.points %><%= piggyBank.currency.slice(-2) %></p>
-                <p class="list-group-item">Birthday: <%= piggyBank.date.toISOString().slice(0, 10) %></p>
-                <p class="list-group-item">Age: <%= piggyBank.status %></p>
-                <p class="list-group-item">Type: <%= piggyBank.type %></p>
-                <p class="card-text">Introduction: <%= piggyBank.description %></p>
-            </div>
-            <div class="mb-3">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item"></li>
-                    <li class="list-group-item">
-                        <a class="card-link btn piglet" href="/piggy-bank/<%= piggyBank._id %>/edit">Edit</a>
-                        <form class="d-inline right" action="/piggy-bank/<%= piggyBank._id %>?_method=DELETE"
-                              method="POST">
-                            <button class="btn watermelon">Abandon</button>
-                        </form>
-                    </li>
-                    <li class="list-group-item">
-                        <form class="d-inline" action="/piggy-bank/<%= piggyBank._id %>/Piggy&#128022;?_method=PUT"
-                              method="POST">
-                            <button class="btn piggy" <%= piggyBank.status.slice(0, -2).toLowerCase() === "piggy" ? "disabled" : {} %>>
-                                Piggy
-                            </button>
-                        </form>
-                        <form class="d-inline right"
-                              action="/piggy-bank/<%= piggyBank._id %>/Bacon&#129363;?_method=PUT" method="POST">
-                            <button class="btn bacon" <%= piggyBank.status.slice(0, -2).toLowerCase() === "bacon" ? "disabled" : {} %> >
-                                Bacon
-                            </button>
-                        </form>
-                    </li>
-                </ul>
-            </div>
+        <div class="card-body mb-3">
+            <p class="list-group-item">
+                Value: <%= piggyBank.points %><%= piggyBank.currency.slice(-2) %></p>
+            <p class="list-group-item">Birthday: <%= piggyBank.date.toISOString().slice(0, 10) %></p>
+            <p class="list-group-item">Age: <%= piggyBank.status %></p>
+            <p class="list-group-item">Type: <%= piggyBank.type %></p>
+            <p class="card-text">Introduction: <%= piggyBank.description %></p>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"></li>
+                <li class="list-group-item">
+                    <a class="card-link btn piglet" href="/piggy-bank/<%= piggyBank._id %>/edit">Edit</a>
+                    <form class="d-inline right" action="/piggy-bank/<%= piggyBank._id %>?_method=DELETE"
+                          method="POST">
+                        <button class="btn watermelon">Abandon</button>
+                    </form>
+                </li>
+                <li class="list-group-item">
+                    <form class="d-inline" action="/piggy-bank/<%= piggyBank._id %>/Piggy&#128022;?_method=PUT"
+                          method="POST">
+                        <button class="btn piggy" <%= piggyBank.status.slice(0, -2).toLowerCase() === "piggy" ? "disabled" : {} %>>
+                            Piggy
+                        </button>
+                    </form>
+                    <form class="d-inline right"
+                          action="/piggy-bank/<%= piggyBank._id %>/Bacon&#129363;?_method=PUT" method="POST">
+                        <button class="btn bacon" <%= piggyBank.status.slice(0, -2).toLowerCase() === "bacon" ? "disabled" : {} %> >
+                            Bacon
+                        </button>
+                    </form>
+                </li>
+            </ul>
         </div>
     </div>
-    <div class="mb-3 col-8 offset-2 mb-3 outcenter">
-        <a class="btn piggy" href="/piggy-bank">Back to Piggy Bank</a>
-    </div>
+</div>
+<div class="mb-3 col-8 offset-2 mb-3 outcenter">
+    <a class="btn piggy" href="/piggy-bank">Back to Piggy Bank</a>
+</div>
 </div>

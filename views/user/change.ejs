@@ -13,12 +13,12 @@
                     </div>
                     <div class="mb-3">
                         <label for="new-user" class="form-label">New Username</label>
-                        <input type="text" class="form-control" id="new-user" name="newUser" value="<%= user.name %>">
+                        <input type="text" class="form-control" id="new-user" name="newUser" value="<%= user.name %>" <%= !user.type || user.type === "" ? "disabled" : {}%>>
                         <div class="valid-feedback"></div>
                     </div>
                     <div class="mb-3">
                         <label for="new-secret-code" class="form-label">New Secret Code</label>
-                        <input type="text" class="form-control" id="new-secret-code" name="newCode">
+                        <input type="text" class="form-control" id="new-secret-code" name="newCode" <%= !user.type || user.type === "" ? "disabled" : {}%>>
                         <div class="valid-feedback"></div>
                     </div>
                     <div class="mb-3">

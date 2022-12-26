@@ -4,51 +4,50 @@
         <h1 class="card-header textcenter inventory"> &#128230;Inventory</h1>
     </div>
 </div>
-
 <div class="container" <%= !user.type || user.type === "" ? "hidden" : {} %>>
     <% let i = 0; %>
     <div class="accordion">
-        <% for (let inventory of inventories){ %>
+        <% for (let prize of prizes){ %>
             <div class="accordion-item">
-                <h2 class="accordion-header" id="model<%= i %>>">
-                    <button class="accordion-button collapsed <%= inventory.main === true && inventory.secondary === true ? "inventory" : "notreceived" %>"
+                <h2 class="accordion-header" id="inventory<%= i %>>">
+                    <button class="accordion-button collapsed <%= prize.main === true && prize.secondary === true ? "inventory" : "notreceived" %>"
                             type="button"
                             data-bs-toggle="collapse"
                             data-bs-target="#flush-collapse<%= i %>" aria-expanded="false"
                             aria-controls="flush-collapse<%= i %>">
-                        <%= inventory.name %>
+                        <%= prize.name %>
                     </button>
                 </h2>
                 <div id="flush-collapse<%= i %>"
-                     class="accordion-collapse collapse <%= inventory.main === true && inventory.secondary === true ? {} : "show" %>"
-                     aria-labelledby="model<%= i %>>"
+                     class="accordion-collapse collapse <%= prize.main === true && prize.secondary === true ? {} : "show" %>"
+                     aria-labelledby="inventory<%= i %>>"
                      data-bs-parent="#accordionFlushExample">
                     <div class="accordion-body">
                         <div class="card-body">
-                            <p>Date: <%= inventory.date.toISOString().slice(0, 10) %></p>
+                            <p>Date: <%= prize.date.toISOString().slice(0, 10) %></p>
                         </div>
                         <div class="card-body">
-                            <p>Game: <%= inventory.game %></p>
+                            <p>Game: <%= prize.game %></p>
                         </div>
                         <div class="card-body">
-                            <p>Sent: <%= inventory.main %></p>
+                            <p>Sent: <%= prize.main %></p>
                         </div>
                         <div class="card-body">
-                            <p>Received: <%= inventory.secondary %></p>
+                            <p>Received: <%= prize.secondary %></p>
                         </div>
-                        <div class="card-body" <%= inventory.secondary ? {} : "hidden"%>>
-                            <p>Received Date: <%= inventory.receivedate.toISOString().slice(0, 10)  %></p>
+                        <div class="card-body" <%= prize.secondary ? {} : "hidden"%>>
+                            <p>Received Date: <%= prize.receivedDate.toISOString().slice(0, 10)  %></p>
                         </div>
                         <li class="list-group-item">
-                            <form class="d-inline" action="/prize/inventory/sent/<%= inventory._id %>?_method=PUT"
+                            <form class="d-inline" action="/prize/inventory/sent/<%= prize._id %>?_method=PUT"
                                   method="POST">
-                                <button class="btn <%= inventory.main === true ? "notreceived" : "inventory" %>" <%= user.type === "Main" ? {} : "disabled"%>>
-                                    <%= inventory.main === true ? "Not Sent" : "Sent" %></button>
+                                <button class="btn <%= prize.main === true ? "notreceived" : "inventory" %>" <%= user.type === "Main" ? {} : "disabled"%>>
+                                    <%= prize.main === true ? "Not Sent" : "Sent" %></button>
                             </form>
                             <form class="d-inline right"
-                                  action="/prize/inventory/received/<%= inventory._id %>?_method=PUT" method="POST">
-                                <button class="btn <%= inventory.secondary === true ? "notreceived" : "inventory" %>" <%= user.type === "Secondary" ? {} : "disabled"%>>
-                                    <%= inventory.secondary === true ? "Not Received" : "Received" %></button>
+                                  action="/prize/inventory/received/<%= prize._id %>?_method=PUT" method="POST">
+                                <button class="btn <%= prize.secondary === true ? "notreceived" : "inventory" %>" <%= user.type === "Secondary" ? {} : "disabled"%>>
+                                    <%= prize.secondary === true ? "Not Received" : "Received" %></button>
                             </form>
                         </li>
                     </div>

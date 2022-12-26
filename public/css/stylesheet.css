@@ -130,6 +130,11 @@ nav, footer, .navbar {
     color: white;
 }
 
+.store {
+    background-color: #fa554f;
+    color: white;
+}
+
 .notreceived {
     background-color: #e1e1e1;
 }
