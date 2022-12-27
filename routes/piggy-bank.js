@@ -206,6 +206,28 @@ router.put('/:id/:status', catchAsync(async (req, res) => {
 
 router.put('/:id', catchAsync(async (req, res) => {
     const {id} = req.params;
+    const allCurrencyData = await Currency.find({});
+    const currencyDataId = allCurrencyData[0]._id;
+    const currentPiggy = await PiggyBank.findById(id);
+    const piggyCurrency = currentPiggy.currency.slice(0,-2).toLowerCase();
+    const piggyPoints = currentPiggy.points;
+    const currentStatus = currentPiggy.status.slice(0, -2).toLowerCase();
+    let obj = {};
+    switch (currentStatus) {
+        case 'piggy':
+            switch (piggyCurrency) {
+                case 'potatoes':
+                    obj[piggyCurrency] = allCurrencyData[0].potatoes - piggyPoints;
+                    break;
+                case 'watermelons':
+                    obj[piggyCurrency] = allCurrencyData[0].watermelons - piggyPoints;
+                    break;
+                case 'eggs':
+                    obj[piggyCurrency] = allCurrencyData[0].eggs - piggyPoints;
+                    break;
+            }
+            await Currency.findByIdAndUpdate(currencyDataId, obj);
+    }
     await PiggyBank.findByIdAndUpdate(id, {...req.body.piggyBank});
     res.redirect(`/piggy-bank/${id}`);
 }));
