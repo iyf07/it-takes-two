@@ -7,7 +7,7 @@ const catchAsync = require('../utils/catchAsync');
 const themeColor = '#fce7d8';
 
 router.get('/', async (req, res) => {
-    const piggyBanks = await PiggyBank.find({}).sort({date: -1});
+    const piggyBanks = await PiggyBank.find({}).sort({priority: -1, date: -1});
     const currency = await Currency.find({});
     const user = req.cookies;
     res.render('piggy-bank/piggy-bank', {piggyBanks, currency, themeColor, user});
@@ -184,8 +184,8 @@ router.put('/:id/:status', catchAsync(async (req, res) => {
             for (let piggyModel of piggyModels) {
                 if (piggyModel.name.toLowerCase() === piggyData.name.toLowerCase() && currentStatus === 'piggy') {
                     newExp = piggyModel.exp - 1;
-                    let neeLev = Math.floor(newExp / 10);
-                    await PiggyModel.findByIdAndUpdate(piggyModel._id, {exp: newExp, level: neeLev});
+                    let newLev = Math.floor(newExp / 10);
+                    await PiggyModel.findByIdAndUpdate(piggyModel._id, {exp: newExp, level: newLev, priority: 2});
                 }
             }
             break;
@@ -194,7 +194,7 @@ router.put('/:id/:status', catchAsync(async (req, res) => {
                 if (piggyModel.name.toLowerCase() === piggyData.name.toLowerCase()) {
                     newExp = piggyModel.exp + 1;
                     let newLev = Math.floor(newExp / 10);
-                    await PiggyModel.findByIdAndUpdate(piggyModel._id, {exp: newExp, level: newLev});
+                    await PiggyModel.findByIdAndUpdate(piggyModel._id, {exp: newExp, level: newLev, priority: 0});
                 }
             }
             break;

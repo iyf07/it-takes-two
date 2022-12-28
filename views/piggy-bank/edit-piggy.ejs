@@ -6,6 +6,7 @@
             <div class="col-8 offset-2">
                 <form action="/piggy-bank/<%= piggyBank._id %>?_method=PUT" method="POST">
                     <input type="hidden" name="piggyBank[status]" value="piglet&#128061;">
+                    <input type="hidden" name="piggyBank[priority]" value=1>
                     <div class="mb-3">
                         <label for="piggyModel" class="form-label">Piglet Name</label>
                         <div id="piggyModel">
