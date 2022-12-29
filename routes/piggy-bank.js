@@ -50,7 +50,7 @@ router.get('/:id', catchAsync(async (req, res) => {
     const piggyBank = await PiggyBank.findById(req.params.id);
     const currency = await Currency.find({});
     const user = req.cookies;
-    res.render('piggy-bank/show-piggy', {piggyBank, currency, themeColor, user})
+    res.render('piggy-bank/show-piggy', {piggyBank, currency, themeColor, user});
 }));
 
 router.get('/:id/edit', catchAsync(async (req, res) => {
@@ -181,20 +181,22 @@ router.put('/:id/:status', catchAsync(async (req, res) => {
     }
     switch (req.params.status.slice(0, -2).toLowerCase()) {
         case 'bacon':
+            await PiggyBank.findByIdAndUpdate(id, {priority: 2});
             for (let piggyModel of piggyModels) {
                 if (piggyModel.name.toLowerCase() === piggyData.name.toLowerCase() && currentStatus === 'piggy') {
                     newExp = piggyModel.exp - 1;
                     let newLev = Math.floor(newExp / 10);
-                    await PiggyModel.findByIdAndUpdate(piggyModel._id, {exp: newExp, level: newLev, priority: 2});
+                    await PiggyModel.findByIdAndUpdate(piggyModel._id, {exp: newExp, level: newLev});
                 }
             }
             break;
         case 'piggy':
+            await PiggyBank.findByIdAndUpdate(id, {priority: 0});
             for (let piggyModel of piggyModels) {
                 if (piggyModel.name.toLowerCase() === piggyData.name.toLowerCase()) {
                     newExp = piggyModel.exp + 1;
                     let newLev = Math.floor(newExp / 10);
-                    await PiggyModel.findByIdAndUpdate(piggyModel._id, {exp: newExp, level: newLev, priority: 0});
+                    await PiggyModel.findByIdAndUpdate(piggyModel._id, {exp: newExp, level: newLev});
                 }
             }
             break;
@@ -209,7 +211,7 @@ router.put('/:id', catchAsync(async (req, res) => {
     const allCurrencyData = await Currency.find({});
     const currencyDataId = allCurrencyData[0]._id;
     const currentPiggy = await PiggyBank.findById(id);
-    const piggyCurrency = currentPiggy.currency.slice(0,-2).toLowerCase();
+    const piggyCurrency = currentPiggy.currency.slice(0, -2).toLowerCase();
     const piggyPoints = currentPiggy.points;
     const currentStatus = currentPiggy.status.slice(0, -2).toLowerCase();
     let obj = {};

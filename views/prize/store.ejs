@@ -1,0 +1,77 @@
+<% layout('layouts/boilerplate') %>
+<div class="container">
+    <div class="card mb-3">
+        <h1 class="card-header textcenter store"> &#127873;Store</h1>
+        <div class="card-body">
+            <ul class="list-group list-group-flush row">
+                <li class="list-group-item">
+                    <a class="btn outcenter store col-8 offset-2 mb-3" href="/prize/store/new-prize">New Prize</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container" <%= !user.type || user.type === "" ? "hidden" : {} %>>
+    <% let i = 0; %>
+    <div class="accordion">
+        <% for (let prize of prizes){
+            let redeem = true;
+            switch (prize.currency.slice(0, -2)) {
+                case 'potatoes':
+                    if (prize.points >= currency[0].potatoes) {
+                        redeem = false;
+                    }
+                    break;
+                case 'watermelons':
+                    if (prize.points >= currency[0].watermelons) {
+                        redeem = false;
+                    }
+                    break;
+                case 'eggs':
+                    if (prize.points >= currency[0].eggs) {
+                        redeem = false;
+                    }
+                    break;
+            } %>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="prize<%= i %>>">
+                <button class="accordion-button collapsed store"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapse<%= i %>" aria-expanded="false"
+                        aria-controls="flush-collapse<%= i %>">
+                    <%= prize.currency.slice(-2) %><%= prize.points %> - <%= prize.name %>
+                </button>
+            </h2>
+            <div id="flush-collapse<%= i %>"
+                 class="accordion-collapse collapse"
+                 aria-labelledby="prize<%= i %>>"
+                 data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                    <div class="card-body">
+                        <p><%= prize.description %></p>
+                    </div>
+                    <div class="list-group-item mb-3">
+                        <form class="d-inline"
+                              action="/prize/store/<%= prize._id %>/redeem"
+                              method="POST">
+                            <button class="btn store" <%= redeem ? {} : 'disabled'%>>Redeem</button>
+                        </form>
+                    </div>
+                    <div class="list-group-item">
+                        <a class="card-link btn store"
+                           href="/prize/store/<%= prize._id %>/edit">Edit</a>
+                        <form class="d-inline right"
+                              action="/prize/store/<%= prize._id %>?_method=DELETE"
+                              method="POST">
+                            <button class="btn watermelon">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% i++; %>
+        <% } %>
+        <p></p>
+    </div>
+</div>

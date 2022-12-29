@@ -1,0 +1,55 @@
+<% layout('layouts/boilerplate') %>
+<div class="container">
+    <div class="card mb-3">
+        <h1 class="text-center card-header store">Edit&#127873;Prize</h1>
+        <div class="card-body">
+            <div class="col-8 offset-2">
+                <form action="/prize/store/<%= prize._id %>?_method=PUT" method="POST">
+                    <div class="mb-3">
+                        <label for="prize-edit-name" class="form-label">Prize Name</label>
+                        <input type="text" class="form-control" id="prize-edit-name" name="prize[name]"
+                               value="<%= prize.name %>">
+                    </div>
+                    <div class="mb-3">
+                        <label for="prize-edit-points" class="form-label">Value</label>
+                        <input type="number" class="form-control" id="prize-edit-points" name="prize[points]"
+                               value="<%= prize.points %>">
+                    </div>
+                    <div class="mb-3">
+                        <label for="currency" class="form-label">Currency</label>
+                        <div id="prize">
+                            <div class="form-check">
+                                <input class="form-check-input" name="prize[currency]" type="radio" id="potatoes"
+                                       value="potatoes&#129364;" <%= prize.currency.slice(0, -2) === "potatoes" ? "checked" : {} %>>
+                                <label class="form-check-label" for="potatoes">Potato&#129364;</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" name="prize[currency]" type="radio"
+                                       id="watermelons"
+                                       value="watermelons&#127817;" <%= prize.currency.slice(0, -2) === "watermelons" ? "checked" : {} %>>
+                                <label class="form-check-label" for="watermelons">Watermelon&#127817;</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" name="prize[currency]" type="radio" id="eggs"
+                                       value="eggs&#129370;" <%= prize.currency.slice(0, -2) === "eggs" ? "checked" : {} %>>
+                                <label class="form-check-label" for="eggs">Egg&#129370;</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="prize-edit-description" class="form-label">Description</label>
+                        <input type="text" class="form-control" id="prize-edit-description"
+                               name="prize[description]"
+                               value="<%= prize.description %>">
+                    </div>
+                    <div class="mb-3 d-grid gap-2">
+                        <button class="btn store" id="prize-edit-submit">Update Prize</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-8 offset-2 mb-3 outcenter">
+        <a class="btn store" href="/prize/store">Back to Store</a>
+    </div>
+</div>

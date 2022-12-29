@@ -1,0 +1,21 @@
+<% layout('layouts/boilerplate') %>
+<h1 class="pl">1</h1>
+<h1 class="pl">2</h1>
+<h1 class="pl">3</h1>
+<h1 class="pl">4</h1>
+<button class="sa" onclick="design()">submit</button>
+
+<script>
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async function design() {
+        var objects = document.getElementsByClassName('pl');
+        for (let object of objects) {
+            object.style.color = "red"
+            await sleep(200)
+            object.style.color = "black"
+        }
+    }
+</script>

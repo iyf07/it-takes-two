@@ -1,52 +1,51 @@
 <% layout('layouts/boilerplate') %>
 <div class="container">
     <div class="card mb-3">
-        <h1 class="card-header text-center boar">New&#128023;Model</h1>
+        <h1 class="store text-center card-header">New&#127873;Prize</h1>
         <div class="card-body">
             <div class="col-10 offset-1">
-                <form action="/piggy-bank/piggy-model" method="POST" novalidate class="validated-form">
-                    <input type="hidden" name="piggyModel[level]" value=0>
-                    <input type="hidden" name="piggyModel[exp]" value=0>
+                <form action="/prize/store" method="POST" novalidate class="validated-form">
                     <div class="mb-3">
-                        <label for="model-name" class="form-label">Model Name</label>
-                        <input type="text" class="form-control" id="model-name" name="piggyModel[name]" required>
+                        <label for="prize-name" class="form-label">Prize Name</label>
+                        <input type="text" class="form-control" id="prize-name" name="prize[name]" required>
                         <div class="valid-feedback"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="model-points" class="form-label">Value</label>
-                        <input type="number" class="form-control" id="model-points" name="piggyModel[points]" required>
+                        <label for="prize-points" class="form-label">Value</label>
+                        <input type="number" class="form-control" id="prize-points" name="prize[points]" required>
                         <div class="valid-feedback"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="model-currency" class="form-label">Currency</label>
-                        <div id="model-currency">
+                        <label for="prize-currency" class="form-label">Currency</label>
+                        <div id="prize-currency">
                             <div class="form-check">
-                                <input class="form-check-input" name="piggyModel[currency]" type="radio" id="potatoes"
+                                <input class="form-check-input" name="prize[currency]" type="radio" id="potatoes"
                                        value="potatoes&#129364;" checked>
                                 <label class="form-check-label" for="potatoes">Potato&#129364;</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" name="piggyModel[currency]" type="radio"
+                                <input class="form-check-input" name="prize[currency]" type="radio"
                                        id="watermelons"
                                        value="watermelons&#127817;">
                                 <label class="form-check-label" for="watermelons">Watermelon&#127817;</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" name="piggyModel[currency]" type="radio" id="eggs"
+                                <input class="form-check-input" name="prize[currency]" type="radio" id="eggs"
                                        value="eggs&#129370;">
                                 <label class="form-check-label" for="eggs">Egg&#129370;</label>
                             </div>
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="model-description" class="form-label">Introduction</label>
-                        <input type="text" class="form-control" id="model-description" name="piggyModel[description]"
+                        <label for="prize-description" class="form-label">Description</label>
+                        <input type="text" class="form-control" id="prize-description" name="prize[description]"
                                required>
                         <div class="valid-feedback"></div>
                     </div>
                     <div class="mb-3 d-grid gap-2">
-                        <button class="btn boar" id="model-submit" <%= user.type === "Main" ? {} : "disabled" %>>Add
-                            Model
+                        <button class="btn store"
+                                id="prize-submit" <%= !user.type || user.type === "" ? "disabled" : {} %>>Add
+                            Prize
                         </button>
                     </div>
                 </form>
@@ -54,6 +53,6 @@
         </div>
     </div>
     <div class="col-8 offset-2 mb-3 outcenter">
-        <a class="btn boar" href="/piggy-bank/piggy-model">Back to Piggy Model</a>
+        <a class="btn store" href="/prize/store">Back to Store</a>
     </div>
 </div>

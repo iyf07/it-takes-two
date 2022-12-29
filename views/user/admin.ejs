@@ -59,6 +59,37 @@
                                 </button>
                             </div>
                         </form>
+                        <form action="/user/admin/reset-secondary-secret-code" method="POST" novalidate
+                              class="validated-form">
+                            <div class="mb-3 d-grid gap-2">
+                                <button class="btn btn-outline-dark"
+                                        id="reset-piggy-model" <%= user.type === "Main" ? {} : "disabled" %>>Reset
+                                    Secondary Code
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </li>
+                <li class="list-group-item mb-3">
+                    <div class="col-10 offset-1 textcenter">
+                        <p class="card-title">Prizes</p>
+                        <form action="/user/admin/reset-store" method="POST" novalidate
+                              class="validated-form">
+                            <div class="mb-3 d-grid gap-2">
+                                <button class="btn btn-outline-dark"
+                                        id="reset-piggy-model" <%= user.type === "Main" ? {} : "disabled" %>>Reset Store
+                                </button>
+                            </div>
+                        </form>
+                        <form action="/user/admin/reset-inventory" method="POST" novalidate
+                              class="validated-form">
+                            <div class="mb-3 d-grid gap-2">
+                                <button class="btn btn-outline-dark"
+                                        id="reset-piggy-model" <%= user.type === "Main" ? {} : "disabled" %>>Reset
+                                    Inventory
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </li>
             </ul>

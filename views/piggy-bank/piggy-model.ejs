@@ -67,7 +67,7 @@
                             data-bs-toggle="collapse"
                             data-bs-target="#flush-collapse<%= i %>" aria-expanded="false"
                             aria-controls="flush-collapse<%= i %>">
-                        <%= piggyModel.name %> - <%= piggyModel.points %><%= piggyModel.currency.slice(-2) %> -
+                        <%= piggyModel.name %> - <%= piggyModel.currency.slice(-2) %><%= piggyModel.points %> -
                         LV<%= piggyModel.level %>
                     </button>
                 </h2>
@@ -80,7 +80,7 @@
                         <div class="card-body">
                             <p><%= piggyModel.description %></p>
                         </div>
-                        <li class="list-group-item">
+                        <div class="list-group-item">
                             <a class="card-link btn boar"
                                href="/piggy-bank/piggy-model/<%= piggyModel._id %>/edit">Edit</a>
                             <form class="d-inline right"
@@ -88,7 +88,7 @@
                                   method="POST">
                                 <button class="btn watermelon">Abandon</button>
                             </form>
-                        </li>
+                        </div>
                     </div>
                 </div>
             </div>

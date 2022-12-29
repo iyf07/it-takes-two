@@ -1,5 +1,7 @@
 const PiggyBank = require('../models/piggy-bank');
 const PiggyModel = require('../models/piggy-model');
+const Store = require('../models/store');
+const Inventory = require('../models/inventory');
 const Currency = require('../models/currency');
 const User = require('../models/user');
 const express = require('express');
@@ -85,6 +87,16 @@ router.post('/admin/reset-secondary-secret-code', catchAsync(async (req, res) =>
             await User.findByIdAndUpdate(user._id, {code: 'Secondary'});
         }
     }
+    res.redirect(`/user/admin`);
+}))
+
+router.post('/admin/reset-store', catchAsync(async (req, res) => {
+    await Store.deleteMany({});
+    res.redirect(`/user/admin`);
+}))
+
+router.post('/admin/reset-inventory', catchAsync(async (req, res) => {
+    await Inventory.deleteMany({});
     res.redirect(`/user/admin`);
 }))
 
