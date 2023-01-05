@@ -1,7 +1,16 @@
 <% layout('layouts/boilerplate') %>
 <div class="container">
-    <div class="card mb-4">
+    <div class="card mb-3">
         <h1 class="card-header textcenter inventory"> &#128230;Inventory</h1>
+        <div class="card-body col-6 offset-3">
+            <ul class="list-group">
+                <li class="list-group-item">&#128169; : <%= currency[0].poops%>/100</li>
+                <li class="list-group-item">&#129364; : <%= currency[0].potatoes%>/100</li>
+                <li class="list-group-item">&#127817; : <%= currency[0].watermelons%>/50</li>
+                <li class="list-group-item">&#129370; : <%= currency[0].eggs%>/10</li>
+                <li class="list-group-item">&#129531; : <%= currency[0].toilet_papers%>/10</li>
+            </ul>
+        </div>
     </div>
 </div>
 <div class="container" <%= !user.type || user.type === "" ? "hidden" : {} %>>
@@ -35,18 +44,18 @@
                         <div class="card-body">
                             <p>Received: <%= prize.secondary %></p>
                         </div>
-                        <div class="card-body" <%= prize.secondary ? {} : "hidden"%>>
-                            <p>Received Date: <%= prize.receivedDate.toISOString().slice(0, 10)  %></p>
+                        <div class="card-body" <%= prize.secondary ? {} : "hidden" %>>
+                            <p>Received Date: <%= prize.receivedDate.toISOString().slice(0, 10) %></p>
                         </div>
                         <li class="list-group-item">
                             <form class="d-inline" action="/prize/inventory/sent/<%= prize._id %>?_method=PUT"
                                   method="POST">
-                                <button class="btn <%= prize.main === true ? "notreceived" : "inventory" %>" <%= user.type === "Main" ? {} : "disabled"%>>
+                                <button class="btn <%= prize.main === true ? "notreceived" : "inventory" %>" <%= user.type === "Main" ? {} : "disabled" %>>
                                     <%= prize.main === true ? "Not Sent" : "Sent" %></button>
                             </form>
                             <form class="d-inline right"
                                   action="/prize/inventory/received/<%= prize._id %>?_method=PUT" method="POST">
-                                <button class="btn <%= prize.secondary === true ? "notreceived" : "inventory" %>" <%= user.type === "Secondary" ? {} : "disabled"%>>
+                                <button class="btn <%= prize.secondary === true ? "notreceived" : "inventory" %>" <%= user.type === "Secondary" ? {} : "disabled" %>>
                                     <%= prize.secondary === true ? "Not Received" : "Received" %></button>
                             </form>
                         </li>

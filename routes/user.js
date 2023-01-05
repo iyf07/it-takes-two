@@ -55,7 +55,7 @@ router.post('/logout', catchAsync(async (req, res) => {
 
 router.post('/admin/reset-points', catchAsync(async (req, res) => {
     await Currency.deleteMany({});
-    const currency = new Currency({potatoes: 0, watermelons: 0, eggs: 0});
+    const currency = new Currency({potatoes: 0, watermelons: 0, eggs: 0, poops: 0});
     await currency.save();
     res.redirect(`/user/admin`);
 }))

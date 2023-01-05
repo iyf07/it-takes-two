@@ -4,7 +4,6 @@ const Store = require('../models/store');
 const express = require('express');
 const router = express.Router();
 const catchAsync = require('../utils/catchAsync');
-const PiggyBank = require("../models/piggy-bank");
 
 router.get('/store', catchAsync(async (req, res) => {
     const prizes = await Store.find({}).sort({priority: 1});
@@ -37,6 +36,36 @@ router.get('/inventory', catchAsync(async (req, res) => {
     res.render('prize/inventory', {prizes, currency, themeColor, user});
 }))
 
+router.post('/store/redeem/dollar', catchAsync(async (req, res) => {
+    const allCurrencyData = await Currency.find({});
+    const dollars = req.body.dollarAmount;
+    if (dollars > 0) {
+        const inventory = new Inventory({
+            name: dollars + ' Dollar(s)',
+            game: 'Store',
+            date: new Date(),
+            receivedDate: new Date(),
+            main: false,
+            secondary: false,
+            priority: 2
+        });
+        let obj = {};
+        obj['potatoes'] = allCurrencyData[0].potatoes - dollars;
+        await inventory.save();
+        await Currency.findByIdAndUpdate(allCurrencyData[0]._id, obj);
+    }
+    res.redirect(`/prize/store`);
+}));
+
+router.post('/store/redeem/toilet-paper', catchAsync(async (req, res) => {
+    const allCurrencyData = await Currency.find({});
+    let obj = {};
+    obj['watermelons'] = allCurrencyData[0].watermelons - 1;
+    obj['toilet_papers'] = allCurrencyData[0].toilet_papers + 1;
+    await Currency.findByIdAndUpdate(allCurrencyData[0]._id, obj);
+    res.redirect(`/prize/store`);
+}));
+
 router.post('/store/:id/redeem', catchAsync(async (req, res) => {
     const prize = await Store.findById(req.params.id);
     const allCurrencyData = await Currency.find({});
@@ -65,7 +94,7 @@ router.post('/store/:id/redeem', catchAsync(async (req, res) => {
             break;
     }
     await Currency.findByIdAndUpdate(allCurrencyData[0]._id, obj);
-    res.redirect(`/prize/store`)
+    res.redirect(`/prize/store`);
 }));
 
 router.post('/store', catchAsync(async (req, res) => {

@@ -156,29 +156,17 @@ router.put('/:id/:status', catchAsync(async (req, res) => {
         operation = 0;
     }
     obj[updateCurrency] = currentPoints + operation * updatePoints;
-    switch (updateCurrency) {
-        case 'potatoes':
-            if (obj[updateCurrency] > 100) {
-                obj[updateCurrency] = 100;
-            } else if (obj[updateCurrency] < 0) {
-                obj[updateCurrency] = 0;
-            }
-            break;
-        case 'watermelons':
-            if (obj[updateCurrency] > 50) {
-                obj[updateCurrency] = 50;
-            } else if (obj[updateCurrency] < 0) {
-                obj[updateCurrency] = 0;
-            }
-            break;
-        case 'eggs':
-            if (obj[updateCurrency] > 10) {
-                obj[updateCurrency] = 10;
-            } else if (obj[updateCurrency] < 0) {
-                obj[updateCurrency] = 0;
-            }
-            break;
-    }
+    // switch (updateCurrency) {
+    //     case 'potatoes':
+    //         obj[updateCurrency] = Math.min(obj[updateCurrency], 100);
+    //         break;
+    //     case 'watermelons':
+    //         obj[updateCurrency] = Math.min(obj[updateCurrency], 50);
+    //         break;
+    //     case 'eggs':
+    //         obj[updateCurrency] = Math.min(obj[updateCurrency], 10);
+    //         break;
+    // }
     switch (req.params.status.slice(0, -2).toLowerCase()) {
         case 'bacon':
             await PiggyBank.findByIdAndUpdate(id, {priority: 2});

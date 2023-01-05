@@ -12,6 +12,73 @@
     </div>
 </div>
 <div class="container" <%= !user.type || user.type === "" ? "hidden" : {} %>>
+    <div class="accordion mb-3">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="prize-dollar">
+                <button class="accordion-button collapsed store"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapse-dollar" aria-expanded="false"
+                        aria-controls="flush-collapse-dollar">
+                    &#129364;1 - &#128181;1
+                </button>
+            </h2>
+            <div id="flush-collapse-dollar"
+                 class="accordion-collapse collapse"
+                 aria-labelledby="prize-dollar>"
+                 data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                    <div class="card-body">
+                        <p>Sell potatoes</p>
+                    </div>
+                    <div class="list-group-item mb-3">
+                        <form class="d-inline"
+                              action="/prize/store/redeem/dollar"
+                              method="POST">
+                            <div class="mb-3">
+                                <label for="dollar-range" class="form-label">&#129364;</label>
+                                <input type="range" id="dollar-range" name="dollarAmount" min=0
+                                       max=<%= currency[0].potatoes %> value=0
+                                       oninput="amount.value=dollarAmount.value + '&#128181;'">
+                                <output id="dollar-amount" name="amount" for="dollarAmount">0&#128181;</output>
+                            </div>
+                            <div class="mb-3">
+                                <button class="btn store" <%= currency[0].potatoes === 0 ? "disabled" : {}%>>Redeem</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="toilet-paper-prize">
+                <button class="accordion-button collapsed store"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapse-paper" aria-expanded="false"
+                        aria-controls="flush-collapse-paper">
+                    &#127817;1 - &#129531;1
+                </button>
+            </h2>
+            <div id="flush-collapse-paper"
+                 class="accordion-collapse collapse"
+                 aria-labelledby="prize-paper>"
+                 data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                    <div class="card-body">
+                        <p>Get a roll of toilet paper</p>
+                    </div>
+                    <div class="list-group-item mb-3">
+                        <form class="d-inline"
+                              action="/prize/store/redeem/toilet-paper"
+                              method="POST">
+                            <button class="btn store <%= currency[0].watermelons === 0 ? "disabled" : {}%>">Redeem</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <% let i = 0; %>
     <div class="accordion">
         <% for (let prize of prizes){
@@ -55,7 +122,7 @@
                         <form class="d-inline"
                               action="/prize/store/<%= prize._id %>/redeem"
                               method="POST">
-                            <button class="btn store" <%= redeem ? {} : 'disabled'%>>Redeem</button>
+                            <button class="btn store" <%= redeem ? {} : 'disabled' %>>Redeem</button>
                         </form>
                     </div>
                     <div class="list-group-item">
@@ -70,8 +137,6 @@
                 </div>
             </div>
         </div>
-        <% i++; %>
-        <% } %>
-        <p></p>
+        <% i++;} %>
     </div>
 </div>

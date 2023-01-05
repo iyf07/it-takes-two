@@ -1,0 +1,59 @@
+<% layout('layouts/boilerplate') %>
+<div class="container">
+    <div class="card mb-3">
+        <h1 class="card-header textcenter poop">&#128701;Toilet</h1>
+        <div class="card-body">
+            <ul class="list-group list-group-flush row">
+                <li class="list-group-item">
+                    <a class="btn outcenter poop col-8 offset-2 mb-3" href="/toilet/new-poop">New Poop</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container" <%= !user.type || user.type === '' ? 'hidden' : {} %>>
+    <% let i = 0; %>
+    <div class="accordion">
+        <% for (let poop of poops){ %>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="poop<%= i %>>">
+                    <button class="accordion-button collapsed <%= poop.status === 'Active' ? 'poop' : {} %>"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapse<%= i %>" aria-expanded="false"
+                            aria-controls="flush-collapse<%= i %>">
+                        <%= poop.name %> - <%= poop.date.toISOString().slice(0, 10) %>
+                    </button>
+                </h2>
+                <div id="flush-collapse<%= i %>"
+                     class="accordion-collapse collapse"
+                     aria-labelledby="poop<%= i %>>"
+                     data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <div class="card-body">
+                            <p><%= poop.description %></p>
+                        </div>
+                        <div class="list-group-item mb-3">
+                            <form class="d-inline"
+                                  action="/toilet/<%= poop._id %>/flush"
+                                  method="POST">
+                                <button class="btn egg" <%= poop.status === 'Active' ? {} : 'disabled' %>>Flush</button>
+                            </form>
+                        </div>
+                        <div class="list-group-item">
+                            <a class="card-link btn poop"
+                               href="/toilet/<%= poop._id %>/edit">Edit</a>
+                            <form class="d-inline right"
+                                  action="/toilet/<%= poop._id %>?_method=DELETE"
+                                  method="POST">
+                                <button class="btn watermelon">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% i++; %>
+        <% } %>
+        <p></p>
+    </div>
+</div>
