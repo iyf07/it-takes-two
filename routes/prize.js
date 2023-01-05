@@ -61,7 +61,7 @@ router.post('/store/redeem/toilet-paper', catchAsync(async (req, res) => {
     const allCurrencyData = await Currency.find({});
     let obj = {};
     obj['watermelons'] = allCurrencyData[0].watermelons - 1;
-    obj['toilet_papers'] = allCurrencyData[0].toilet_papers + 1;
+    obj['toilet_papers'] = Math.min(allCurrencyData[0].toilet_papers + 1, 10);
     await Currency.findByIdAndUpdate(allCurrencyData[0]._id, obj);
     res.redirect(`/prize/store`);
 }));

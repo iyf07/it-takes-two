@@ -31,7 +31,7 @@ router.get('/:id/edit', async (req, res) => {
 router.post('/', catchAsync(async (req, res) => {
     const currency = await Currency.find({});
     const currentPoop = currency[0].poops;
-    const newPoop = Math.min(currentPoop, 100);
+    const newPoop = Math.min(currentPoop + 1, 100);
     const poop = new Toilet(req.body.poop);
     await poop.save();
     await Currency.findByIdAndUpdate(currency[0]._id, {poops:newPoop})

@@ -37,7 +37,7 @@
                             <form class="d-inline"
                                   action="/toilet/<%= poop._id %>/flush"
                                   method="POST">
-                                <button class="btn egg" <%= poop.status === 'Active' ? {} : 'disabled' %>>Flush</button>
+                                <button class="btn egg" <%= poop.status === 'Active' && currency[0].toilet_papers !== 0 ? {} : 'disabled' %>>Flush</button>
                             </form>
                         </div>
                         <div class="list-group-item">
