@@ -9,11 +9,15 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="/piggy-bank">PiggyBank</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="/toilet">Toilet</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        PiggyBank
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/piggy-bank">&#128022;PiggyBank</a></li>
+                        <li><a class="dropdown-item" href="/piggy-bank/piggy-model">&#128023;PiggyModel</a></li>
+                        <li><a class="dropdown-item" href="/toilet">&#128701;Toilet</a></li>
+                    </ul>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -29,8 +33,8 @@
                         Prizes
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/prize/store">Store</a></li>
-                        <li><a class="dropdown-item" href="/prize/inventory">Inventory</a></li>
+                        <li><a class="dropdown-item" href="/prize/store">&#127873;Store</a></li>
+                        <li><a class="dropdown-item" href="/prize/inventory">&#128230;Inventory</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -42,10 +46,10 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item"
-                               href="/user/login"><%= !user.type || user.type === "" ? "Log In": "Log Out" %></a></li>
+                               href="/user/login">&#128100;<%= !user.type || user.type === "" ? "Log In": "Log Out" %></a></li>
                         <li><a class="dropdown-item"
-                               href="/user/change">Update Info</a></li>
-                        <li><a class="dropdown-item" href="/user/admin">Admin</a></li>
+                               href="/user/change">&#128101;Update Info</a></li>
+                        <li><a class="dropdown-item" href="/user/admin">	&#128421;Admin</a></li>
                     </ul>
                 </li>
             </ul>
