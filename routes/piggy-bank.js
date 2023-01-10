@@ -7,6 +7,7 @@ const catchAsync = require('../utils/catchAsync');
 const themeColor = '#fce7d8';
 
 router.get('/', async (req, res) => {
+    await PiggyBank.updateMany({}, {$set: {tips: 0}});
     const piggyBanks = await PiggyBank.find({}).sort({priority: -1, date: -1});
     const currency = await Currency.find({});
     const user = req.cookies;
@@ -89,6 +90,9 @@ router.post('/piggy-model', catchAsync(async (req, res) => {
         case 'watermelons':
             priority += 1000;
             break;
+        case 'chestnuts':
+            priority += 5000;
+            break;
         case 'eggs':
             priority += 10000;
             break;
@@ -112,6 +116,9 @@ router.put('/piggy-model/:id', catchAsync(async (req, res) => {
             break;
         case 'watermelons':
             newPriority += 1000;
+            break;
+        case 'chestnuts':
+            newPriority += 5000;
             break;
         case 'eggs':
             newPriority += 10000;
@@ -151,6 +158,9 @@ router.put('/:id/:status', catchAsync(async (req, res) => {
             obj[updateCurrency] = Math.min(obj[updateCurrency], 100);
             break;
         case 'watermelons':
+            obj[updateCurrency] = Math.min(obj[updateCurrency], 50);
+            break;
+        case 'chestnuts':
             obj[updateCurrency] = Math.min(obj[updateCurrency], 50);
             break;
         case 'eggs':
@@ -201,6 +211,9 @@ router.put('/:id', catchAsync(async (req, res) => {
                     break;
                 case 'watermelons':
                     obj[piggyCurrency] = allCurrencyData[0].watermelons - piggyPoints;
+                    break;
+                case 'chestnuts':
+                    obj[piggyCurrency] = allCurrencyData[0].chestnuts - piggyPoints;
                     break;
                 case 'eggs':
                     obj[piggyCurrency] = allCurrencyData[0].eggs - piggyPoints;
