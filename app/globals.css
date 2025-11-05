@@ -52,6 +52,12 @@
   z-index: 1000;
 }
 
+.card {
+  width: 420px;
+  max-width: 100%;
+}
+
+
 h1, h2, h3 {
   font-weight: bold;
 }
