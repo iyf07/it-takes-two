@@ -67,7 +67,7 @@ export default function ServiceCreate() {
                     <div className="mb-3">
                         <span>Currency</span>
                         <br />
-                        <img src={service.category ? CURRENCIES.find(c => c.category === service.category)?.iconPath : currencies[0]?.iconPath} width={24} height={24} alt={String(service.category)} />
+                        <img src={service.category ? CURRENCIES.find(c => c.category === service.category)?.iconPath : CURRENCIES[0]?.iconPath} width={24} height={24} alt={String(service.category)} />
                     </div>
                     <Form.Group className="mb-3" controlId="description">
                         <Form.Label>Description</Form.Label>
