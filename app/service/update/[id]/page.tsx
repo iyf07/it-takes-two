@@ -3,7 +3,7 @@
 import { Container } from 'react-bootstrap';
 import ServiceUpdate from "@/components/ServiceUpdate";
 
-export default async function ServiceUpdatePage({ params }: { params: { id: string } }) {
+export default async function ServiceUpdatePage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
 
     return (

@@ -2,16 +2,14 @@ import { ObjectId } from "mongodb";
 import { getDb } from "@/lib/mongodb";
 import { Ok } from "@/lib/response";
 
-export const runtime = "nodejs";
-
-export async function GET(req: Request, { params }: { params: { id: string } }) {
+export async function GET(req: Request, { params }: { params: Promise<{ id: string }> }) {
     const db = await getDb();
     const { id } = await params;
     const service = await db.collection("services").findOne({ _id: new ObjectId(id) });
     return Ok({ service });
 }
 
-export async function PUT(req: Request, { params }: { params: { id: string } }) {
+export async function PUT(req: Request, { params }: { params: Promise<{ id: string }> }) {
     const body = await req.json();
     const db = await getDb();
     const { id } = await params;

@@ -3,7 +3,7 @@ import { getDb } from "@/lib/mongodb";
 import { checkUsernameExists } from "@/lib/server-utils";
 import { Ok, UsernameConflict, UserNotFound, InvalidUserID } from "@/lib/response";
 
-export async function GET(req: Request, { params }: { params: { id: string } }) {
+export async function GET(req: Request, { params }: { params: Promise<{ id: string }> }) {
     const db = await getDb();
     const { id } = await params;
     try {
@@ -17,7 +17,7 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
     }
 }
 
-export async function PUT(req: Request, { params }: { params: { id: string } }) {
+export async function PUT(req: Request, { params }: { params: Promise<{ id: string }> }) {
     const body = await req.json();
     const db = await getDb();
     const { id } = await params;
