@@ -1,0 +1,68 @@
+.theme-color {
+  --fall-bg: #ef7b2d;
+  --fall-text: #fff7ef;
+  background-color: var(--fall-bg);
+  color: var(--fall-text);
+}
+
+.currency-bar {
+  display: flex;
+  gap: 12px;
+  padding: 8px 16px;
+  justify-content: center;
+  align-items: center;  
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  flex-wrap: wrap;
+}
+
+.navbar {
+  font-family: Silkscreen;
+  font-weight: bold;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+h1, h2, h3 {
+  font-family: Silkscreen, mplus_hzk_12;
+  font-weight: bold;
+}
+
+body {
+  background: url("../public/background.jpg") no-repeat center center fixed;
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-attachment: fixed;
+  background-size:cover;
+  position: relative;
+  min-height: 100vh;
+}
+
+body::after {
+  content: '';
+  display: block;
+  height: 50px;
+}
+
+nav {
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+}
+
+* {
+  font-family: Silkscreen, mplus_hzk_12;
+}
