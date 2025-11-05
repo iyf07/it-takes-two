@@ -13,7 +13,7 @@ export default function NavigationBar() {
       credentials: "include",
     });
 
-    location.href = "/";
+    location.href = "/user/sign-in";
   }
 
   useEffect(() => {
