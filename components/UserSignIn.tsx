@@ -7,7 +7,7 @@ import FormWarningBanner from '@/components/FormWarningBanner';
 export default function UserSignIn() {
     const [error, setError] = useState("");
 
-    async function submitSignIn(e: React.FormEvent<HTMLFormElement>) {
+    async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         const form = new FormData(e.currentTarget);
         const res = await fetch("/api/user/sign-in", {
@@ -34,7 +34,7 @@ export default function UserSignIn() {
                 <h2 className="fw-bold">User Sign In</h2>
             </Card.Header>
             <Card.Body>
-                <Form onSubmit={submitSignIn}>
+                <Form onSubmit={onSubmit}>
                     <Form.Group className="mb-3" controlId="username">
                         <Form.Label>Username</Form.Label>
                         <Form.Control type="text" name="username" placeholder="Enter username" />
