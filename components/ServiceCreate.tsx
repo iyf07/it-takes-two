@@ -3,21 +3,18 @@
 import { useState, useEffect } from "react";
 import { Form, Card, Button } from 'react-bootstrap';
 import FormWarningBanner from '@/components/FormWarningBanner';
-import { fetchCurrencies, fetchUserDataByCookie, fetchUserDataById, fetchServiceById } from '@/lib/client-utils';
-import { Currency } from "@/lib/model/currency";
+import { fetchUserDataByCookie } from '@/lib/client-utils';
+import { CURRENCIES } from "@/lib/data/currency";
 
 export default function ServiceCreate({ id }: { id: string }) {
     const [error, setError] = useState("");
     const [userData, setUserData] = useState(Object);
-    const [currencies, setCurrencies] = useState<Currency[]>([]);
     const [service, setService] = useState(Object);
 
     useEffect(() => {
         (async () => {
             const userData = await fetchUserDataByCookie();
             setUserData(userData);
-            const currenciesData = await fetchCurrencies();
-            setCurrencies(currenciesData);
         })();
     }, []);
 
@@ -57,8 +54,8 @@ export default function ServiceCreate({ id }: { id: string }) {
                     </Form.Group>
                     <Form.Group className="mb-4" controlId="category">
                         <Form.Label>Category</Form.Label>
-                        <Form.Select defaultValue={currencies[0]?.category} onChange={(e) => setService({ ...service, category: e.target.value })}>
-                            {currencies.map((currency, index) => (
+                        <Form.Select defaultValue={CURRENCIES[0]?.category} onChange={(e) => setService({ ...service, category: e.target.value })}>
+                            {CURRENCIES.map((currency, index) => (
                                 <option value={currency.category}>{currency.category.toUpperCase()}</option>
                             ))}
                         </Form.Select>
@@ -70,7 +67,7 @@ export default function ServiceCreate({ id }: { id: string }) {
                     <div className="mb-3">
                         <span>Currency</span>
                         <br />
-                        <img src={service.category ? currencies.find(c => c.category === service.category)?.iconPath : currencies[0]?.iconPath} width={24} height={24} alt={String(service.category)} />
+                        <img src={service.category ? CURRENCIES.find(c => c.category === service.category)?.iconPath : currencies[0]?.iconPath} width={24} height={24} alt={String(service.category)} />
                     </div>
                     <Form.Group className="mb-3" controlId="description">
                         <Form.Label>Description</Form.Label>

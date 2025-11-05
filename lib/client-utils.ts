@@ -1,5 +1,3 @@
-import { CURRENCIES } from "@/lib/data/currency";
-
 export async function fetchUserDataByCookie() {
     const res = await fetch("/api/cookie", { credentials: "include" });
     const data = await res.json();
@@ -24,8 +22,4 @@ export async function fetchServiceById(id: string) {
     const res = await fetch(`/api/service/${id}`);
     const data = await res.json();
     return data.service;
-}
-
-export async function fetchCurrencies() {
-    return CURRENCIES;
 }

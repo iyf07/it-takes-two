@@ -3,14 +3,13 @@
 import { useState, useEffect } from "react";
 import { Card, ListGroup, ListGroupItem } from 'react-bootstrap';
 import FormWarningBanner from '@/components/FormWarningBanner';
-import { fetchCurrencies, fetchUserDataByCookie, fetchUserDataById } from '@/lib/client-utils';
-import { Currency } from "@/lib/model/currency";
+import { fetchUserDataByCookie, fetchUserDataById } from '@/lib/client-utils';
+import { CURRENCIES } from "@/lib/data/currency";
 
 export default function UserAccount() {
     const [error, setError] = useState("");
     const [userData, setUserData] = useState(Object);
     const [partnerData, setPartnerData] = useState(Object);
-    const [currencies, setCurrencies] = useState<Currency[]>([]);
 
     useEffect(() => {
         (async () => {
@@ -24,8 +23,6 @@ export default function UserAccount() {
             }else{
                 setError("Please sign in or sign up")
             }
-            const currenciesData = await fetchCurrencies();
-            setCurrencies(currenciesData);
         })();
     }, []);
 
@@ -42,7 +39,7 @@ export default function UserAccount() {
                 <Card.Subtitle className="mb-3 text-muted">ID: {partnerData._id}</Card.Subtitle>
                 <Card.Body>
                     <ListGroup variant="flush">
-                        {currencies.map((currency, index) => (
+                        {CURRENCIES.map((currency, index) => (
                             <ListGroupItem key={currency.name} className="d-flex gap-2 mb-2">
                                 <img src={currency.iconPath} width={24} height={24} alt={currency.name} />
                                 <span>{currency.name}: {userData?.[currency.name] ?? 0}</span>
