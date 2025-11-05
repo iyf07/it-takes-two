@@ -6,7 +6,7 @@ import FormWarningBanner from '@/components/FormWarningBanner';
 import { fetchUserDataByCookie } from '@/lib/client-utils';
 import { CURRENCIES } from "@/lib/data/currency";
 
-export default function ServiceCreate({ id }: { id: string }) {
+export default function ServiceCreate() {
     const [error, setError] = useState("");
     const [userData, setUserData] = useState(Object);
     const [service, setService] = useState(Object);
