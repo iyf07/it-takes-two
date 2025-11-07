@@ -48,7 +48,7 @@ export default function TaskUpdate({ id }: { id: string }) {
                 <Form onSubmit={onSubmit}>
                     <Form.Group className="mb-3" controlId="name">
                         <Form.Label>Name</Form.Label>
-                        <Form.Control type="text" name="name" placeholder={task.name} onChange={(e) => setTask({ ...task, name: e.target.value })} />
+                        <Form.Control required type="text" name="name" placeholder={task.name} onChange={(e) => setTask({ ...task, name: e.target.value })} />
                     </Form.Group>
                     <Form.Group className="mb-4" controlId="category">
                         <Form.Label>Category</Form.Label>
@@ -60,7 +60,7 @@ export default function TaskUpdate({ id }: { id: string }) {
                     </Form.Group>
                     <Form.Group className="mb-4" controlId="price">
                         <Form.Label>Price</Form.Label>
-                        <Form.Control type="number" name="price" placeholder={task.price} onChange={(e) => setTask({ ...task, price: e.target.value })} />
+                        <Form.Control required type="number" name="price" placeholder={task.price} onChange={(e) => setTask({ ...task, price: e.target.value })} />
                     </Form.Group>
                     <div className="mb-3">
                         <span>Currency</span>
@@ -69,7 +69,7 @@ export default function TaskUpdate({ id }: { id: string }) {
                     </div>
                     <Form.Group className="mb-3" controlId="description">
                         <Form.Label>Description</Form.Label>
-                        <Form.Control type="string" name="description" placeholder={task.description} onChange={(e) => setTask({ ...task, description: e.target.value })} />
+                        <Form.Control required type="string" name="description" placeholder={task.description} onChange={(e) => setTask({ ...task, description: e.target.value })} />
                     </Form.Group>
 
                     <Button type="submit" className="w-100 theme-color">

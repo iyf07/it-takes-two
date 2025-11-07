@@ -25,7 +25,7 @@ export default function ServiceCreate() {
             body: JSON.stringify({
                 name: service.name,
                 price: service.price,
-                category: service.category,
+                category: service.category ?? CURRENCIES[0]?.category,
                 description: service.description,
                 userId: userData._id
             }),
@@ -50,7 +50,7 @@ export default function ServiceCreate() {
                 <Form onSubmit={onSubmit}>
                     <Form.Group className="mb-3" controlId="name">
                         <Form.Label>Name</Form.Label>
-                        <Form.Control type="text" name="name" placeholder="Enter service name" onChange={(e) => setService({ ...service, name: e.target.value })} />
+                        <Form.Control required type="text" name="name" placeholder="Enter service name" onChange={(e) => setService({ ...service, name: e.target.value })} />
                     </Form.Group>
                     <Form.Group className="mb-4" controlId="category">
                         <Form.Label>Category</Form.Label>
@@ -62,7 +62,7 @@ export default function ServiceCreate() {
                     </Form.Group>
                     <Form.Group className="mb-4" controlId="price">
                         <Form.Label>Price</Form.Label>
-                        <Form.Control type="number" name="price" placeholder="Enter price" onChange={(e) => setService({ ...service, price: e.target.value })} />
+                        <Form.Control required type="number" name="price" placeholder="Enter price" onChange={(e) => setService({ ...service, price: e.target.value })} />
                     </Form.Group>
                     <div className="mb-3">
                         <span>Currency</span>
@@ -71,7 +71,7 @@ export default function ServiceCreate() {
                     </div>
                     <Form.Group className="mb-3" controlId="description">
                         <Form.Label>Description</Form.Label>
-                        <Form.Control type="string" name="description" placeholder="Enter description" onChange={(e) => setService({ ...service, description: e.target.value })} />
+                        <Form.Control required type="string" name="description" placeholder="Enter description" onChange={(e) => setService({ ...service, description: e.target.value })} />
                     </Form.Group>
 
                     <Button type="submit" className="w-100 theme-color">

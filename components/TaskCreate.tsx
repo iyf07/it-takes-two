@@ -9,7 +9,7 @@ import { CURRENCIES } from "@/lib/data/currency";
 export default function TaskCreate() {
     const [error, setError] = useState("");
     const [userData, setUserData] = useState(Object);
-    const [service, setService] = useState(Object);
+    const [task, setTask] = useState(Object);
 
     useEffect(() => {
         (async () => {
@@ -23,10 +23,10 @@ export default function TaskCreate() {
         const res = await fetch(`/api/task`, {
             method: "POST",
             body: JSON.stringify({
-                name: service.name,
-                price: service.price,
-                category: service.category,
-                description: service.description,
+                name: task.name,
+                price: task.price,
+                category: task.category ?? CURRENCIES[0]?.category,
+                description: task.description,
                 userIds: [userData._id, userData.partnerId]
             }),
             headers: { "Content-Type": "application/json" },
@@ -50,11 +50,11 @@ export default function TaskCreate() {
                 <Form onSubmit={onSubmit}>
                     <Form.Group className="mb-3" controlId="name">
                         <Form.Label>Name</Form.Label>
-                        <Form.Control type="text" name="name" placeholder="Enter service name" onChange={(e) => setService({ ...service, name: e.target.value })} />
+                        <Form.Control required type="text" name="name" placeholder="Enter task name" onChange={(e) => setTask({ ...task, name: e.target.value })} />
                     </Form.Group>
                     <Form.Group className="mb-4" controlId="category">
                         <Form.Label>Category</Form.Label>
-                        <Form.Select defaultValue={CURRENCIES[0]?.category} onChange={(e) => setService({ ...service, category: e.target.value })}>
+                        <Form.Select defaultValue={CURRENCIES[0]?.category} onChange={(e) => setTask({ ...task, category: e.target.value })}>
                             {CURRENCIES.map((currency, index) => (
                                 <option value={currency.category}>{currency.category.toUpperCase()}</option>
                             ))}
@@ -62,16 +62,16 @@ export default function TaskCreate() {
                     </Form.Group>
                     <Form.Group className="mb-4" controlId="price">
                         <Form.Label>Price</Form.Label>
-                        <Form.Control type="number" name="price" placeholder="Enter price" onChange={(e) => setService({ ...service, price: e.target.value })} />
+                        <Form.Control required type="number" name="price" placeholder="Enter price" onChange={(e) => setTask({ ...task, price: e.target.value })} />
                     </Form.Group>
                     <div className="mb-3">
                         <span>Currency</span>
                         <br />
-                        <img src={service.category ? CURRENCIES.find(c => c.category === service.category)?.iconPath : CURRENCIES[0]?.iconPath} width={24} height={24} alt={String(service.category)} />
+                        <img src={task.category ? CURRENCIES.find(c => c.category === task.category)?.iconPath : CURRENCIES[0]?.iconPath} width={24} height={24} alt={String(task.category)} />
                     </div>
                     <Form.Group className="mb-3" controlId="description">
                         <Form.Label>Description</Form.Label>
-                        <Form.Control type="string" name="description" placeholder="Enter description" onChange={(e) => setService({ ...service, description: e.target.value })} />
+                        <Form.Control required type="string" name="description" placeholder="Enter description" onChange={(e) => setTask({ ...task, description: e.target.value })} />
                     </Form.Group>
 
                     <Button type="submit" className="w-100 theme-color">

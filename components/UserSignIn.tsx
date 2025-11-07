@@ -37,12 +37,12 @@ export default function UserSignIn() {
                 <Form onSubmit={onSubmit}>
                     <Form.Group className="mb-3" controlId="username">
                         <Form.Label>Username</Form.Label>
-                        <Form.Control type="text" name="username" placeholder="Enter username" />
+                        <Form.Control required type="text" name="username" placeholder="Enter username" />
                     </Form.Group>
 
                     <Form.Group className="mb-4" controlId="password">
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" name="password" placeholder="Enter password" />
+                        <Form.Control required type="password" name="password" placeholder="Enter password" />
                     </Form.Group>
 
                     <Button type="submit" className="w-100 theme-color">

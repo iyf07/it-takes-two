@@ -34,7 +34,7 @@ export default function ServiceMain() {
     }
 
     async function handleDelete(id: string) {
-        await fetch(`/api/task/${id}`, {
+        await fetch(`/api/service/${id}`, {
             method: "DELETE",
             credentials: "include",
         })
