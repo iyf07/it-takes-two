@@ -21,6 +21,7 @@ export async function PUT(req: Request, { params }: { params: Promise<{ id: stri
     const body = await req.json();
     const db = await getDb();
     const { id } = await params;
+    const user = await db.collection("users").findOne({ _id: new ObjectId(id) });
     const updateFields: Record<string, any> = {};
     if (body.username) {
         if (await checkUsernameExists(body.username)) {
@@ -38,6 +39,9 @@ export async function PUT(req: Request, { params }: { params: Promise<{ id: stri
         updateFields.partnerId = body.partnerId;
     }
 
+    if (body.price && body.currency) {
+        updateFields[body.currency] = Number(user?.[body.currency] ?? 0) + Number(body.price);
+    }
     await db.collection("users").updateOne(
         { _id: new ObjectId(id) },
         { $set: updateFields }

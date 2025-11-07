@@ -14,7 +14,6 @@ export async function PUT(req: Request, { params }: { params: Promise<{ id: stri
     const db = await getDb();
     const { id } = await params;
 
-
     await db.collection("services").updateOne(
         { _id: new ObjectId(id) },
         {

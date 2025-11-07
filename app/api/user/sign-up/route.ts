@@ -1,10 +1,7 @@
-import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import { getDb } from "@/lib/mongodb";
 import { checkUsernameExists } from "@/lib/server-utils";
 import { Ok, UsernameConflict } from "@/lib/response";
-
-export const runtime = "nodejs";
 
 export async function POST(req: Request) {
   const body = await req.json();

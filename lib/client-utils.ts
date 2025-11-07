@@ -23,3 +23,18 @@ export async function fetchServiceById(id: string) {
     const data = await res.json();
     return data.service;
 }
+
+export async function fetchOrdersByUserId(id: string) {
+    const res = await fetch(`/api/order/user/${id}`);
+    const data = await res.json();
+    return data.orders;
+}
+
+export function isoToDate(date: string) {
+    return new Date(date).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "numeric",
+        day: "numeric",
+    })
+
+}

@@ -40,6 +40,7 @@ export default function NavigationBar() {
               </NavDropdown>
               <NavDropdown title="village" id="user-menu" align="end">
                 <NavDropdown.Item href="/service">Store</NavDropdown.Item>
+                <NavDropdown.Item href="/order">Orders</NavDropdown.Item>
               </NavDropdown></>) :
               (<>
                 <NavDropdown title="User" id="user-menu" align="end">
