@@ -1,15 +1,15 @@
-import Image from "next/image";
+"use client"
+import { Card, Row, Col, Image } from 'react-bootstrap';
+import { CURRENCIES } from "@/lib/data/currency";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            Test
-          </h1>
-        </div>
-      </main>
+    <div className="d-flex justify-content-center align-items-center vh-100">
+      <Card className="p-4 shadow form">
+        <Card.Header className="text-center bg-white border-0">
+          <h2 className="fw-bold">It takes two</h2>
+        </Card.Header>
+      </Card>
     </div>
   );
 }

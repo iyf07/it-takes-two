@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { Container, Nav, Navbar, NavDropdown, Image } from 'react-bootstrap';
 import { fetchUserDataByCookie } from '@/lib/client-utils';
 
 export default function NavigationBar() {
@@ -38,12 +38,12 @@ export default function NavigationBar() {
                 <NavDropdown.Item href="/user/pair-partner">Pair partner</NavDropdown.Item>
                 <NavDropdown.Item onClick={handleSignOut}>Sign out</NavDropdown.Item>
               </NavDropdown>
-              <NavDropdown title="village" id="user-menu" align="end">
+              <NavDropdown title={<Image src="/icons/Village.png" width={24} height={24} />} id="user-menu" align="end">
                 <NavDropdown.Item href="/task">Task Board</NavDropdown.Item>
                 <NavDropdown.Item href="/service">Store</NavDropdown.Item>
                 <NavDropdown.Item href="/bank">Bank</NavDropdown.Item>
               </NavDropdown>
-              <NavDropdown title="phone" id="user-menu" align="end">
+              <NavDropdown title={<Image src="/icons/Note.png" width={24} height={24} />} id="user-menu" align="end">
                 <NavDropdown.Item href="/record">Diary</NavDropdown.Item>
                 <NavDropdown.Item href="/order">Orders</NavDropdown.Item>
               </NavDropdown>

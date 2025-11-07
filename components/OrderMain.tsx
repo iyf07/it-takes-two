@@ -69,12 +69,12 @@ export default function OrderMain() {
     }, []);
 
     return (
-        <Card className="p-4 shadow form card">
+        <Card className="p-4 shadow form card-scroll">
             <Card.Header className="text-center bg-white border-0">
                 <h2 className="fw-bold">Orders</h2>
             </Card.Header>
             <Card.Title className="text-center">Partner Orders</Card.Title>
-            <Card.Body>
+            <Card.Body className="card-scroll-body">
                 <Accordion>
                     {partnerOrders.map((partnerOrder, index) => {
                         const service = services.find(s => s._id === partnerOrder.serviceId);
@@ -111,7 +111,7 @@ export default function OrderMain() {
             </Card.Body>
 
             <Card.Title className="text-center">Your orders</Card.Title>
-            <Card.Body>
+            <Card.Body className="card-scroll-body">
                 <Accordion>
                     {orders.map((order, index) => {
                         const service = partnerServices.find(s => s._id === order.serviceId);

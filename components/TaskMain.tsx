@@ -42,12 +42,12 @@ export default function TaskMain() {
     }, []);
 
     return (
-        <Card className="p-4 shadow form card">
+        <Card className="p-4 shadow form card-scroll">
             <Card.Header className="text-center bg-white border-0">
                 <h2 className="fw-bold">Task Board</h2>
             </Card.Header>
             <Card.Title className="mb-3 text-center">Tasks</Card.Title>
-            <Card.Body>
+            <Card.Body className="card-scroll-body">
                 <Accordion>
                     {tasks.map((task, index) => {
                         const currency = CURRENCIES.find(c => c.category === task?.category);

@@ -69,12 +69,12 @@ export default function RecordMain() {
     }, []);
 
     return (
-        <Card className="p-4 shadow form card">
+        <Card className="p-4 shadow form card-scroll">
             <Card.Header className="text-center bg-white border-0">
                 <h2 className="fw-bold">Diary</h2>
             </Card.Header>
             <Card.Title className="text-center">Partner Diary</Card.Title>
-            <Card.Body>
+            <Card.Body className="card-scroll-body">
                 <Accordion>
                     {partnerRecords.map((partnerRecord, index) => {
                         const task = tasks.find(s => s._id === partnerRecord.taskId);
@@ -114,7 +114,7 @@ export default function RecordMain() {
             </Card.Body>
 
             <Card.Title className="text-center">Your Diary</Card.Title>
-            <Card.Body>
+            <Card.Body className="card-scroll-body">
                 <Accordion>
                     {records.map((record, index) => {
                         const task = tasks.find(s => s._id === record.taskId);

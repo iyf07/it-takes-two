@@ -87,7 +87,7 @@ export default function BankTrade({ currency }: { currency: string }) {
                     </Form.Group>
                     <div className="d-flex justify-content-between">
                         <Form.Label>To</Form.Label>
-                        <span className="text-muted"><img src={CURRENCIES.find(c => c.name === currency)?.iconPath} width={24} height={24} alt={String(currency)} /> {toAmount} {fromAmount}</span>
+                        <span className="text-muted"><img src={CURRENCIES.find(c => c.name === currency)?.iconPath} width={24} height={24} alt={String(currency)} /> {toAmount}</span>
                     </div>
                     <Button type="submit" className="w-100 theme-color">
                         Submit

@@ -56,12 +56,12 @@ export default function ServiceMain() {
     }, []);
 
     return (
-        <Card className="p-4 shadow form card">
+        <Card className="p-4 shadow form card-scroll">
             <Card.Header className="text-center bg-white border-0">
                 <h2 className="fw-bold">Store</h2>
             </Card.Header>
             <Card.Title className="mb-3 text-center">Partner services</Card.Title>
-            <Card.Body>
+            <Card.Body className="card-scroll-body">
                 <Accordion>
                     {partnerServices.map((service, index) => {
                         const currency = CURRENCIES.find(c => c.category === service?.category);
@@ -93,7 +93,7 @@ export default function ServiceMain() {
                 </Accordion>
             </Card.Body>
 
-            <Card.Body>
+            <Card.Body className="card-scroll-body">
                 <Card.Title className="mb-3 text-center">Your services</Card.Title>
                 <Accordion>
                     {services.map((service, index) => {
