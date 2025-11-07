@@ -5,8 +5,8 @@ export async function POST(req: Request) {
     const body = await req.json();
     const db = await getDb();
 
-    await db.collection("orders").insertOne({
-        serviceId: body.serviceId,
+    await db.collection("records").insertOne({
+        taskId: body.taskId,
         userId: body.userId,
         status: "Not Started",
         date: new Date().toISOString()

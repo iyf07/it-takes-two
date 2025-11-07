@@ -1,6 +1,6 @@
-export interface Order {
+export interface Record {
   _id: string;
-  serviceId: string;
+  taskId: string;
   userId: string;
   status: string;
   date: string;

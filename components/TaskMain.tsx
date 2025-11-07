@@ -19,6 +19,19 @@ export default function TaskMain() {
         location.href = "/task";
     };
 
+    async function handleComplete(taskId: string, userId: string) {
+        await fetch(`/api/record`, {
+            method: "POST",
+            body: JSON.stringify({
+                taskId: taskId,
+                userId: userId
+            }),
+            credentials: "include",
+        });
+
+        location.href = "/task";
+    };
+
     useEffect(() => {
         (async () => {
             const userData = await fetchUserDataByCookie();
@@ -55,7 +68,10 @@ export default function TaskMain() {
                                     <ListGroupItem key="category" className="d-flex gap-2 mb-2">
                                         Category: {currency?.category}
                                     </ListGroupItem>
-                                    <Dropdown className="mx-auto mb-3">
+                                    <Button onClick={() => handleComplete(task._id, userData._id)} className="mx-auto theme-color button mb-3">
+                                        Complete
+                                    </Button>
+                                    <Dropdown className="mx-auto">
                                         <Dropdown.Toggle id="dropdown-basic" className="bg-danger">
                                             Modify
                                         </Dropdown.Toggle>

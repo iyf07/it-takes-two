@@ -7,7 +7,7 @@ export async function PUT(req: Request, { params }: { params: Promise<{ id: stri
     const db = await getDb();
     const { id } = await params;
 
-    await db.collection("orders").updateOne(
+    await db.collection("records").updateOne(
         { _id: new ObjectId(id) },
         { $set: { status: body.status } }
     );
@@ -19,7 +19,7 @@ export async function DELETE(req: Request, { params }: { params: Promise<{ id: s
     const db = await getDb();
     const { id } = await params;
 
-    await db.collection("orders").deleteOne(
+    await db.collection("records").deleteOne(
         { _id: new ObjectId(id) },
     );
 

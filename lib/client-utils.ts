@@ -42,6 +42,12 @@ export async function fetchTaskById(id: string) {
     return data.task;
 }
 
+export async function fetchRecordsByUserId(id: string) {
+    const res = await fetch(`/api/record/user/${id}`);
+    const data = await res.json();
+    return data.records;
+}
+
 export function isoToDate(date: string) {
     return new Date(date).toLocaleDateString("en-US", {
         year: "numeric",

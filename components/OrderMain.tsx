@@ -17,6 +17,9 @@ export default function OrderMain() {
     async function handleDeliver(id: string, userId: string, price: number | undefined, currency: string | undefined) {
         await fetch(`/api/order/${id}`, {
             method: "PUT",
+            body: JSON.stringify({
+                status: "Delivered"
+            }),
             credentials: "include",
         });
 
@@ -70,7 +73,7 @@ export default function OrderMain() {
             <Card.Header className="text-center bg-white border-0">
                 <h2 className="fw-bold">Orders</h2>
             </Card.Header>
-            <Card.Title className="mb-3 text-center">Partner Orders</Card.Title>
+            <Card.Title className="text-center">Partner Orders</Card.Title>
             <Card.Body>
                 <Accordion>
                     {partnerOrders.map((partnerOrder, index) => {
@@ -108,8 +111,8 @@ export default function OrderMain() {
                 </Accordion>
             </Card.Body>
 
+            <Card.Title className="text-center">Your orders</Card.Title>
             <Card.Body>
-                <Card.Title className="mb-3 text-center">Your orders</Card.Title>
                 <Accordion>
                     {orders.map((order, index) => {
                         const service = partnerServices.find(s => s._id === order.serviceId);
