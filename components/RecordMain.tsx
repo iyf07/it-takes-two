@@ -53,7 +53,7 @@ export default function RecordMain() {
             credentials: "include",
         });
 
-        location.href = "/order";
+        location.href = "/record";
     }
     useEffect(() => {
         (async () => {
@@ -80,7 +80,7 @@ export default function RecordMain() {
                         const task = tasks.find(s => s._id === partnerRecord.taskId);
                         const currency = CURRENCIES.find(c => c.category === task?.category);
                         const date = isoToDate(partnerRecord.date);
-                        return (<Accordion.Item eventKey={String(index)} key={task?.name}>
+                        return (<Accordion.Item eventKey={String(index)} key={partnerRecord.date}>
                             <Accordion.Header className="theme-color">{task?.name} - {partnerRecord?.status}</Accordion.Header>
                             <Accordion.Body>
                                 <ListGroup variant="flush">
@@ -99,7 +99,7 @@ export default function RecordMain() {
                                     <ListGroupItem key="category" className="d-flex gap-2 mb-2">
                                         Category: {currency?.category}
                                     </ListGroupItem>
-                                    {partnerRecord?.status.toLowerCase() === "not started" ? <><Button onClick={() => handleApprove(partnerRecord._id, userData.partnerId, task?.price, currency?.name)} className="mx-auto theme-color mb-3">
+                                    {partnerRecord?.status.toLowerCase() === "pending" ? <><Button onClick={() => handleApprove(partnerRecord._id, userData.partnerId, task?.price, currency?.name)} className="mx-auto theme-color mb-3">
                                         Approve
                                     </Button>
                                         <Button onClick={() => handleReject(partnerRecord._id, userData.partnerId, task?.price, currency?.name)} className="mx-auto bg-danger">
@@ -120,7 +120,7 @@ export default function RecordMain() {
                         const task = tasks.find(s => s._id === record.taskId);
                         const currency = CURRENCIES.find(c => c.category === task?.category);
                         const date = isoToDate(record.date);
-                        return (<Accordion.Item eventKey={String(index)} key={task?.name}>
+                        return (<Accordion.Item eventKey={String(index)} key={record.date}>
                             <Accordion.Header>{task?.name} - {record?.status}</Accordion.Header>
                             <Accordion.Body>
                                 <ListGroup variant="flush">
@@ -139,7 +139,7 @@ export default function RecordMain() {
                                     <ListGroupItem key="category" className="d-flex gap-2 mb-2">
                                         Category: {currency?.category}
                                     </ListGroupItem>
-                                    {record?.status.toLowerCase() === "not started" ? <><Button onClick={() => handleCancel(record._id)} className="mx-auto bg-danger mb-3">
+                                    {record?.status.toLowerCase() === "pending" ? <><Button onClick={() => handleCancel(record._id)} className="mx-auto bg-danger mb-3">
                                         Cancel
                                     </Button></> : <></>}
                                 </ListGroup>

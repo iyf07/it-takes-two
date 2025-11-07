@@ -80,13 +80,12 @@ export default function OrderMain() {
                         const service = services.find(s => s._id === partnerOrder.serviceId);
                         const currency = CURRENCIES.find(c => c.category === service?.category);
                         const date = isoToDate(partnerOrder.date);
-                        const status = partnerOrder?.status ? "Completed" : "Not started";
-                        return (<Accordion.Item eventKey={String(index)} key={service?.name}>
-                            <Accordion.Header>{service?.name} - {status}</Accordion.Header>
+                        return (<Accordion.Item eventKey={String(index)} key={partnerOrder.date}>
+                            <Accordion.Header>{service?.name} - {partnerOrder?.status}</Accordion.Header>
                             <Accordion.Body>
                                 <ListGroup variant="flush">
                                     <ListGroupItem key="status" className="d-flex gap-2 mb-2">
-                                        Status: {status}
+                                        Status: {partnerOrder?.status}
                                     </ListGroupItem>
                                     <ListGroupItem key="date" className="d-flex gap-2 mb-2">
                                         Date: {date}
@@ -118,13 +117,12 @@ export default function OrderMain() {
                         const service = partnerServices.find(s => s._id === order.serviceId);
                         const currency = CURRENCIES.find(c => c.category === service?.category);
                         const date = isoToDate(order.date);
-                        const status = order?.status ? "Completed" : "Not started";
-                        return (<Accordion.Item eventKey={String(index)} key={service?.name}>
-                            <Accordion.Header>{service?.name} - {status}</Accordion.Header>
+                        return (<Accordion.Item eventKey={String(index)} key={order.date}>
+                            <Accordion.Header>{service?.name} - {order?.status}</Accordion.Header>
                             <Accordion.Body>
                                 <ListGroup variant="flush">
                                     <ListGroupItem key="status" className="d-flex gap-2 mb-2">
-                                        Status: {status}
+                                        Status: {order?.status}
                                     </ListGroupItem>
                                     <ListGroupItem key="date" className="d-flex gap-2 mb-2">
                                         Date: {date}

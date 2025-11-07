@@ -8,7 +8,7 @@ export async function POST(req: Request) {
     await db.collection("orders").insertOne({
         serviceId: body.serviceId,
         userId: body.userId,
-        status: "Not Started",
+        status: "Pending",
         date: new Date().toISOString()
     });
 
