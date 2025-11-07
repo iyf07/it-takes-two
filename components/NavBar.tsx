@@ -40,10 +40,13 @@ export default function NavigationBar() {
               </NavDropdown>
               <NavDropdown title="village" id="user-menu" align="end">
                 <NavDropdown.Item href="/task">Task Board</NavDropdown.Item>
-                <NavDropdown.Item href="/record">Diary</NavDropdown.Item>
                 <NavDropdown.Item href="/service">Store</NavDropdown.Item>
+              </NavDropdown>
+              <NavDropdown title="phone" id="user-menu" align="end">
+                <NavDropdown.Item href="/record">Diary</NavDropdown.Item>
                 <NavDropdown.Item href="/order">Orders</NavDropdown.Item>
-              </NavDropdown></>) :
+              </NavDropdown>
+            </>) :
               (<>
                 <NavDropdown title="User" id="user-menu" align="end">
                   <NavDropdown.Item href="/user/sign-in">Sign in</NavDropdown.Item>
