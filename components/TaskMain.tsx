@@ -51,7 +51,7 @@ export default function TaskMain() {
                 <Accordion>
                     {tasks.map((task, index) => {
                         const currency = CURRENCIES.find(c => c.category === task?.category);
-                        return (<Accordion.Item eventKey={String(index)} key={task.name}>
+                        return (<Accordion.Item eventKey={String(index)} key={index}>
                             <Accordion.Header>
                                 <span className="d-flex align-items-center gap-1">
                                     <img src={currency?.iconPath} width={24} height={24} alt={String(index)} />{task.name}
