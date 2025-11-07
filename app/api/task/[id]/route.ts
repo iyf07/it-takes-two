@@ -5,8 +5,8 @@ import { Ok } from "@/lib/response";
 export async function GET(req: Request, { params }: { params: Promise<{ id: string }> }) {
     const db = await getDb();
     const { id } = await params;
-    const service = await db.collection("services").findOne({ _id: new ObjectId(id) });
-    return Ok({ service });
+    const task = await db.collection("tasks").findOne({ _id: new ObjectId(id) });
+    return Ok({ task });
 }
 
 export async function PUT(req: Request, { params }: { params: Promise<{ id: string }> }) {
@@ -14,7 +14,7 @@ export async function PUT(req: Request, { params }: { params: Promise<{ id: stri
     const db = await getDb();
     const { id } = await params;
 
-    await db.collection("services").updateOne(
+    await db.collection("tasks").updateOne(
         { _id: new ObjectId(id) },
         {
             $set: {
@@ -33,7 +33,7 @@ export async function DELETE(req: Request, { params }: { params: Promise<{ id: s
     const db = await getDb();
     const { id } = await params;
 
-    await db.collection("services").deleteOne(
+    await db.collection("tasks").deleteOne(
         { _id: new ObjectId(id) },
     );
 

@@ -30,11 +30,22 @@ export async function fetchOrdersByUserId(id: string) {
     return data.orders;
 }
 
+export async function fetchTasksByUserIds(id: string, partnerId: string) {
+    const res = await fetch(`/api/task/users/${id}/${partnerId}`);
+    const data = await res.json();
+    return data.tasks;
+}
+
+export async function fetchTaskById(id: string) {
+    const res = await fetch(`/api/task/${id}`);
+    const data = await res.json();
+    return data.task;
+}
+
 export function isoToDate(date: string) {
     return new Date(date).toLocaleDateString("en-US", {
         year: "numeric",
         month: "numeric",
         day: "numeric",
     })
-
 }

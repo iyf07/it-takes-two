@@ -97,7 +97,7 @@ export default function OrderMain() {
                                     <ListGroupItem key="category" className="d-flex gap-2 mb-2">
                                         Category: {currency?.category}
                                     </ListGroupItem>
-                                    {partnerOrder?.status ? <></> : <Button onClick={() => handleDeliver(partnerOrder._id, userData._id, service?.price, currency?.name)} className="theme-color">
+                                    {partnerOrder?.status ? <></> : <Button onClick={() => handleDeliver(partnerOrder._id, userData._id, service?.price, currency?.name)} className="mx-auto theme-color">
                                         Deliver
                                     </Button>}
                                 </ListGroup>
@@ -135,7 +135,7 @@ export default function OrderMain() {
                                     <ListGroupItem key="category" className="d-flex gap-2 mb-2">
                                         Category: {currency?.category}
                                     </ListGroupItem>
-                                    {order?.status ? <></> : (<Button onClick={() => handleCancel(order._id, userData._id, service?.price, currency?.name)} className="bg-danger">
+                                    {order?.status ? <></> : (<Button onClick={() => handleCancel(order._id, userData._id, service?.price, currency?.name)} className="mx-auto bg-danger">
                                         Cancel
                                     </Button>)}
                                 </ListGroup>

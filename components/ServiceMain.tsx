@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Accordion, Card, ListGroup, ListGroupItem, Button } from 'react-bootstrap';
+import { Accordion, Card, ListGroup, ListGroupItem, Button, Modal, Dropdown } from 'react-bootstrap';
 import { fetchUserDataByCookie, fetchUserDataById, fetchServicesByUserId } from '@/lib/client-utils';
 import { Service } from "@/lib/model/service";
 import { CURRENCIES } from "@/lib/data/currency";
@@ -33,6 +33,15 @@ export default function ServiceMain() {
         location.href = "/order";
     }
 
+    async function handleDelete(id: string) {
+        await fetch(`/api/task/${id}`, {
+            method: "DELETE",
+            credentials: "include",
+        })
+
+        location.href = "/service";
+    };
+
     useEffect(() => {
         (async () => {
             const userData = await fetchUserDataByCookie();
@@ -61,7 +70,7 @@ export default function ServiceMain() {
                                 <span className="d-flex align-items-center gap-1">
                                     <img src={currency?.iconPath} width={24} height={24} alt={String(index)} />{service.name}
                                 </span>
-                                </Accordion.Header>
+                            </Accordion.Header>
                             <Accordion.Body>
                                 <ListGroup variant="flush">
                                     <ListGroupItem key="price" className="d-flex gap-2 mb-2">
@@ -73,7 +82,7 @@ export default function ServiceMain() {
                                     <ListGroupItem key="category" className="d-flex gap-2 mb-2">
                                         Category: {currency?.category}
                                     </ListGroupItem>
-                                    <Button onClick={() => handleOrder(service._id, userData._id, service?.price, currency?.name)} className="theme-color">
+                                    <Button onClick={() => handleOrder(service._id, userData._id, service?.price, currency?.name)} className="theme-color mx-auto">
                                         Order
                                     </Button>
                                 </ListGroup>
@@ -94,7 +103,7 @@ export default function ServiceMain() {
                                 <span className="d-flex align-items-center gap-1">
                                     <img src={currency?.iconPath} width={24} height={24} alt={String(index)} />{service.name}
                                 </span>
-                                </Accordion.Header>
+                            </Accordion.Header>
                             <Accordion.Body>
                                 <ListGroup variant="flush">
                                     <ListGroupItem key="price" className="d-flex gap-2 mb-2">
@@ -107,19 +116,22 @@ export default function ServiceMain() {
                                     <ListGroupItem key="category" className="d-flex gap-2 mb-2">
                                         Category: {currency?.category}
                                     </ListGroupItem>
-                                    <Button href={`/service/update/${service._id}`} className="mb-3 theme-color">
-                                        Update
-                                    </Button>
-                                    <Button href={`/service/delete`} className="bg-danger">
-                                        Delete
-                                    </Button>
+                                    <Dropdown className="mx-auto">
+                                        <Dropdown.Toggle id="dropdown-basic" className="bg-danger">
+                                            Modify
+                                        </Dropdown.Toggle>
+                                        <Dropdown.Menu>
+                                            <Dropdown.Item href={`/service/update/${service._id}`}>Update</Dropdown.Item>
+                                            <Dropdown.Item onClick={() => handleDelete(service._id)}>Delete</Dropdown.Item>
+                                        </Dropdown.Menu>
+                                    </Dropdown>
                                 </ListGroup>
                             </Accordion.Body>
                         </Accordion.Item>
                         )
                     })}
-                    <Button href={`/service/create`} className="mt-3 w-100 theme-color button">
-                        create
+                    <Button href={`/service/create`} className="mt-3 mx-auto w-100 theme-color button">
+                        Create Service
                     </Button>
                 </Accordion>
             </Card.Body>
