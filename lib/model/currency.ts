@@ -3,4 +3,5 @@ export interface Currency {
   iconPath: string;
   category: string;
   value: number;
+  weight: number;
 }
