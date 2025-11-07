@@ -54,7 +54,7 @@ export default function TaskMain() {
                         return (<Accordion.Item eventKey={String(index)} key={index}>
                             <Accordion.Header>
                                 <span className="d-flex align-items-center gap-1">
-                                    <img src={currency?.iconPath} width={24} height={24} alt={String(index)} />{task.name}
+                                    <img src={currency?.iconPath} width={24} height={24} alt={String(index)}/>{task.name}
                                 </span>
                             </Accordion.Header>
                             <Accordion.Body>

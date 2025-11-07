@@ -23,6 +23,7 @@ export async function PUT(req: Request, { params }: { params: Promise<{ id: stri
     const { id } = await params;
     const user = await db.collection("users").findOne({ _id: new ObjectId(id) });
     const updateFields: Record<string, any> = {};
+    console.log(body)
     if (body.username) {
         if (await checkUsernameExists(body.username)) {
             return UsernameConflict();

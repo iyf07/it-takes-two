@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Accordion, Card, ListGroup, ListGroupItem, Button } from 'react-bootstrap';
+import { Accordion, Card, ListGroup, ListGroupItem, Button, Image } from 'react-bootstrap';
 import { fetchUserDataByCookie, fetchUserDataById, fetchServicesByUserId, fetchOrdersByUserId, isoToDate } from '@/lib/client-utils';
 import { Service } from "@/lib/model/service";
 import { CURRENCIES } from "@/lib/data/currency";

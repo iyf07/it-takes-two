@@ -5,54 +5,54 @@ export const CURRENCIES: Currency[] = [
     name: "potato",
     iconPath: "/icons/Potato.png",
     category: "chores & housework",
-    weight: 0
+    value: 1
   },
   {
     name: "egg",
     iconPath: "/icons/Large_Egg.png",
     category: "care & support",
-    weight: 1
+    value: 1
   },
   {
     name: "red mushroom",
     iconPath: "/icons/Red_Mushroom.png",
     category: "emotional care",
-    weight: 2
+    value: 2
   },
   {
     name: "banana",
     iconPath: "/icons/Banana.png",
     category: "health & fitness",
-    weight: 3
+    value: 2
   },
   {
     name: "pink cake",
     iconPath: "/icons/Pink_Cake.png",
     category: "intimacy",
-    weight: 4
+    value: 5
   },
   {
     name: "diamond",
     iconPath: "/icons/Diamond.png",
     category: "romance",
-    weight: 5
+    value: 10
   },
   {
     name: "stardrop",
     iconPath: "/icons/Stardrop.png",
     category: "personal growth",
-    weight: 6
+    value: 10
   },
   {
     name: "dinosaur egg",
     iconPath: "/icons/Dinosaur_Egg.png",
     category: "bonus",
-    weight: 7
+    value: 25
   },
   {
     name: "prismatic shard",
     iconPath: "/icons/Prismatic_Shard.png",
     category: "high value",
-    weight: 8
+    value: 50
   }
 ];
