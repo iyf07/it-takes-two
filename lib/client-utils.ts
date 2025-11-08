@@ -50,6 +50,7 @@ export async function fetchRecordsByUserId(id: string) {
 
 export function isoToDate(date: string) {
   return new Date(date).toLocaleString("en-US", {
+    timeZone: "America/New_York",
     year: "numeric",
     month: "numeric",
     day: "numeric",

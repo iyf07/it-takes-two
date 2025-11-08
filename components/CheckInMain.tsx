@@ -13,6 +13,11 @@ export default function CheckInMain() {
     const [checkedIn, setCheckedIn] = useState(Boolean);
     const [popupMsg, setPopUpMsg] = useState<string | null>(null);
     const [locationRedir, setLocationRedir] = useState<string | undefined>(undefined);
+    const utcDate = new Date();
+    const etString = utcDate.toLocaleString("en-US", {
+        timeZone: "America/New_York",
+    });
+    const etDate = new Date(etString);
 
     async function handleCheckIn() {
         let probabilityMap = new Map<string, number[]>;
@@ -36,7 +41,7 @@ export default function CheckInMain() {
         await fetch(`/api/user/${userData._id}`, {
             method: "PUT",
             body: JSON.stringify({
-                lastCheckedIn: new Date(),
+                lastCheckedIn: etDate.toISOString(),
                 price: 1,
                 currency: winner,
             }),
@@ -49,22 +54,22 @@ export default function CheckInMain() {
             const userData = await fetchUserDataByCookie();
             setUserData(userData);
             if (userData && userData.lastCheckedIn) {
-                const date = new Date(userData.lastCheckedIn);
-                const now = new Date();
-                if (date.getMonth() === now.getMonth() && date.getDate() === now.getDate()) {
+                const lastCheckedInDate = new Date(userData.lastCheckedIn.toLocaleString("en-US", {
+                    timeZone: "America/New_York",
+                }));
+                if (lastCheckedInDate.getMonth() === etDate.getMonth() && lastCheckedInDate.getDate() === etDate.getDate()) {
                     setCheckedIn(true);
                     setMessage("You have successfully checked in");
                 } else {
                     setCheckedIn(false);
                 }
-
             }
         })();
     }, []);
 
     return (
         <Card className="p-4 shadow form">
-            {popupMsg && <PopUpWindow message={popupMsg} locationRedir={locationRedir}/>}
+            {popupMsg && <PopUpWindow message={popupMsg} locationRedir={locationRedir} />}
             <FormWarningBanner message={message} />
             <Card.Header className="text-center bg-white border-0">
                 <h2 className="fw-bold">Check-in</h2>

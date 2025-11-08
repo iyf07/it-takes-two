@@ -39,14 +39,15 @@ export default function NavigationBar() {
                 <NavDropdown.Item onClick={handleSignOut}>Sign out</NavDropdown.Item>
               </NavDropdown>
               <NavDropdown title={<Image src="/icons/Village.png" width={24} height={24} />} id="user-menu" align="end">
-                <NavDropdown.Item href="/task">Task Board</NavDropdown.Item>
-                <NavDropdown.Item href="/service">Store</NavDropdown.Item>
-                <NavDropdown.Item href="/bank">Bank</NavDropdown.Item>
-                <NavDropdown.Item href="/check-in">Visitor Center</NavDropdown.Item>
+                <NavDropdown.Item href="/task"><Image src="/icons/Task.png" width={24} height={24} /> Task Board</NavDropdown.Item>
+                <NavDropdown.Item href="/service"><Image src="/icons/Beer.png" width={24} height={24} /> Store</NavDropdown.Item>
+                <NavDropdown.Item href="/bank"><Image src="/icons/Gold.png" width={24} height={24} /> Bank</NavDropdown.Item>
+                <NavDropdown.Item href="/check-in"><Image src="/icons/Pumpkin.png" width={24} height={24} /> Visitor Center</NavDropdown.Item>
+                <NavDropdown.Item href="/wish"><Image src="/icons/Star.png" width={24} height={24} /> Wishing Well</NavDropdown.Item>
               </NavDropdown>
               <NavDropdown title={<Image src="/icons/Note.png" width={24} height={24} />} id="user-menu" align="end">
-                <NavDropdown.Item href="/record">Diary</NavDropdown.Item>
-                <NavDropdown.Item href="/order">Orders</NavDropdown.Item>
+                <NavDropdown.Item href="/record"><Image src="/icons/Diary.png" width={24} height={24} /> Diary</NavDropdown.Item>
+                <NavDropdown.Item href="/order"><Image src="/icons/Order.png" width={24} height={24} /> Orders</NavDropdown.Item>
               </NavDropdown>
             </>) :
               (<>
