@@ -8,6 +8,7 @@ import PopUpWindow from '@/components/PopUpWindow';
 import FormWarningBanner from '@/components/FormWarningBanner';
 
 export default function CheckInMain() {
+    const [message, setMessage] = useState("");
     const [userData, setUserData] = useState(Object);
     const [checkedIn, setCheckedIn] = useState(Boolean);
     const [popupMsg, setPopUpMsg] = useState<string | null>(null);
@@ -52,6 +53,7 @@ export default function CheckInMain() {
                 const now = new Date();
                 if (date.getMonth() === now.getMonth() && date.getDate() === now.getDate()) {
                     setCheckedIn(true);
+                    setMessage("You have successfully checked in");
                 } else {
                     setCheckedIn(false);
                 }
@@ -63,7 +65,7 @@ export default function CheckInMain() {
     return (
         <Card className="p-4 shadow form">
             {popupMsg && <PopUpWindow message={popupMsg} locationRedir={locationRedir}/>}
-            <FormWarningBanner message={"You have successfully checked in"} />
+            <FormWarningBanner message={message} />
             <Card.Header className="text-center bg-white border-0">
                 <h2 className="fw-bold">Check-in</h2>
             </Card.Header>
