@@ -71,9 +71,10 @@ export default function BankTrade({ currency }: { currency: string }) {
             calculateFromToAmount(1, CURRENCIES[0]?.name, currency);
         })();
     }, []);
+
     return (
         <Card className="p-4 shadow form">
-            {popupMsg && <PopUpWindow message={popupMsg} locationRedir={locationRedir}/>}
+            {popupMsg && <PopUpWindow message={popupMsg} locationRedir={locationRedir} />}
             <FormWarningBanner error={error} />
             <Card.Header className="text-center bg-white border-0">
                 <h2 className="fw-bold">Trade {currency}</h2>

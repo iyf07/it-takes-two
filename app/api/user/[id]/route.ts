@@ -39,6 +39,10 @@ export async function PUT(req: Request, { params }: { params: Promise<{ id: stri
         updateFields.partnerId = body.partnerId;
     }
 
+    if (body.lastCheckedIn) {
+        updateFields.lastCheckedIn = body.lastCheckedIn;
+    }
+
     if (body.price && body.currency) {
         const newPrice = Number(user?.[body.currency] ?? 0) + Number(body.price);
         if (newPrice < 0) {

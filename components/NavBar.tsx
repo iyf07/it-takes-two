@@ -42,6 +42,7 @@ export default function NavigationBar() {
                 <NavDropdown.Item href="/task">Task Board</NavDropdown.Item>
                 <NavDropdown.Item href="/service">Store</NavDropdown.Item>
                 <NavDropdown.Item href="/bank">Bank</NavDropdown.Item>
+                <NavDropdown.Item href="/check-in">Visitor Center</NavDropdown.Item>
               </NavDropdown>
               <NavDropdown title={<Image src="/icons/Note.png" width={24} height={24} />} id="user-menu" align="end">
                 <NavDropdown.Item href="/record">Diary</NavDropdown.Item>
