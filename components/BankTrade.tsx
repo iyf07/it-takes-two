@@ -3,11 +3,14 @@
 import { useState, useEffect } from "react";
 import { Form, Card, Button } from 'react-bootstrap';
 import FormWarningBanner from '@/components/FormWarningBanner';
+import PopUpWindow from '@/components/PopUpWindow';
 import { CURRENCIES } from "@/lib/data/currency";
 import { fetchUserDataByCookie } from '@/lib/client-utils';
 
 export default function BankTrade({ currency }: { currency: string }) {
     const [error, setError] = useState("");
+    const [popupMsg, setPopUpMsg] = useState<string | null>(null);
+    const [locationRedir, setLocationRedir] = useState<string | undefined>(undefined);
     const [userData, setUserData] = useState(Object);
     const [from, setFrom] = useState(CURRENCIES[0]?.name);
     const [amount, setAmount] = useState(1);
@@ -35,7 +38,7 @@ export default function BankTrade({ currency }: { currency: string }) {
     async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
 
-        await fetch(`/api/user/${userData._id}`, {
+        const payRes = await fetch(`/api/user/${userData._id}`, {
             method: "PUT",
             body: JSON.stringify({
                 price: Number(fromAmount) * -1,
@@ -43,7 +46,11 @@ export default function BankTrade({ currency }: { currency: string }) {
             }),
             credentials: "include",
         });
-        await fetch(`/api/user/${userData._id}`, {
+        if (!payRes.ok) {
+            setError(`Insufficient ${from}`);
+            return;
+        }
+        const receiveRes = await fetch(`/api/user/${userData._id}`, {
             method: "PUT",
             body: JSON.stringify({
                 price: Number(toAmount),
@@ -51,8 +58,10 @@ export default function BankTrade({ currency }: { currency: string }) {
             }),
             credentials: "include",
         });
-
-        location.href = "/bank";
+        if (receiveRes.ok) {
+            setPopUpMsg(`Successfully exchanged ${fromAmount} ${from} for ${toAmount} ${currency}`);
+            setLocationRedir("/bank");
+        }
     }
 
     useEffect(() => {
@@ -64,6 +73,7 @@ export default function BankTrade({ currency }: { currency: string }) {
     }, []);
     return (
         <Card className="p-4 shadow form">
+            {popupMsg && <PopUpWindow message={popupMsg} locationRedir={locationRedir}/>}
             <FormWarningBanner error={error} />
             <Card.Header className="text-center bg-white border-0">
                 <h2 className="fw-bold">Trade {currency}</h2>

@@ -29,6 +29,10 @@ export function Unauthenticated(message = "Unauthenticated", extra?: object) {
   return NextResponse.json({ error: message, ...extra }, { status: 401 });
 }
 
+export function UnprocessableEntity(message = "Insufficient funds", extra?: object) {
+  return NextResponse.json({ error: message, ...extra }, { status: 422 });
+}
+
 export function Ok(extra?: object) {
   return NextResponse.json({ ...extra }, { status: 200 });
 }

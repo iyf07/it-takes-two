@@ -1,7 +1,7 @@
 import { ObjectId } from "mongodb";
 import { getDb } from "@/lib/mongodb";
 import { checkUsernameExists } from "@/lib/server-utils";
-import { Ok, UsernameConflict, UserNotFound, InvalidUserID } from "@/lib/response";
+import { Ok, UsernameConflict, UserNotFound, InvalidUserID, UnprocessableEntity } from "@/lib/response";
 
 export async function GET(req: Request, { params }: { params: Promise<{ id: string }> }) {
     const db = await getDb();
@@ -23,7 +23,6 @@ export async function PUT(req: Request, { params }: { params: Promise<{ id: stri
     const { id } = await params;
     const user = await db.collection("users").findOne({ _id: new ObjectId(id) });
     const updateFields: Record<string, any> = {};
-    console.log(body)
     if (body.username) {
         if (await checkUsernameExists(body.username)) {
             return UsernameConflict();
@@ -41,7 +40,11 @@ export async function PUT(req: Request, { params }: { params: Promise<{ id: stri
     }
 
     if (body.price && body.currency) {
-        updateFields[body.currency] = Number(user?.[body.currency] ?? 0) + Number(body.price);
+        const newPrice = Number(user?.[body.currency] ?? 0) + Number(body.price);
+        if (newPrice < 0) {
+            return UnprocessableEntity();
+        }
+        updateFields[body.currency] = newPrice;
     }
     await db.collection("users").updateOne(
         { _id: new ObjectId(id) },

@@ -3,20 +3,33 @@
 import { useState } from "react";
 import { Button, Modal } from 'react-bootstrap';
 
-export default function PopUpWindow(message: string) {
+export default function PopUpWindow({
+    message,
+    locationRedir,
+}: {
+    message: string;
+    locationRedir?: string;
+}) {
     const [show, setShow] = useState(true);
+
+    async function handleRedir() {
+        if (locationRedir) {
+            location.href = locationRedir;
+        } else {
+            setShow(false);
+        }
+    }
+
     return (
         <Modal show={show} centered>
             <Modal.Header closeButton className="theme-color">
-                <Modal.Title>It takes two</Modal.Title>
+                <Modal.Title>Congratulations</Modal.Title>
             </Modal.Header>
-
             <Modal.Body>
                 {message}
             </Modal.Body>
-
             <Modal.Footer>
-                <Button variant="secondary" onClick={() => setShow(false)} className="theme-color">Close</Button>
+                <Button variant="secondary" onClick={e => handleRedir()} className="theme-color">Close</Button>
             </Modal.Footer>
         </Modal>
     );
