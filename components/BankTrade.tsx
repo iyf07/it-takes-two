@@ -18,7 +18,7 @@ export default function BankTrade({ currency }: { currency: string }) {
         const fromCurrencyValue = CURRENCIES.find(c => c.name === fromCurrency)!.value;
         const toCurrencyValue = CURRENCIES.find(c => c.name === toCurrency)!.value;
         const newToAmount = Math.floor(amount * fromCurrencyValue / toCurrencyValue);
-        const newFromAmount = fromCurrencyValue > toCurrencyValue ? amount : newToAmount * toCurrencyValue;
+        const newFromAmount = fromCurrencyValue > toCurrencyValue ? amount : Math.ceil((newToAmount * toCurrencyValue) / fromCurrencyValue);
         setAmount(amount);
         setFrom(fromCurrency);
         setFromAmount(newFromAmount);
