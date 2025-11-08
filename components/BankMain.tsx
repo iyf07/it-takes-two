@@ -16,6 +16,7 @@ export default function BankMain() {
                             <a href={`/bank/trade/${currency.name}`}>
                                 <Image src={currency.iconPath} thumbnail/>
                             </a>
+                            <div className="mt-2">${currency.value}</div>
                             <div className="mt-2">{currency.name.toUpperCase()}</div>
                         </Col>
                     ))}
