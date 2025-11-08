@@ -49,9 +49,12 @@ export async function fetchRecordsByUserId(id: string) {
 }
 
 export function isoToDate(date: string) {
-    return new Date(date).toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "numeric",
-        day: "numeric",
-    })
+  return new Date(date).toLocaleString("en-US", {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true,
+  });
 }
