@@ -24,7 +24,7 @@ function getLevelIcons(lv: number) {
 export default function UserAccount() {
     const [error, setError] = useState("");
     const [userData, setUserData] = useState(Object);
-    const [level, setLevel] = useState(1);
+    const [level, setLevel] = useState(0);
     const [xpToNext, setXpToNext] = useState(0);
     const [partnerData, setPartnerData] = useState(Object);
 
@@ -43,7 +43,7 @@ export default function UserAccount() {
 
             let lv = 0;
             while (true) {
-                if ((userData.xp ?? 0)< Math.pow(lv + 1, 1.2)) {
+                if ((userData.xp ?? 0)< 50 * Math.pow(lv + 1, 1.2)) {
                     setLevel(lv);
                     setXpToNext(Math.floor(50 * Math.pow(lv + 1, 1.2)));
                     break;
