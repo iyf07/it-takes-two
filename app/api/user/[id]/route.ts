@@ -2,6 +2,7 @@ import { ObjectId } from "mongodb";
 import { getDb } from "@/lib/mongodb";
 import { checkUsernameExists } from "@/lib/server-utils";
 import { Ok, UsernameConflict, UserNotFound, InvalidUserID, UnprocessableEntity } from "@/lib/response";
+import { CURRENCIES } from "@/lib/data/currency";
 
 export async function GET(req: Request, { params }: { params: Promise<{ id: string }> }) {
     const db = await getDb();
@@ -49,6 +50,9 @@ export async function PUT(req: Request, { params }: { params: Promise<{ id: stri
             return UnprocessableEntity();
         }
         updateFields[body.currency] = newPrice;
+        if(body.price > 0 && body.exchange === undefined){
+            updateFields.xp = Number(user?.xp ?? 0) + Number(body.price) * Number(CURRENCIES.find(c => c.name === body.currency)?.value);
+        }
     }
     await db.collection("users").updateOne(
         { _id: new ObjectId(id) },

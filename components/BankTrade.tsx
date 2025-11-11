@@ -55,6 +55,7 @@ export default function BankTrade({ currency }: { currency: string }) {
             body: JSON.stringify({
                 price: Number(toAmount),
                 currency: currency,
+                exchange: true
             }),
             credentials: "include",
         });
