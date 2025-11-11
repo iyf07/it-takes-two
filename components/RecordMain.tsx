@@ -84,20 +84,11 @@ export default function RecordMain() {
                             <Accordion.Header className="theme-color">{task?.name} - {partnerRecord?.status}</Accordion.Header>
                             <Accordion.Body>
                                 <ListGroup variant="flush">
-                                    <ListGroupItem key="status" className="d-flex gap-2 mb-2">
-                                        Status: {partnerRecord?.status}
-                                    </ListGroupItem>
                                     <ListGroupItem key="date" className="d-flex gap-2 mb-2">
                                         Date: {date}
                                     </ListGroupItem>
                                     <ListGroupItem key="price" className="d-flex gap-2 mb-2">
                                         Price: <img src={currency?.iconPath} width={24} height={24} alt={String(index)} />{task?.price}
-                                    </ListGroupItem>
-                                    <ListGroupItem key="description" className="d-flex gap-2 mb-2">
-                                        Description: {task?.description}
-                                    </ListGroupItem>
-                                    <ListGroupItem key="category" className="d-flex gap-2 mb-2">
-                                        Category: {currency?.category}
                                     </ListGroupItem>
                                     {partnerRecord?.status.toLowerCase() === "pending" ? <><Button onClick={() => handleApprove(partnerRecord._id, userData.partnerId, task?.price, currency?.name)} className="mx-auto theme-color mb-3">
                                         Approve

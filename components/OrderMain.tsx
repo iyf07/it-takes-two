@@ -84,20 +84,11 @@ export default function OrderMain() {
                             <Accordion.Header>{service?.name} - {partnerOrder?.status}</Accordion.Header>
                             <Accordion.Body>
                                 <ListGroup variant="flush">
-                                    <ListGroupItem key="status" className="d-flex gap-2 mb-2">
-                                        Status: {partnerOrder?.status}
-                                    </ListGroupItem>
                                     <ListGroupItem key="date" className="d-flex gap-2 mb-2">
                                         Date: {date}
                                     </ListGroupItem>
                                     <ListGroupItem key="price" className="d-flex gap-2 mb-2">
                                         Price: <img src={currency?.iconPath} width={24} height={24} alt={String(index)} />{service?.price}
-                                    </ListGroupItem>
-                                    <ListGroupItem key="description" className="d-flex gap-2 mb-2">
-                                        Description: {service?.description}
-                                    </ListGroupItem>
-                                    <ListGroupItem key="category" className="d-flex gap-2 mb-2">
-                                        Category: {currency?.category}
                                     </ListGroupItem>
                                     {partnerOrder?.status.toLowerCase() != "pending" ? <></> : <Button onClick={() => handleDeliver(partnerOrder._id, userData._id, service?.price, currency?.name)} className="mx-auto theme-color">
                                         Deliver
@@ -129,12 +120,6 @@ export default function OrderMain() {
                                     </ListGroupItem>
                                     <ListGroupItem key="price" className="d-flex gap-2 mb-2">
                                         Price: <img src={currency?.iconPath} width={24} height={24} alt={String(index)} />{service?.price}
-                                    </ListGroupItem>
-                                    <ListGroupItem key="description" className="d-flex gap-2 mb-2">
-                                        Description: {service?.description}
-                                    </ListGroupItem>
-                                    <ListGroupItem key="category" className="d-flex gap-2 mb-2">
-                                        Category: {currency?.category}
                                     </ListGroupItem>
                                     {order?.status ? <></> : (<Button onClick={() => handleCancel(order._id, userData._id, service?.price, currency?.name)} className="mx-auto bg-danger">
                                         Cancel

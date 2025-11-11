@@ -54,12 +54,12 @@ export default function UserAccount() {
     }, []);
 
     return (
-        <Card className="p-4 shadow form">
+        <Card className="p-4 shadow form card-scroll">
             <FormWarningBanner error={error} />
             <Card.Header className="text-center bg-white border-0">
                 <h2 className="fw-bold">Account</h2>
             </Card.Header>
-            <Card.Body>
+            <Card.Body className="card-scroll-body">
                 <Card.Title className="mb-3">Username: {userData.username}</Card.Title>
                 <Card.Subtitle className="mb-3">LV: 
                     {getLevelIcons(level).map((name, index) => (
@@ -77,7 +77,7 @@ export default function UserAccount() {
                     </ListGroup>
                 </Card.Body>
             </Card.Body>
-            <Card.Footer>
+            <Card.Footer className="card-scroll">
                 <p className="mb-3">Partner: {partnerData.username}</p>
                 <p className="mb-3 text-muted">ID: {partnerData._id}</p>
             </Card.Footer>
