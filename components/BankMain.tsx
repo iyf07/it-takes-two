@@ -7,7 +7,7 @@ export default function BankMain() {
     return (
         <Card className="p-4 shadow form">
             <Card.Header className="text-center bg-white border-0">
-                <h2 className="fw-bold">Bank</h2>
+                <h2 className="fw-bold"><Image src="/icons/Gold.png" width={24} height={24} />Bank</h2>
             </Card.Header>
             <Card.Body>
                 <Row className="justify-content-center text-center">

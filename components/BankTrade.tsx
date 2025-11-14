@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Form, Card, Button } from 'react-bootstrap';
+import { Form, Card, Button, Image } from 'react-bootstrap';
 import FormWarningBanner from '@/components/FormWarningBanner';
 import PopUpWindow from '@/components/PopUpWindow';
 import { CURRENCIES } from "@/lib/data/currency";
@@ -10,6 +10,7 @@ import { fetchUserDataByCookie } from '@/lib/client-utils';
 export default function BankTrade({ currency }: { currency: string }) {
     const [error, setError] = useState("");
     const [popupMsg, setPopUpMsg] = useState<string | null>(null);
+    const [currencyChanges, setCurrencyChanges] = useState<Map<string, number>>(new Map());
     const [locationRedir, setLocationRedir] = useState<string | undefined>(undefined);
     const [userData, setUserData] = useState(Object);
     const [from, setFrom] = useState(CURRENCIES[0]?.name);
@@ -60,7 +61,11 @@ export default function BankTrade({ currency }: { currency: string }) {
             credentials: "include",
         });
         if (receiveRes.ok) {
-            setPopUpMsg(`Successfully exchanged ${fromAmount} ${from} for ${toAmount} ${currency}`);
+            setPopUpMsg(`Successfully exchanged.`);
+            const newCurrencyChanges = new Map();
+            newCurrencyChanges.set(CURRENCIES.find(c => c.name === from)?.iconPath, fromAmount * -1);
+            newCurrencyChanges.set(CURRENCIES.find(c => c.name === currency)?.iconPath, toAmount);
+            setCurrencyChanges(newCurrencyChanges);
             setLocationRedir("/bank");
         }
     }
@@ -75,10 +80,10 @@ export default function BankTrade({ currency }: { currency: string }) {
 
     return (
         <Card className="p-4 shadow form">
-            {popupMsg && <PopUpWindow message={popupMsg} locationRedir={locationRedir} />}
+            {popupMsg && <PopUpWindow message={popupMsg} locationRedir={locationRedir} currencyChanges={currencyChanges}/>}
             <FormWarningBanner error={error} />
             <Card.Header className="text-center bg-white border-0">
-                <h2 className="fw-bold">Trade {currency}</h2>
+                <h2 className="fw-bold"><Image src="/icons/Gold.png" width={24} height={24} />Trade {currency}</h2>
             </Card.Header>
             <Card.Body>
                 <Form onSubmit={onSubmit}>
@@ -95,7 +100,7 @@ export default function BankTrade({ currency }: { currency: string }) {
                             <Form.Label>Amount</Form.Label>
                             <span className="text-muted"><img src={CURRENCIES.find(c => c.name === from)?.iconPath} width={24} height={24} alt={String(currency)} /> {amount}</span>
                         </div>
-                        <Form.Range min={1} max={100} value={amount} onChange={e => calculateFromToAmount(Number(e.target.value), from, currency)} />
+                        <Form.Range min={1} max={50} value={amount} onChange={e => calculateFromToAmount(Number(e.target.value), from, currency)} />
                     </Form.Group>
                     <div className="mb-4 d-flex justify-content-between">
                         <Form.Label>To</Form.Label>

@@ -71,7 +71,7 @@ export default function OrderMain() {
     return (
         <Card className="p-4 shadow form card-scroll">
             <Card.Header className="text-center bg-white border-0">
-                <h2 className="fw-bold">Orders</h2>
+                <h2 className="fw-bold"><Image src="/icons/Order.png" width={24} height={24} />Orders</h2>
             </Card.Header>
             <Card.Title className="text-center">Partner Orders</Card.Title>
             <Card.Body className="card-scroll-body">
@@ -81,7 +81,7 @@ export default function OrderMain() {
                         const currency = CURRENCIES.find(c => c.category === service?.category);
                         const date = isoToDate(partnerOrder.date);
                         return (<Accordion.Item eventKey={String(index)} key={partnerOrder.date}>
-                            <Accordion.Header>{service?.name} - {partnerOrder?.status}</Accordion.Header>
+                            <Accordion.Header>{service?.name}{partnerOrder?.status.toLowerCase() === "delivered" ? "" : " - " + partnerOrder?.status}</Accordion.Header>
                             <Accordion.Body>
                                 <ListGroup variant="flush">
                                     <ListGroupItem key="date" className="d-flex gap-2 mb-2">
@@ -109,7 +109,7 @@ export default function OrderMain() {
                         const currency = CURRENCIES.find(c => c.category === service?.category);
                         const date = isoToDate(order.date);
                         return (<Accordion.Item eventKey={String(index)} key={order.date}>
-                            <Accordion.Header>{service?.name} - {order?.status}</Accordion.Header>
+                            <Accordion.Header>{service?.name}{order?.status.toLowerCase() === "delivered" ? "" : " - " + order?.status}</Accordion.Header>
                             <Accordion.Body>
                                 <ListGroup variant="flush">
                                     <ListGroupItem key="status" className="d-flex gap-2 mb-2">

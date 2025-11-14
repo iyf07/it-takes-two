@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Accordion, Card, ListGroup, ListGroupItem, Button, Modal, Dropdown } from 'react-bootstrap';
+import { Accordion, Card, ListGroup, ListGroupItem, Button, Modal, Dropdown, Image } from 'react-bootstrap';
 import { fetchUserDataByCookie, fetchUserDataById, fetchServicesByUserId } from '@/lib/client-utils';
 import { Service } from "@/lib/model/service";
 import { CURRENCIES } from "@/lib/data/currency";
@@ -58,7 +58,7 @@ export default function ServiceMain() {
     return (
         <Card className="p-4 shadow form card-scroll">
             <Card.Header className="text-center bg-white border-0">
-                <h2 className="fw-bold">Store</h2>
+                <h2 className="fw-bold"><Image src="/icons/Beer.png" width={24} height={24} />Store</h2>
             </Card.Header>
             <Card.Title className="mb-3 text-center">Partner services</Card.Title>
             <Card.Body className="card-scroll-body">

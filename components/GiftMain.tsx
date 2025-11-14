@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Accordion, Card, ListGroup, ListGroupItem, Button } from 'react-bootstrap';
+import { Accordion, Card, ListGroup, ListGroupItem, Button, Image } from 'react-bootstrap';
 import { fetchUserDataByCookie, fetchGiftsByUserIdType, isoToDate } from '@/lib/client-utils';
 import { Gift } from "@/lib/model/gift";
 import { CURRENCIES } from "@/lib/data/currency";
@@ -25,7 +25,7 @@ export default function GiftMain() {
     return (
         <Card className="p-4 shadow form card-scroll">
             <Card.Header className="text-center bg-white border-0">
-                <h2 className="fw-bold">Gift Shop</h2>
+                <h2 className="fw-bold"><Image src="/icons/Fairy_Rose.png" width={24} height={24} />Gift Shop</h2>
             </Card.Header>
             <Card.Title className="mb-3 text-center">Received gifts</Card.Title>
             <Card.Body className="card-scroll-body">

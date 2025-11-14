@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Accordion, Card, ListGroup, ListGroupItem, Button, Dropdown } from 'react-bootstrap';
+import { Accordion, Card, ListGroup, ListGroupItem, Button, Dropdown, Image } from 'react-bootstrap';
 import { fetchUserDataByCookie, fetchTasksByUserIds } from '@/lib/client-utils';
 import { Task } from "@/lib/model/task";
 import { CURRENCIES } from "@/lib/data/currency";
@@ -44,7 +44,7 @@ export default function TaskMain() {
     return (
         <Card className="p-4 shadow form card-scroll">
             <Card.Header className="text-center bg-white border-0">
-                <h2 className="fw-bold">Task Board</h2>
+                <h2 className="fw-bold"><Image src="/icons/Task.png" width={24} height={24} />Task Board</h2>
             </Card.Header>
             <Card.Title className="mb-3 text-center">Tasks</Card.Title>
             <Card.Body className="card-scroll-body">

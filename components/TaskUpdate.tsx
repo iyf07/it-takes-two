@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Form, Card, Button } from 'react-bootstrap';
+import { Form, Card, Button, Image } from 'react-bootstrap';
 import FormWarningBanner from '@/components/FormWarningBanner';
 import { fetchTaskById } from '@/lib/client-utils';
 import { CURRENCIES } from "@/lib/data/currency";
@@ -42,7 +42,7 @@ export default function TaskUpdate({ id }: { id: string }) {
         <Card className="p-4 shadow form">
             <FormWarningBanner error={error} />
             <Card.Header className="text-center bg-white border-0">
-                <h2 className="fw-bold">Update Task</h2>
+                <h2 className="fw-bold"><Image src="/icons/Task.png" width={24} height={24} />Update Task</h2>
             </Card.Header>
             <Card.Body>
                 <Form onSubmit={onSubmit}>

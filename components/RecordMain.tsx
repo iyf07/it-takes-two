@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Accordion, Card, ListGroup, ListGroupItem, Button } from 'react-bootstrap';
-import { fetchUserDataByCookie, fetchUserDataById, fetchServicesByUserId, fetchOrdersByUserId, fetchTasksByUserIds, isoToDate, fetchRecordsByUserId } from '@/lib/client-utils';
+import { Accordion, Card, ListGroup, ListGroupItem, Button, Image } from 'react-bootstrap';
+import { fetchUserDataByCookie, fetchTasksByUserIds, isoToDate, fetchRecordsByUserId } from '@/lib/client-utils';
 import { Service } from "@/lib/model/service";
 import { CURRENCIES } from "@/lib/data/currency";
 import { Record } from "@/lib/model/record";
@@ -71,7 +71,7 @@ export default function RecordMain() {
     return (
         <Card className="p-4 shadow form card-scroll">
             <Card.Header className="text-center bg-white border-0">
-                <h2 className="fw-bold">Diary</h2>
+                <h2 className="fw-bold"><Image src="/icons/Diary.png" width={24} height={24} />Diary</h2>
             </Card.Header>
             <Card.Title className="text-center">Partner Diary</Card.Title>
             <Card.Body className="card-scroll-body">
@@ -81,7 +81,7 @@ export default function RecordMain() {
                         const currency = CURRENCIES.find(c => c.category === task?.category);
                         const date = isoToDate(partnerRecord.date);
                         return (<Accordion.Item eventKey={String(index)} key={partnerRecord.date}>
-                            <Accordion.Header className="theme-color">{task?.name} - {partnerRecord?.status}</Accordion.Header>
+                            <Accordion.Header className="theme-color">{task?.name}{partnerRecord?.status.toLocaleLowerCase() === "approved" ? "" : " - " + partnerRecord?.status}</Accordion.Header>
                             <Accordion.Body>
                                 <ListGroup variant="flush">
                                     <ListGroupItem key="date" className="d-flex gap-2 mb-2">
@@ -112,7 +112,7 @@ export default function RecordMain() {
                         const currency = CURRENCIES.find(c => c.category === task?.category);
                         const date = isoToDate(record.date);
                         return (<Accordion.Item eventKey={String(index)} key={record.date}>
-                            <Accordion.Header>{task?.name} - {record?.status}</Accordion.Header>
+                            <Accordion.Header>{task?.name}{record?.status.toLowerCase() === "approved" ? "" : " - " + record?.status}</Accordion.Header>
                             <Accordion.Body>
                                 <ListGroup variant="flush">
                                     <ListGroupItem key="status" className="d-flex gap-2 mb-2">

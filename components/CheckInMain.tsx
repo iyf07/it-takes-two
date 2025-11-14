@@ -12,6 +12,7 @@ export default function CheckInMain() {
     const [userData, setUserData] = useState(Object);
     const [checkedIn, setCheckedIn] = useState(Boolean);
     const [popupMsg, setPopUpMsg] = useState<string | null>(null);
+    const [currencyChanges, setCurrencyChanges] = useState<Map<string, number>>(new Map());
     const [locationRedir, setLocationRedir] = useState<string | undefined>(undefined);
     const utcDate = new Date();
     const etString = utcDate.toLocaleString("en-US", {
@@ -33,7 +34,10 @@ export default function CheckInMain() {
         for (const [key, value] of probabilityMap) {
             if (randomNumber >= value[0] && randomNumber < value[1]) {
                 winner = key;
-                setPopUpMsg(`Successfully checked in. You received a ${winner}`)
+                setPopUpMsg(`Successfully checked in.`)
+                const newCurrencyChanges = new Map();
+                newCurrencyChanges.set(CURRENCIES.find(c => c.name === winner)?.iconPath, 1);
+                setCurrencyChanges(newCurrencyChanges);
                 setLocationRedir(`/check-in`)
                 break;
             }
@@ -69,16 +73,16 @@ export default function CheckInMain() {
 
     return (
         <Card className="p-4 shadow form">
-            {popupMsg && <PopUpWindow message={popupMsg} locationRedir={locationRedir} />}
+            {popupMsg && <PopUpWindow message={popupMsg} locationRedir={locationRedir} currencyChanges={currencyChanges}/>}
             <FormWarningBanner message={message} />
             <Card.Header className="text-center bg-white border-0">
-                <h2 className="fw-bold">Check-in</h2>
+                <h2 className="fw-bold"><Image src="/icons/Pumpkin.png" width={24} height={24} /> Check-in</h2>
             </Card.Header>
             <Card.Body>
                 <Row className="justify-content-center text-center">
                     {CURRENCIES.map((currency, index) =>
                         (<Col key={index} xs={4} md={4} className="mb-3"> <Image src={currency.iconPath} thumbnail /></Col>))} </Row>
-                <Button type="submit" className="w-100 theme-color" onClick={e => handleCheckIn()} disabled={checkedIn}> Check in</Button>
+                <Button type="submit" className="w-100 theme-color" onClick={e => handleCheckIn()}> Check in</Button>
             </Card.Body>
         </Card>)
 }

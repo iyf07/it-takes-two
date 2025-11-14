@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Form, Card, Button } from 'react-bootstrap';
+import { Form, Card, Button, Image } from 'react-bootstrap';
 import FormWarningBanner from '@/components/FormWarningBanner';
 import PopUpWindow from '@/components/PopUpWindow';
 import { fetchUserDataByCookie } from '@/lib/client-utils';
@@ -71,7 +71,7 @@ export default function GiftSend() {
             {popupMsg && <PopUpWindow message={popupMsg} locationRedir={locationRedir} />}
             <FormWarningBanner error={error} />
             <Card.Header className="text-center bg-white border-0">
-                <h2 className="fw-bold">Send Gift</h2>
+                <h2 className="fw-bold"><Image src="/icons/Fairy_Rose.png" width={24} height={24} />Send Gift</h2>
             </Card.Header>
             <Card.Body>
                 <Form onSubmit={onSubmit}>
