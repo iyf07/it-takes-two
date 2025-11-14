@@ -41,6 +41,7 @@ export default function NavigationBar() {
               <NavDropdown title={<Image src="/icons/Village.png" width={24} height={24} />} id="user-menu" align="end">
                 <NavDropdown.Item href="/task"><Image src="/icons/Task.png" width={24} height={24} /> Task Board</NavDropdown.Item>
                 <NavDropdown.Item href="/service"><Image src="/icons/Beer.png" width={24} height={24} /> Store</NavDropdown.Item>
+                <NavDropdown.Item href="/gift"><Image src="/icons/Fairy_Rose.png" width={24} height={24} /> Gift Shop</NavDropdown.Item>
                 <NavDropdown.Item href="/bank"><Image src="/icons/Gold.png" width={24} height={24} /> Bank</NavDropdown.Item>
                 <NavDropdown.Item href="/check-in"><Image src="/icons/Pumpkin.png" width={24} height={24} /> Visitor Center</NavDropdown.Item>
                 <NavDropdown.Item href="/wish"><Image src="/icons/Star.png" width={24} height={24} /> Wishing Well</NavDropdown.Item>

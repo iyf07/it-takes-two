@@ -52,7 +52,7 @@ export default function ServiceCreate() {
                         <Form.Label>Name</Form.Label>
                         <Form.Control required type="text" name="name" placeholder="Enter service name" onChange={(e) => setService({ ...service, name: e.target.value })} />
                     </Form.Group>
-                    <Form.Group className="mb-4" controlId="category">
+                    <Form.Group className="mb-3" controlId="category">
                         <Form.Label>Category</Form.Label>
                         <Form.Select defaultValue={CURRENCIES[0]?.category} onChange={(e) => setService({ ...service, category: e.target.value })}>
                             {CURRENCIES.map((currency, index) => (
@@ -60,7 +60,7 @@ export default function ServiceCreate() {
                             ))}
                         </Form.Select>
                     </Form.Group>
-                    <Form.Group className="mb-4" controlId="price">
+                    <Form.Group className="mb-3" controlId="price">
                         <Form.Label>Price</Form.Label>
                         <Form.Control required type="number" name="price" placeholder="Enter price" onChange={(e) => setService({ ...service, price: e.target.value })} />
                     </Form.Group>
@@ -69,7 +69,7 @@ export default function ServiceCreate() {
                         <br />
                         <img src={service.category ? CURRENCIES.find(c => c.category === service.category)?.iconPath : CURRENCIES[0]?.iconPath} width={24} height={24} alt={String(service.category)} />
                     </div>
-                    <Form.Group className="mb-3" controlId="description">
+                    <Form.Group className="mb-4" controlId="description">
                         <Form.Label>Description</Form.Label>
                         <Form.Control required type="string" name="description" placeholder="Enter description" onChange={(e) => setService({ ...service, description: e.target.value })} />
                     </Form.Group>

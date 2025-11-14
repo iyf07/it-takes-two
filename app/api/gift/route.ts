@@ -5,10 +5,13 @@ export async function POST(req: Request) {
     const body = await req.json();
     const db = await getDb();
 
-    await db.collection("orders").insertOne({
-        serviceId: body.serviceId,
-        userId: body.userId,
-        status: "Pending",
+    await db.collection("gifts").insertOne({
+        receiverId: body.receiverId,
+        senderId: body.senderId,
+        name: body.name,
+        note: body.note,
+        price: body.price,
+        currency: body.currency,
         date: new Date().toISOString()
     });
 

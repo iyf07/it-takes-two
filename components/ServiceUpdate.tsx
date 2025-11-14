@@ -52,7 +52,7 @@ export default function ServiceUpdate({ id }: { id: string }) {
                         <Form.Label>Name</Form.Label>
                         <Form.Control type="text" name="name" placeholder={service.name} onChange={(e) => setService({ ...service, name: e.target.value })} />
                     </Form.Group>
-                    <Form.Group className="mb-4" controlId="category">
+                    <Form.Group className="mb-3" controlId="category">
                         <Form.Label>Category</Form.Label>
                         <Form.Select value={service.category} onChange={(e) => setService({ ...service, category: e.target.value })}>
                             {CURRENCIES.map((currency, index) => (
@@ -60,7 +60,7 @@ export default function ServiceUpdate({ id }: { id: string }) {
                             ))}
                         </Form.Select>
                     </Form.Group>
-                    <Form.Group className="mb-4" controlId="price">
+                    <Form.Group className="mb-3" controlId="price">
                         <Form.Label>Price</Form.Label>
                         <Form.Control type="number" name="price" placeholder={service.price} onChange={(e) => setService({ ...service, price: e.target.value })} />
                     </Form.Group>
@@ -69,7 +69,7 @@ export default function ServiceUpdate({ id }: { id: string }) {
                         <br/>
                         <img src={CURRENCIES.find(c => c.category === service.category)?.iconPath} width={24} height={24} alt={String(service.category)} />
                     </div>
-                    <Form.Group className="mb-3" controlId="description">
+                    <Form.Group className="mb-4" controlId="description">
                         <Form.Label>Description</Form.Label>
                         <Form.Control type="string" name="description" placeholder={service.description} onChange={(e) => setService({ ...service, description: e.target.value })} />
                     </Form.Group>

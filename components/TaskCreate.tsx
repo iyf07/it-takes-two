@@ -52,7 +52,7 @@ export default function TaskCreate() {
                         <Form.Label>Name</Form.Label>
                         <Form.Control required type="text" name="name" placeholder="Enter task name" onChange={(e) => setTask({ ...task, name: e.target.value })} />
                     </Form.Group>
-                    <Form.Group className="mb-4" controlId="category">
+                    <Form.Group className="mb-3" controlId="category">
                         <Form.Label>Category</Form.Label>
                         <Form.Select defaultValue={CURRENCIES[0]?.category} onChange={(e) => setTask({ ...task, category: e.target.value })}>
                             {CURRENCIES.map((currency, index) => (
@@ -60,7 +60,7 @@ export default function TaskCreate() {
                             ))}
                         </Form.Select>
                     </Form.Group>
-                    <Form.Group className="mb-4" controlId="price">
+                    <Form.Group className="mb-3" controlId="price">
                         <Form.Label>Price</Form.Label>
                         <Form.Control required type="number" name="price" placeholder="Enter price" onChange={(e) => setTask({ ...task, price: e.target.value })} />
                     </Form.Group>
@@ -69,7 +69,7 @@ export default function TaskCreate() {
                         <br />
                         <img src={task.category ? CURRENCIES.find(c => c.category === task.category)?.iconPath : CURRENCIES[0]?.iconPath} width={24} height={24} alt={String(task.category)} />
                     </div>
-                    <Form.Group className="mb-3" controlId="description">
+                    <Form.Group className="mb-4" controlId="description">
                         <Form.Label>Description</Form.Label>
                         <Form.Control required type="string" name="description" placeholder="Enter description" onChange={(e) => setTask({ ...task, description: e.target.value })} />
                     </Form.Group>

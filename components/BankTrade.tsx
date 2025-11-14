@@ -97,7 +97,7 @@ export default function BankTrade({ currency }: { currency: string }) {
                         </div>
                         <Form.Range min={1} max={100} value={amount} onChange={e => calculateFromToAmount(Number(e.target.value), from, currency)} />
                     </Form.Group>
-                    <div className="d-flex justify-content-between">
+                    <div className="mb-4 d-flex justify-content-between">
                         <Form.Label>To</Form.Label>
                         <span className="text-muted"><img src={CURRENCIES.find(c => c.name === currency)?.iconPath} width={24} height={24} alt={String(currency)} /> {toAmount}</span>
                     </div>

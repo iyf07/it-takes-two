@@ -48,6 +48,12 @@ export async function fetchRecordsByUserId(id: string) {
     return data.records;
 }
 
+export async function fetchGiftsByUserIdType(id: string, type: string) {
+    const res = await fetch(`/api/gift/${type}/${id}`);
+    const data = await res.json();
+    return data.gifts;
+}
+
 export function isoToDate(date: string) {
   return new Date(date).toLocaleString("en-US", {
     timeZone: "America/New_York",
